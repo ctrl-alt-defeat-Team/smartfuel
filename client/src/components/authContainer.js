@@ -1,0 +1,45 @@
+import React from "react";
+import Login from "./login";
+import Register from "./register";
+import "../styles/Auth.css";
+import { useState } from "react";
+
+function AuthContainer() {
+  const [showLogin, setLogin] = useState(false);
+  const [showRegister, setRegister] = useState(true);
+
+  const handleClickLogin = () => {
+    setLogin(true);
+    setRegister(false);
+  };
+
+  const handleClickRegister = () => {
+    setRegister(true);
+    setLogin(false);
+  };
+
+  return (
+    <div className="authContainer">
+      <div className="btn-container">
+        <button
+          className={showLogin ? "btn btn-active" : "btn"}
+          onClick={handleClickLogin}
+        >
+          Login
+        </button>
+        <button
+          className={showRegister ? "btn btn-active" : "btn"}
+          onClick={handleClickRegister}
+        >
+          Register
+        </button>
+      </div>
+      <div className="form-container">
+        {showLogin && <Login />}
+        {showRegister && <Register />}
+      </div>
+    </div>
+  );
+}
+
+export default AuthContainer;

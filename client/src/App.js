@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import "./styles/App.css";
+import AuthContainer from "./components/authContainer";
 
 function App() {
   const [backendData, setBackendData] = useState([{}]);
@@ -10,12 +12,8 @@ function App() {
   }, []);
 
   return (
-    <div>
-      <h1>Backend Data</h1>
-      <ul>
-        {backendData.users &&
-          backendData.users.map((user, i) => <li key={i}>{user}</li>)}
-      </ul>
+    <div className="container">
+      <AuthContainer />
     </div>
   );
 }
