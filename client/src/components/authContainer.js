@@ -22,13 +22,15 @@ function AuthContainer() {
     <div className="authContainer">
       <div className="btn-container">
         <button
-          className={showLogin ? "btn btn-active" : "btn"}
+          className={showLogin ? "btn btn-left btn-active" : "btn btn-left"}
           onClick={handleClickLogin}
         >
           Login
         </button>
         <button
-          className={showRegister ? "btn btn-active" : "btn"}
+          className={
+            showRegister ? "btn btn-right btn-active" : "btn btn-right"
+          }
           onClick={handleClickRegister}
         >
           Register

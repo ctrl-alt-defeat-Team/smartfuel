@@ -1,16 +1,10 @@
-/* color pallete: 
-#211951
-#836FFF
-#15F5BA
-#F0F3FF 
-*/
-
 .authContainer {
   width: 35vw;
   margin: 0 auto;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   height: 50vh;
-  background-color: #f0f3ff;
+  background-color: #e7e7e7;
+  border-radius: 10px;
 }
 
 .btn-container {
@@ -18,13 +12,13 @@
   display: inline-flex;
   position: relative;
   height: 15%;
+  border-radius: 10px 10px 0 0;
 }
 
 .btn {
   width: 100%;
   padding: 20px;
   background-color: #176b87;
-  /* border: 1px solid rgb(0, 0, 0); */
   border: none;
   cursor: pointer;
   transition: 0.3s;
@@ -35,6 +29,14 @@
 
 .btn-active {
   background-color: #04364a;
+}
+
+.btn-left {
+  border-radius: 10px 0 0 0;
+}
+
+.btn-right {
+  border-radius: 0 10px 0 0;
 }
 
 .btn:hover {
@@ -66,6 +68,7 @@
   margin: 10px;
   margin-top: 0;
   border: 1px solid black;
+  border-radius: 5px;
 }
 
 .btn-submit {
@@ -80,6 +83,7 @@
   font-size: large;
   font-weight: bold;
   position: relative;
+  border-radius: 5px;
 }
 
 .btn-submit:hover {
