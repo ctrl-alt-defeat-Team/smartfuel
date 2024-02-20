@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from "react";
 import "./styles/App.css";
 import AuthContainer from "./components/authContainer";
+import Navbar from "./components/navbar";
 
 function App() {
-  const [backendData, setBackendData] = useState([{}]);
+  const [loggedIn, setLoggedIn] = useState(false);
 
-  useEffect(() => {
-    fetch("/api")
-      .then((res) => res.json())
-      .then((data) => setBackendData(data));
-  }, []);
+  const handleLogin = () => {
+    setLoggedIn(true);
+  };
 
   return (
-    <div className="container">
-      <AuthContainer />
+    <div className="screen-body">
+      <Navbar onLogin={handleLogin} loggedIn={loggedIn} />
+      <div className="container">{loggedIn ? <AuthContainer /> : null}</div>
     </div>
   );
 }
