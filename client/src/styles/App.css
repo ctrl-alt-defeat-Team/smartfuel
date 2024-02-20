@@ -1,10 +1,16 @@
+.screen-body {
+  height: 100vh;
+  width: 100vw;
+}
+
 .container {
+  position: absolute;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
   width: 100vw;
+  height: 90vh;
   background-image: url("../../public/login-pic.jpg");
   background-size: cover;
   background-position: center;

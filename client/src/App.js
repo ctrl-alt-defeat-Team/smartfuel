@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./styles/App.css";
 import AuthContainer from "./components/authContainer";
+import Navbar from "./components/navbar";
 
 function App() {
   const [backendData, setBackendData] = useState([{}]);
@@ -12,8 +13,11 @@ function App() {
   }, []);
 
   return (
-    <div className="container">
-      <AuthContainer />
+    <div className="screen-body">
+      <Navbar />
+      <div className="container">
+        <AuthContainer />
+      </div>
     </div>
   );
 }
