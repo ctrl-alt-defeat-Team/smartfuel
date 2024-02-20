@@ -1,0 +1,155 @@
+.authContainer {
+  width: 35vw;
+  margin: 0 auto;
+  /* border: 1px solid black; */
+  height: 50vh;
+  background-color: #e7e7e7;
+  border-radius: 10px;
+}
+
+.btn-container {
+  width: 100%;
+  display: inline-flex;
+  position: relative;
+  height: 15%;
+  border-radius: 10px 10px 0 0;
+}
+
+.btn {
+  width: 100%;
+  padding: 20px;
+  background-color: #176b87;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+  color: white;
+  font-size: large;
+  font-weight: bold;
+}
+
+.btn-active {
+  background-color: #04364a;
+}
+
+.btn-left {
+  border-radius: 10px 0 0 0;
+}
+
+.btn-right {
+  border-radius: 0 10px 0 0;
+}
+
+.btn:hover {
+  background-color: #04364a;
+}
+
+.form-container {
+  width: 100%;
+  height: 85%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.auth-form {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.auth-form input {
+  padding: 10px;
+  margin: 10px;
+  margin-top: 0;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.btn-submit {
+  width: 10rem;
+  margin: 30px;
+  padding: 10px;
+  background-color: #176b87;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+  color: white;
+  font-size: large;
+  font-weight: bold;
+  position: relative;
+  border-radius: 5px;
+}
+
+.btn-submit:hover {
+  background-color: #04364a;
+}
+
+@media (max-width: 760px) {
+  .authContainer {
+    width: 90vw;
+    height: 70vh;
+  }
+
+  .btn-container {
+    height: 10%;
+  }
+
+  .btn {
+    padding: 15px;
+    font-size: medium;
+  }
+
+  .form-container {
+    height: 80%;
+  }
+
+  .auth-form input {
+    padding: 8px;
+    margin: 8px;
+  }
+
+  .btn-submit {
+    width: 8rem;
+    margin: 20px;
+    padding: 10px;
+    font-size: medium;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .authContainer {
+    width: 80vw;
+    height: 60vh;
+  }
+
+  .btn-container {
+    height: 8%;
+  }
+
+  .btn {
+    padding: 12px;
+    font-size: small;
+  }
+
+  .form-container {
+    height: 75%;
+  }
+
+  .auth-form input {
+    padding: 6px;
+    margin: 6px;
+  }
+
+  .btn-submit {
+    width: 7rem;
+    margin: 15px;
+    padding: 8px;
+    font-size: small;
+  }
+}
