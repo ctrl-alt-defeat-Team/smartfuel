@@ -81,7 +81,7 @@ rgb(65, 109, 25)
   margin: 10px;
   margin-top: 0;
   border: 1px solid black;
-  border-radius: 5px;
+  border-radius: 3px;
 }
 
 .btn-submit {
@@ -96,7 +96,7 @@ rgb(65, 109, 25)
   font-size: large;
   font-weight: bold;
   position: relative;
-  border-radius: 5px;
+  border-radius: 3px;
 }
 
 .btn-submit:hover {

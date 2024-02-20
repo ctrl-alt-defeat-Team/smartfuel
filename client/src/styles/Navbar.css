@@ -13,8 +13,49 @@ nav {
 a {
   text-decoration: none;
   color: white;
+  font-weight: bold;
+  margin: 20px;
+  padding: 10px;
+}
+
+.navbar-brand {
+  text-decoration: none;
+  color: white;
   font-size: 50px;
   font-weight: bold;
   margin: 3%;
   padding: 3%;
 }
+
+.nav-links {
+  display: inline-flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 40%;
+  margin: 0 5%;
+  font-size: large;
+}
+
+.nav-btn {
+  padding: 10px 15px 10px 15px;
+  margin: 2%;
+  background-color: #416d19;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: 0.3s;
+  color: white;
+  font-size: large;
+  font-weight: bold;
+}
+
+.nav-btn:hover {
+  background-color: #244700;
+}
+
+.nav-links a:hover {
+  color: #416d19;
+  transition: 0.1s;
+}
+
+/* de facut stilurile pt telefon si tableta */
