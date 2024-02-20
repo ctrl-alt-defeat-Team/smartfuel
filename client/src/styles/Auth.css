@@ -1,3 +1,16 @@
+/* 
+
+#FFF67E
+#BFEA7C
+#9BCF53
+#416D19
+rgb(255, 246, 126)
+rgb(191, 234, 124)
+rgb(155, 207, 83)
+rgb(65, 109, 25)
+
+*/
+
 .authContainer {
   width: 35vw;
   margin: 0 auto;
@@ -18,7 +31,7 @@
 .btn {
   width: 100%;
   padding: 20px;
-  background-color: #176b87;
+  background-color: #9bcf53;
   border: none;
   cursor: pointer;
   transition: 0.3s;
@@ -28,7 +41,7 @@
 }
 
 .btn-active {
-  background-color: #04364a;
+  background-color: #416d19;
 }
 
 .btn-left {
@@ -40,7 +53,7 @@
 }
 
 .btn:hover {
-  background-color: #04364a;
+  background-color: #416d19;
 }
 
 .form-container {
@@ -75,7 +88,7 @@
   width: 10rem;
   margin: 30px;
   padding: 10px;
-  background-color: #176b87;
+  background-color: #9bcf53;
   border: none;
   cursor: pointer;
   transition: 0.3s;
@@ -87,7 +100,7 @@
 }
 
 .btn-submit:hover {
-  background-color: #04364a;
+  background-color: #416d19;
 }
 
 @media (max-width: 760px) {
