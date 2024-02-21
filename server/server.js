@@ -3,6 +3,9 @@ const app = express();
 const mongoose = require("mongoose");
 require("dotenv").config();
 
+var registerRoutes = require("./routes/register");
+
+app.use(express.json());
 
 app.get("/api", (req, res) => {
   res.json({ users: ["user1", "user2", "user3"] });
@@ -24,3 +27,5 @@ mongoose
 )
 .catch((error) => console.log(error.message));
 
+
+app.use("/register", registerRoutes);
