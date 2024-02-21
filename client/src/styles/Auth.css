@@ -15,7 +15,7 @@ rgb(65, 109, 25)
   width: 35vw;
   margin: 0 auto;
   /* border: 1px solid black; */
-  height: 50vh;
+  height: 55vh;
   background-color: #f7f1e5;
   border-radius: 10px;
 }
@@ -135,7 +135,7 @@ rgb(65, 109, 25)
   }
 }
 
-@media (min-width: 768px) and (max-width: 1024px) {
+@media (min-width: 761px) and (max-width: 1024px) {
   .authContainer {
     width: 80vw;
     height: 60vh;
@@ -164,5 +164,36 @@ rgb(65, 109, 25)
     margin: 15px;
     padding: 8px;
     font-size: small;
+  }
+
+  @media (min-width: 1025px) {
+    .authContainer {
+      width: 80vw;
+      height: 60vh;
+    }
+
+    .btn-container {
+      height: 8%;
+    }
+
+    .btn {
+      padding: 12px;
+      font-size: small;
+    }
+
+    .form-container {
+      height: 80%;
+    }
+
+    .auth-form input {
+      padding: 6px;
+      margin: 6px;
+    }
+
+    .btn-submit {
+      width: 10rem;
+      padding: 10px;
+      font-size: large;
+    }
   }
 }
