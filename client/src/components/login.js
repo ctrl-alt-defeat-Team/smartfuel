@@ -1,6 +1,8 @@
 import React from "react";
 import "../styles/Auth.css";
 
+// ! sageata la dreapta login
+
 function Login() {
   return (
     <div>

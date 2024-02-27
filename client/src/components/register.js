@@ -6,7 +6,7 @@ function Register() {
     <div>
       <h3>Register to gain access to Smartfuel</h3>
       <form className="auth-form">
-        <div className="form-group">
+        <div className="form-gr">
           <input
             placeholder="Username"
             type="text"
@@ -14,7 +14,7 @@ function Register() {
             name="username"
           />
         </div>
-        <div className="form-group">
+        <div className="form-gr">
           <input
             placeholder="Password"
             type="password"
@@ -22,7 +22,7 @@ function Register() {
             name="password"
           />
         </div>
-        <div className="form-group">
+        <div className="form-gr">
           <input
             placeholder="Confirm Password"
             type="password"

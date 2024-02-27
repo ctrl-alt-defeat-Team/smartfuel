@@ -15,9 +15,18 @@ rgb(65, 109, 25)
   width: 35vw;
   margin: 0 auto;
   /* border: 1px solid black; */
-  height: 55vh;
+  height: 65vh;
   background-color: #f7f1e5;
   border-radius: 10px;
+}
+
+h3 {
+  text-align: center;
+  margin: 0;
+  font-size: 1.75rem;
+  font-weight: bold;
+  color: black;
+
 }
 
 .btn-container {
@@ -76,10 +85,19 @@ rgb(65, 109, 25)
   justify-content: center;
 }
 
+.form-gr {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 .auth-form input {
+  height: 65%;
   padding: 10px;
-  margin: 10px;
-  margin-top: 0;
+  margin: 12px;
+
   border: 1px solid black;
   border-radius: 3px;
 }

@@ -1,0 +1,93 @@
+.page {
+    width: 100vw;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f7f1e5;
+}
+
+.contact {
+    width: 100vw;
+    height: 50vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 60vh;
+    grid-auto-flow: row;
+    gap: 30px;
+}
+
+.contact-mes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#title {
+    width: 100vw;
+    font-size: 3rem;
+    font-weight: bold;
+    color: black;
+    padding: 10px;
+    padding-right: 0;
+    padding-left: 0;
+    margin: 0;
+    text-align: center;
+    background-color: #f7f1e5;
+}
+
+h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    color: black;
+    padding: 10px;
+    margin: 0;
+    text-align: center;
+}
+
+.form-group {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: center;
+}
+
+.name {
+    width: 100%;
+    border-radius: 5px;
+    font-size: 2rem;
+    font-weight: bold;
+    color: black;
+    margin: 30px;
+    padding: 0;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+input {
+    width: 80%;
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid #000;
+    margin: 10px;
+    padding: 10px;
+    font-size: 1.5rem;
+}
+
+#save {
+    width: 100%;
+    margin: 30px;
+    padding: 10px;
+    background-color: #9bcf53;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+    color: white;
+    font-size: large;
+    font-weight: bold;
+    position: relative;
+    border-radius: 3px;
+}
