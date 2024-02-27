@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 require("dotenv").config();
 
 var registerRoutes = require("./routes/register");
+var loginRoutes = require("./routes/login");
 
 app.use(express.json());
 
@@ -29,3 +30,4 @@ mongoose
 
 
 app.use("/register", registerRoutes);
+app.use("/login", loginRoutes);
