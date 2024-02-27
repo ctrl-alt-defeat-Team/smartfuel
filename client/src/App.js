@@ -13,7 +13,9 @@ function App() {
   return (
     <div className="screen-body">
       <Navbar onLogin={handleLogin} loggedIn={loggedIn} />
-      <div className="container">{loggedIn ? <AuthContainer /> : null}</div>
+      <div className="main-container">
+        {loggedIn ? <AuthContainer /> : null}
+      </div>
     </div>
   );
 }
