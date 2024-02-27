@@ -10,14 +10,6 @@ nav {
   background-color: #9bcf53;
 }
 
-a {
-  text-decoration: none;
-  color: white;
-  font-weight: bold;
-  margin: 20px;
-  padding: 10px;
-}
-
 .navbar-brand {
   text-decoration: none;
   color: white;
@@ -56,6 +48,15 @@ a {
 .nav-links a:hover {
   color: #416d19;
   transition: 0.1s;
+}
+
+.nolog {
+  background-color: #9bcf53;
+}
+
+.nolog:hover {
+  background-color: #9bcf53;
+  color: #416d19;
 }
 
 /* de facut stilurile pt telefon si tableta */

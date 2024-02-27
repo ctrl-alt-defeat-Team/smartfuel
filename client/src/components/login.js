@@ -2,6 +2,8 @@ import React from "react";
 import "../styles/Auth.css";
 import { useState } from 'react';
 
+// ! sageata la dreapta login
+
 function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
