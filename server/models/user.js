@@ -7,6 +7,7 @@ const userSchema = new mongoose.Schema({
   profilePicURL: String,
   family: Number,
   intolerance:[],
+  shoppingHistory: [],
 });
 
 userSchema.plugin(passportLocalMongoose, { usernameField: 'username' });
