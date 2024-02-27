@@ -18,10 +18,11 @@
   font-size: 2rem;
 }
 
-.form-container {
+.form-cont {
   display: inline-flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
   width: 100%;
   height: 7%;
   margin-top: 3%;
@@ -40,7 +41,7 @@ input:focus {
   outline: none;
 }
 
-button {
+.form-cont button {
   height: 100%;
   border: none;
   background-color: #9bcf53;
@@ -51,7 +52,7 @@ button {
 .qr {
   position: relative;
   width: 100%;
-  height: 53px;
+  height: 100%;
 }
 
 .search-form {
@@ -85,4 +86,9 @@ button:hover {
   background-color: #416d19;
   color: white;
   transition: 0.3s;
+}
+
+.scan-form {
+  height: 100%;
+  width: 5%;
 }

@@ -7,7 +7,7 @@ function Landing() {
     <div className="landing-container">
       <h1>SEARCH ITEM WITH SMARTFUEL</h1>
       <h2>Search or scan the barcode for product details</h2>
-      <div className="form-container">
+      <div className="form-cont">
         <form className="scan-form">
           <button className="qr-btn">
             <QrCodeScan className="qr" />

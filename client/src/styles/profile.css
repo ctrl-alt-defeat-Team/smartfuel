@@ -67,7 +67,7 @@ h1 {
     padding-bottom: 10px;
 }
 
-input {
+.name input {
     width: 80%;
     height: 40px;
     border-radius: 5px;
