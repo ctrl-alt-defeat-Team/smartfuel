@@ -2,14 +2,16 @@ import React, { useEffect, useState } from "react";
 import "./styles/App.css";
 import AuthContainer from "./components/authContainer";
 import Navbar from "./components/navbar";
+import Landing from "./components/landing";
 import Profile from "./components/profile";
 
 function App() {
+  const [login, setLogin] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
 
   const handleLogin = () => {
-    setLoggedIn(true);
+    setLogin(true);
   };
 
   const handleProfileClick = () => {
@@ -18,10 +20,10 @@ function App() {
 
   return (
     <div className="screen-body">
-      <Navbar onLogin={handleLogin} loggedIn={loggedIn} onProfileClick={handleProfileClick} showProfile={showProfile}/>
-      <div className="container">
-        {loggedIn ? <AuthContainer /> : null}
-        {showProfile ? <Profile /> : null}</div>
+      <Navbar onLogin={handleLogin} loggedIn={login} />
+      <div className="main-container">
+        {login ? <AuthContainer /> : <Landing />}
+      </div>
     </div>
   );
 }
