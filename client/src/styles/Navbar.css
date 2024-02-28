@@ -59,4 +59,14 @@ nav {
   color: #416d19;
 }
 
+.box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#arrow {
+  padding-left: 5px;
+}
+
 /* de facut stilurile pt telefon si tableta */
