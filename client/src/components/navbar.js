@@ -17,8 +17,10 @@ function Navbar({ onLogin, loggedIn, onProfileClick, showProfile}) {
         ) : null}
         {!loggedIn ? (
           <button className="nav-btn" onClick={onLogin}>
-            Login
-            <BoxArrowInRight size={15} />
+            <div className="box">
+              Login
+              <BoxArrowInRight id="arrow" size={15} />
+              </div>
           </button>
         ) : null}
       </div>
