@@ -5,6 +5,7 @@ require("dotenv").config();
 
 var registerRoutes = require("./routes/register");
 var loginRoutes = require("./routes/login");
+var searchProductRoutes = require("./routes/searchProduct");
 
 app.use(express.json());
 
@@ -31,3 +32,4 @@ mongoose
 
 app.use("/register", registerRoutes);
 app.use("/login", loginRoutes);
+app.use("/api/search", searchProductRoutes);
