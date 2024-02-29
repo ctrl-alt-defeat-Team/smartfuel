@@ -28,7 +28,7 @@
   margin-top: 3%;
 }
 
-input {
+.landing-container input {
   height: 100%;
   width: 60%;
   margin: 0;
@@ -37,7 +37,7 @@ input {
   font-size: 1.5rem;
 }
 
-input:focus {
+.landing-container input:focus {
   outline: none;
 }
 
@@ -86,7 +86,7 @@ input:focus {
   border-bottom-left-radius: 3px;
 }
 
-button:hover {
+.landing-container button:hover {
   background-color: #416d19;
   color: white;
   transition: 0.3s;
