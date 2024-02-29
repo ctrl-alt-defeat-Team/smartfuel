@@ -1,43 +1,41 @@
 import React from "react";
 import "../styles/Auth.css";
-import { useState } from 'react';
+import { useState } from "react";
 
 // ! sageata la dreapta login
 
 function Login() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [loginState, setLoginState] = useState(false)
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [loginState, setLoginState] = useState(false);
 
-
-  
   const LoginUser = async (e) => {
     e.preventDefault();
     try {
-    const response = await fetch('/login', {
-        method: 'POST',
+      const response = await fetch("/login", {
+        method: "POST",
         headers: {
-        'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({ username, password }),
-    });
-    console.log(response);
-    if (response.ok) {
+      });
+      console.log(response);
+      if (response.ok) {
         const data = await response.json();
         const { token } = data;
         setLoginState(true);
-        localStorage.setItem('token', token);
-        console.log('Login successful');
-      //  setIsLoggedIn(true);
-    } else {    
-        console.error('Login failed');
+        localStorage.setItem("token", token);
+        console.log("Login successful");
+        window.location.reload(false);
+        // setIsLoggedIn(true);
+      } else {
+        console.error("Login failed");
         console.log(response);
-    }
+      }
     } catch (error) {
-    console.error('Error during login:', error);
+      console.error("Error during login:", error);
     }
-    };
-
+  };
 
   return (
     <div>
@@ -59,8 +57,8 @@ function Login() {
             type="password"
             id="password"
             name="password"
-            value={password} 
-            onChange={(e) => setPassword(e.target.value)} 
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
         </div>
         <button type="submit" className="btn-submit login" onClick={LoginUser}>
