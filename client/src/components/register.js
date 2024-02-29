@@ -37,7 +37,7 @@ function Register() {
   return (
     <div>
       <h3>Register to gain access to Smartfuel</h3>
-      <form className="auth-form">
+      <form onSubmit={RegisterUser} className="auth-form">
         <div className="form-gr">
           <input
             placeholder="Username"
