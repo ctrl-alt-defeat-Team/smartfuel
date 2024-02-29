@@ -40,8 +40,7 @@ function Landing() {
           </button>
         </form>
       </div>
-      {/* Render Modal */}
-      {showModal && <qrModal closeModal={closeModal} />}
+      <qrModal />
     </div>
   );
 }
