@@ -118,8 +118,21 @@ h3 {
   border-radius: 3px;
 }
 
+.login {
+  margin-top: 20px;
+}
+
 .btn-submit:hover {
   background-color: #416d19;
+}
+
+.form-group-log {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
 }
 
 @media (max-width: 760px) {
@@ -151,6 +164,10 @@ h3 {
     margin: 20px;
     padding: 10px;
     font-size: medium;
+  }
+
+  .login {
+    margin-top: 20px;
   }
 }
 
@@ -185,34 +202,7 @@ h3 {
     font-size: small;
   }
 
-  @media (min-width: 1025px) {
-    .authContainer {
-      width: 80vw;
-      height: 60vh;
-    }
-
-    .btn-container {
-      height: 8%;
-    }
-
-    .btn {
-      padding: 12px;
-      font-size: small;
-    }
-
-    .form-container {
-      height: 80%;
-    }
-
-    .auth-form input {
-      padding: 6px;
-      margin: 6px;
-    }
-
-    .btn-submit {
-      width: 10rem;
-      padding: 10px;
-      font-size: large;
-    }
+  .login {
+    margin-top: 20px;
   }
 }

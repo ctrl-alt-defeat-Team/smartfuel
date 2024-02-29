@@ -43,7 +43,7 @@ function Login() {
     <div>
       <h3>Login with your Smartfuel account</h3>
       <form className="auth-form">
-        <div className="form-group">
+        <div className="form-group-log">
           <input
             placeholder="Username"
             type="text"
@@ -53,7 +53,7 @@ function Login() {
             onChange={(e) => setUsername(e.target.value)}
           />
         </div>
-        <div className="form-group">
+        <div className="form-group-log">
           <input
             placeholder="Password"
             type="password"
@@ -63,7 +63,7 @@ function Login() {
             onChange={(e) => setPassword(e.target.value)} 
           />
         </div>
-        <button type="submit" className="btn-submit" onClick={LoginUser}>
+        <button type="submit" className="btn-submit login" onClick={LoginUser}>
           Login
         </button>
       </form>
