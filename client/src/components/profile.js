@@ -14,33 +14,43 @@ function Profile() {
                 <h1>Your Profile</h1>
             </div>
             <div className="contact">
-                <div className="contact-mes">
                     <div className="form-group">
                         <form>
                             <label className="name">
-                                Name
-                                <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
+                                <div className="labname">
+                                    Name
+                                </div>
+                                <div className="inp">
+                                    <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
+                                </div>
                             </label>
-                        </form>
-                        <form>
                             <label className="name">
-                                Full Name
-                                <input type="text" value={fullName} onChange={(e) => setFullName(e.target.value)} />
+                                <div className="labname">
+                                    Full Name
+                                </div>
+                                <div className="inp">
+                                    <input type="text" value={fullName} onChange={(e) => setFullName(e.target.value)} />
+                                </div>
+                            </label>
+                            <label className="name">
+                                <div className="labname">
+                                    Email Address:
+                                </div>
+                                <div className="inp">
+                                   <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                                </div>
+                            </label>
+                            <label className="name">
+                                <div className="labname">
+                                    Phone Number:
+                                </div>
+                                <div className="inp">
+                                    <input className="inp_prf" type="tel" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} />
+                                </div>
                             </label>
                         </form>
                     </div>
-                </div>
                 <div className="form-group">
-                    <form>
-                        <label className="name">
-                                Email Address:
-                                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-                            </label>
-                            <label className="name">
-                                Phone Number:
-                                <input type="tel" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} />
-                            </label>
-                    </form>
                 </div>     
             </div>
             <div>
