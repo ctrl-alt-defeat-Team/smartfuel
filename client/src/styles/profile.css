@@ -81,6 +81,7 @@ h1 {
     width: 100%;
     margin: 30px;
     padding: 10px;
+    margin: 0;
     background-color: #9bcf53;
     border: none;
     cursor: pointer;

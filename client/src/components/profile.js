@@ -7,6 +7,7 @@ function Profile() {
     const [fullName, setFullName] = useState("");
     const [email, setEmail] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
+    
     return (
         <div className="page">
             <div id="title">
