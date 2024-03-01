@@ -9,6 +9,7 @@ function Landing() {
   const openModal = (event) => {
     event.preventDefault(); // Prevent default form submission
     setShowModal(true);
+
   };
   const closeModal = () => {
     setShowModal(false);
