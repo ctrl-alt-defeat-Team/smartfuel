@@ -14,42 +14,42 @@ function Profile() {
                 <h1>Your Profile</h1>
             </div>
             <div className="contact">
-                    <div className="form-group">
-                        <form>
-                            <label className="name">
-                                <div className="labname">
-                                    Name
-                                </div>
-                                <div className="inp">
-                                    <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
-                                </div>
-                            </label>
-                            <label className="name">
-                                <div className="labname">
-                                    Full Name
-                                </div>
-                                <div className="inp">
-                                    <input type="text" value={fullName} onChange={(e) => setFullName(e.target.value)} />
-                                </div>
-                            </label>
-                            <label className="name">
-                                <div className="labname">
-                                    Email Address:
-                                </div>
-                                <div className="inp">
-                                   <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-                                </div>
-                            </label>
-                            <label className="name">
-                                <div className="labname">
-                                    Phone Number:
-                                </div>
-                                <div className="inp">
-                                    <input className="inp_prf" type="tel" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} />
-                                </div>
-                            </label>
-                        </form>
-                    </div>
+                <div className="form-group">
+                    <form>
+                        <label className="name">
+                            <div className="labname">
+                                Name
+                            </div>
+                            <div className="inp">
+                                <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
+                            </div>
+                        </label>
+                        <label className="name">
+                            <div className="labname">
+                                Full Name
+                            </div>
+                            <div className="inp">
+                                <input type="text" value={fullName} onChange={(e) => setFullName(e.target.value)} />
+                            </div>
+                        </label>
+                        <label className="name">
+                            <div className="labname">
+                                Email Address:
+                            </div>
+                            <div className="inp">
+                               <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                            </div>
+                        </label>
+                        <label className="name">
+                            <div className="labname">
+                                Phone Number:
+                            </div>
+                            <div className="inp">
+                                <input className="inp_prf" type="tel" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} />
+                            </div>
+                        </label>
+                    </form>
+                </div>
                 <div className="form-group">
                     <fieldset id="allergens">
                     <legend>Select allergens:</legend>
@@ -115,9 +115,22 @@ function Profile() {
                     </fieldset>
                 </div>     
             </div>
-            <div>
+            <div className="veg">
+                <fieldset id="vegan">
+                    <legend>Are you vegan?</legend>
+                    <div>
+                        <input type="radio" id="yes" name="vegan" value="yes" checked />
+                        <label for="yes">Yes</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="no" name="vegan" value="no" />
+                        <label for="no">No</label>
+                    </div>
+                </fieldset>
+            </div>      
+            <div className="savebtn">
                 <button id="save">Save Changes</button>
-            </div>            
+            </div>      
         </div>
     );
 }
