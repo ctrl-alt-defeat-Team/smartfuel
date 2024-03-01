@@ -20,9 +20,9 @@ function App() {
 
   return (
     <div className="screen-body">
-      <Navbar onLogin={handleLogin} loggedIn={login} />
+      <Navbar onLogin={handleLogin} loggedIn={login} onProfileClick={handleProfileClick} showProfile={showProfile}/>
       <div className="main-container">
-        {login ? <AuthContainer /> : <Landing />}
+        {login ? <AuthContainer /> : showProfile ? <Profile /> : <Landing />} 
       </div>
     </div>
   );
