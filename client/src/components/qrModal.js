@@ -5,28 +5,36 @@ import Button from "react-bootstrap/Button";
 import Scanner from "./Scanner";
 import "../styles/Modal.css"; 
 import "../styles/qrModal.css"; 
-
-import Quagga from 'quagga'; 
-
-
+import ScannedProduct from "./scannedProduct";
+import searchProduct from "../functions/searchProduct";
 function QRModal({ showModal, closeModal }) { 
 
-  const [camera, setCamera] = useState(true);
   const [result, setResult] = useState(null);
+  const [product, setProduct] = useState(null);
 
-  const onDetected = result => {
-    setResult(result);
+  const onDetected = async (cameraResult) => {
+    if(result == null){
+      try {
+        setResult(cameraResult);
+        const productData = await searchProduct(cameraResult);
+        setProduct(productData);
+      }catch (error) {
+        console.error('Error in onDetected:', error);
+      }
+    };
   };
   
+  
     return (
-    <Modal show={showModal} onHide={closeModal} centered>
+    <Modal className="QRModal" show={showModal} onHide={closeModal} centered>
       <Modal.Header >
         <Modal.Title className="textQr" >QR Code Scan</Modal.Title>
       </Modal.Header>
       <Modal.Body>
       <p className="textQr">{result ? result : "Scanning..."}</p>
       <div className="container">
-        {camera && <Scanner onDetected={onDetected} />}
+        {(result == null) && <Scanner onDetected={onDetected} />}
+        {(product != null) && <ScannedProduct product={product}/>}
       </div>
       </Modal.Body>
       <Modal.Footer>
