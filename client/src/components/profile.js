@@ -130,7 +130,7 @@ function Profile() {
             </div>      
             <div className="savebtn">
                 <button id="save">Save Changes</button>
-            </div>      
+            </div> 
         </div>
     );
 }
