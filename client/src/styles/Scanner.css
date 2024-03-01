@@ -1,0 +1,18 @@
+#interactive {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 35vh;
+  } 
+  #interactive > video {
+    width: 80%;
+    max-width: 100%; 
+    max-height: 100%;
+  }
+  .drawingBuffer{
+    display: none;
+  }
+  .modal-footer {
+    margin-bottom: 0;
+    margin-top: auto;
+  }

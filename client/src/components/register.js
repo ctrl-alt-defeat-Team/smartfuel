@@ -1,43 +1,40 @@
 import React from "react";
 import "../styles/Auth.css";
-import { useState } from 'react';
-
+import { useState } from "react";
 
 function Register() {
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
-  
-    const RegisterUser = async (e) => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
-      e.preventDefault();
-      if(password === confirmPassword){
+  const RegisterUser = async (e) => {
+    e.preventDefault();
+    if (password === confirmPassword) {
       try {
-          
-      const response = await fetch('/register', {
-          method: 'POST',
+        const response = await fetch("/register", {
+          method: "POST",
           headers: {
-          'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
           body: JSON.stringify({ username, password, confirmPassword }),
-      });
+        });
 
-      if (response.ok) {
-          console.log('OK');
-      } else {
-          console.log('Error');
-      }
+        if (response.ok) {
+          console.log("OK");
+          window.location.reload(false);
+        } else {
+          console.log("Error");
+        }
       } catch (error) {
-      console.error('Error is:', error);
+        console.error("Error is:", error);
       }
-
+    }
   };
-  }
 
   return (
     <div>
       <h3>Register to gain access to Smartfuel</h3>
-      <form className="auth-form">
+      <form onSubmit={RegisterUser} className="auth-form">
         <div className="form-gr">
           <input
             placeholder="Username"
