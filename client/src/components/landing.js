@@ -1,19 +1,19 @@
 import React, { useState } from "react";
 import { QrCodeScan } from "react-bootstrap-icons";
 import "../styles/landing.css";
-import qrModal from "./qrModal"; // Assuming qrModal is a component file named QrModal.js
+import QRModal from "./qrModal";
 
 function Landing() {
   const [showModal, setShowModal] = useState(false);
 
-  const openModal = () => {
+  const openModal = (event) => {
+    event.preventDefault(); // Prevent default form submission
     setShowModal(true);
-  };
 
+  };
   const closeModal = () => {
     setShowModal(false);
   };
-
   return (
     <div className="landing-container">
       <h1>SEARCH ITEM WITH SMARTFUEL</h1>
@@ -28,6 +28,7 @@ function Landing() {
             </button>
           </div>
         </form>
+        <QRModal showModal={showModal} closeModal={closeModal} />
         <form className="search-form">
           <input type="text" placeholder="Enter product name" />
           <button className="search-btn">
@@ -40,7 +41,6 @@ function Landing() {
           </button>
         </form>
       </div>
-      <qrModal />
     </div>
   );
 }
