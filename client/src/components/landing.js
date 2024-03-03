@@ -29,7 +29,7 @@ function Landing() {
             </button>
           </div>
         </form>
-        {(showModal == true) && <QRModal showModal={showModal} closeModal={openModal} name={name}/>}
+        {(showModal == true) && <QRModal showModal={showModal} closeModal={closeModal} name={name}/>}
         <form className="search-form">
           <input 
           type="text" 
