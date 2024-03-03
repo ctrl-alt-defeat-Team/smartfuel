@@ -2,14 +2,15 @@ import React from "react";
 import "../styles/Navbar.css";
 import { BoxArrowInRight } from 'react-bootstrap-icons';
 
-function Navbar({ onLogin, loggedIn, onProfileClick, showProfile}) {
+function Navbar({ onLogin, loggedIn, onProfileClick, showProfile, onCartClick, showCart}) {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <a className="navbar-brand" href="/">
         Smartfuel
       </a>
       <div className="nav-links">
-        <button className="nav-btn nolog" onClick={onProfileClick}>
+        {!showCart ? (
+        <button className="nav-btn nolog" onClick={onCartClick}>
           <div className="box">
             Cart
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-basket basket" viewBox="0 0 16 16">
@@ -17,6 +18,7 @@ function Navbar({ onLogin, loggedIn, onProfileClick, showProfile}) {
             </svg>
           </div>
           </button>
+        ) : null}
         {!showProfile ? (
           <button className="nav-btn nolog" onClick={onProfileClick}>
             <div className="box">
