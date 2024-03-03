@@ -1,15 +1,24 @@
-const SearchProduct = async (result) => {
-    try {
+const SearchProduct = async (type, result) => {
+    
+  if(type === "name"){
+    try{
+      const response = await fetch(`/api/search/name/${result}`);
+      const data = await response.json();  
+      console.log(data);
+      return data;
+    }catch(error){
+        return -1;
+    }
+  }
+  else if(type === "barcode"){
+    try{
       const response = await fetch(`/api/search/barcode/${result}`);
-        try{
-            const data = await response.json();
-            return data;
-        }catch(error){
-            return -1;
-        }
-    } catch (error) {
-      console.error('Error fetching product:', error);
-      throw error; // Re-throw the error to handle it in the calling code
+      const data = await response.json();
+      return data;
+    }catch(error){
+        return -1;
+    }
+     
     }
   };
   

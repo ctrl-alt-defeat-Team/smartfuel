@@ -5,6 +5,7 @@ import QRModal from "./qrModal";
 
 function Landing() {
   const [showModal, setShowModal] = useState(false);
+  const [name, setProductName] = useState(null);
 
   const openModal = (event) => {
     event.preventDefault(); // Prevent default form submission
@@ -28,10 +29,14 @@ function Landing() {
             </button>
           </div>
         </form>
-        <QRModal showModal={showModal} closeModal={closeModal} />
+        {(showModal == true) && <QRModal showModal={showModal} closeModal={closeModal} name={name}/>}
         <form className="search-form">
-          <input type="text" placeholder="Enter product name" />
-          <button className="search-btn">
+          <input 
+          type="text" 
+          placeholder="Enter product name"
+          onChange={(e) => setProductName(e.target.value)}
+          />
+          <button className="search-btn" onClick={openModal}>
             <div className="box">
               <span className="search-bar">Search</span>
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-search lupa" viewBox="0 0 16 16">
