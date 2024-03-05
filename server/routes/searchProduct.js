@@ -3,8 +3,8 @@ var router = express.Router();
 const fetch = require('node-fetch');
 
 router.get('/barcode/:productQR', async (req, res) => {
-    console.log('searching product');
-    console.log(req.body);
+    //console.log('searching product');
+    //console.log(req.params.productQR);
     const productQR = req.params.productQR;
     try {
         const response = await fetch(`https://world.openfoodfacts.org/api/v2/product/${productQR}`);
@@ -14,10 +14,11 @@ router.get('/barcode/:productQR', async (req, res) => {
         console.error(error);
         res.status(500).json({ message: error });
     }
+    //console.log('______');
 });
 router.get('/name/:name', async (req, res) => {
     console.log('searching product');
-    console.log(req.body);
+    console.log(req.params.name);
     const productName = req.params.name;
     try {
         const response = await fetch(`https://world.openfoodfacts.org/cgi/search.pl?search_terms=${productName}&search_simple=1&action=process&json=1`);
