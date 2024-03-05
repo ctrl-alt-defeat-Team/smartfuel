@@ -2,11 +2,15 @@ import React from "react";
 import "../styles/Cart.css";
 import { StarFill, Trash } from "react-bootstrap-icons";
 
-function CartProduct({ prodObj }) {
+function CartProduct({ prodObj, onDelete }) {
+  const handleDelete = () => {
+    onDelete(prodObj.id); // Assuming prodObj has an id
+  };
+
   return (
     <div className="cart-product">
       <div className="btn-remove-div">
-        <button className="btn-remove">
+        <button className="btn-remove" onClick={handleDelete}>
           <Trash />
         </button>
       </div>
