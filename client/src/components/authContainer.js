@@ -4,7 +4,7 @@ import Register from "./register";
 import "../styles/Auth.css";
 import { useState } from "react";
 
-function AuthContainer() {
+function AuthContainer({loggedIn}) {
   const [showLogin, setLogin] = useState(false);
   const [showRegister, setRegister] = useState(true);
 
@@ -37,7 +37,7 @@ function AuthContainer() {
         </button>
       </div>
       <div className="form-container">
-        {showLogin && <Login />}
+        {showLogin && <Login loggedIn={loggedIn}/>}
         {showRegister && <Register />}
       </div>
     </div>

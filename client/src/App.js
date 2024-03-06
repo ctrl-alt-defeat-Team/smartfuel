@@ -6,29 +6,61 @@ import Landing from "./components/landing";
 import Profile from "./components/profile";
 import Cart from "./components/cart";
 
+import isValidToken from "./functions/isValidToken";
+
 function App() {
-  const [login, setLogin] = useState(false);
+  const [showLogin, setshowLogin] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
   const [showCart, setShowCart] = useState(false);
 
   const handleLogin = () => {
-    setLogin(true);
+    setshowLogin(true);
+    setShowProfile(false);
+    setShowCart(false); 
   };
 
   const handleProfileClick = () => {
-    setShowProfile(!showProfile);
+    setShowProfile(true);
+    setShowCart(false);
+    setshowLogin(false);
   }
 
   const handleCartClick = () => {
-    setShowCart(!showCart);
+    setShowCart(true);
+    setShowProfile(false);
+    setshowLogin(false); 
   }
+
+  useEffect(() => {
+    const verify = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const isValid = await isValidToken(token);
+        if (isValid) {
+          setLoggedIn(true);
+        }
+        else {
+          setLoggedIn(false);
+        }
+      } catch (error) {
+        console.error("Not logged in", error);
+      }
+    };
+  
+    verify();
+  }, []);
+
 
   return (
     <div className="screen-body">
-      <Navbar onLogin={handleLogin} loggedIn={login} onProfileClick={handleProfileClick} showProfile={showProfile} onCartClick={handleCartClick} showCart={showCart} />
+      <Navbar onLogin={handleLogin} loggedIn={loggedIn} showLogin={showLogin} onProfileClick={handleProfileClick} showProfile={showProfile} onCartClick={handleCartClick} showCart={showCart} />
       <div className="main-container">
-        {login ? <AuthContainer /> : showProfile ? <Profile /> : showCart ? <Cart /> : <Landing />} 
+        {(showLogin) && <AuthContainer loggedIn={loggedIn} />}
+        {(showProfile) && <Profile /> }
+        {(showCart) && <Cart setShowCart={setShowCart}/>}
+        {(showCart == false && showLogin == false && showProfile == false) 
+        && <Landing />} 
       </div>
     </div>
   );
