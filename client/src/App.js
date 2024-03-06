@@ -6,6 +6,8 @@ import Landing from "./components/landing";
 import Profile from "./components/profile";
 import Cart from "./components/cart";
 
+import isValidToken from "./functions/isValidToken";
+
 function App() {
   const [showLogin, setshowLogin] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
@@ -30,13 +32,33 @@ function App() {
     setshowLogin(false); 
   }
 
+  useEffect(() => {
+    const verify = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const isValid = await isValidToken(token);
+        if (isValid) {
+          setLoggedIn(true);
+        }
+        else {
+          setLoggedIn(false);
+        }
+      } catch (error) {
+        console.error("Not logged in", error);
+      }
+    };
+  
+    verify();
+  }, []);
+
+
   return (
     <div className="screen-body">
       <Navbar onLogin={handleLogin} loggedIn={loggedIn} showLogin={showLogin} onProfileClick={handleProfileClick} showProfile={showProfile} onCartClick={handleCartClick} showCart={showCart} />
       <div className="main-container">
-        {(showLogin) && <AuthContainer />}
+        {(showLogin) && <AuthContainer loggedIn={loggedIn} />}
         {(showProfile) && <Profile /> }
-        {(showCart) && <Cart />}
+        {(showCart) && <Cart setShowCart={setShowCart}/>}
         {(showCart == false && showLogin == false && showProfile == false) 
         && <Landing />} 
       </div>

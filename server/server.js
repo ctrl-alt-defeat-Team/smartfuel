@@ -6,7 +6,7 @@ require("dotenv").config();
 var registerRoutes = require("./routes/register");
 var loginRoutes = require("./routes/login");
 var searchProductRoutes = require("./routes/searchProduct");
-
+var verifyTokenRoutes = require("./routes/verifyToken");
 app.use(express.json());
 
 app.get("/api", (req, res) => {
@@ -33,3 +33,4 @@ mongoose
 app.use("/register", registerRoutes);
 app.use("/login", loginRoutes);
 app.use("/api/search", searchProductRoutes);
+app.use("/api/tokenVerify", verifyTokenRoutes);

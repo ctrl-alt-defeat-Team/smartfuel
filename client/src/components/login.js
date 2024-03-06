@@ -4,10 +4,9 @@ import { useState } from "react";
 
 // ! sageata la dreapta login
 
-function Login() {
+function Login( {loggedIn} ) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [loginState, setLoginState] = useState(false);
 
   const LoginUser = async (e) => {
     e.preventDefault();
@@ -23,11 +22,10 @@ function Login() {
       if (response.ok) {
         const data = await response.json();
         const { token } = data;
-        setLoginState(true);
         localStorage.setItem("token", token);
         console.log("Login successful");
+        loggedIn = true;
         window.location.reload(false);
-        // setIsLoggedIn(true);
       } else {
         console.error("Login failed");
         console.log(response);
