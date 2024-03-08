@@ -6,7 +6,7 @@
 
 #qrcam {
     margin-top: 5%;
-    margin-bottom: 5%;
+    height: 40vh;
 }
 
 #interactive>video {
@@ -28,6 +28,19 @@
     display: flex;
     justify-content: center;
     margin: auto;
-    margin-top: 10%;
+    margin-top: 7.5%;
 
+}
+
+.scanned-product {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 40vh;
+}
+
+.scanned-product>img {
+    width: auto;
+    height: 90%;
 }
