@@ -78,4 +78,44 @@ nav {
   padding-bottom: 2px;
 }
 
-/* de facut stilurile pt telefon si tableta */
+@media (min-width: 420px) {
+  .dropdown-btn {
+    display: none;
+  }
+}
+
+@media (max-width: 420px) {
+
+  nav {
+    z-index: 11;
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #9bcf53;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100vw;
+    height: 15vh;
+    position: relative;
+  }
+
+  .navbar-brand {
+    text-decoration: none;
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+    margin: 3%;
+    padding: 3%;
+  }
+
+  .nav-links {
+    position: relative;
+    display: flex;
+    ;
+  }
+
+  .dropdown {
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+  }
+}
