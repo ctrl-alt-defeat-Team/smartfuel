@@ -7,7 +7,22 @@ function Profile() {
     const [fullName, setFullName] = useState("");
     const [email, setEmail] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
+    const [vegan, setVegan] = useState("false");
     
+    const handleSave = async (e) => {
+        e.preventDefault();
+        const allergenCheckboxes = document.querySelectorAll('input[name="drone"]:checked');
+        const selectedAllergens = Array.from(allergenCheckboxes).map((checkbox) => checkbox.value); 
+
+        const response = await fetch("/api/updateUser", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({name, fullName, email, phoneNumber, selectedAllergens, vegan}),
+          });
+          console.log(response);
+    }
     return (
         <div className="page">
             <div id="title">
@@ -51,7 +66,7 @@ function Profile() {
                     </form>
                 </div>
                 <div className="form-group">
-                    <fieldset id="allergens">
+                    <fieldset id="allergens" >
                     <legend>Select allergens:</legend>
 
                     <div>
@@ -116,20 +131,34 @@ function Profile() {
                 </div>     
             </div>
             <div className="veg">
-                <fieldset id="vegan">
-                    <legend>Are you vegan?</legend>
-                    <div>
-                        <input type="radio" id="yes" name="vegan" value="yes" checked />
-                        <label for="yes">Yes</label>
-                    </div>
-                    <div>
-                        <input type="radio" id="no" name="vegan" value="no" />
-                        <label for="no">No</label>
-                    </div>
-                </fieldset>
-            </div>      
+        <fieldset id="vegan">
+          <legend>Are you vegan?</legend>
+          <div>
+            <input
+              type="radio"
+              id="yes"
+              name="vegan"
+              value="yes"
+              checked={vegan === "yes"}
+              onChange={() => setVegan(true)}
+            />
+            <label htmlFor="yes">Yes</label>
+          </div>
+          <div>
+            <input
+              type="radio"
+              id="no"
+              name="vegan"
+              value="no"
+              checked={vegan === "no"}
+              onChange={() => setVegan(false)}
+            />
+            <label htmlFor="no">No</label>
+          </div>
+        </fieldset>
+      </div>    
             <div className="savebtn">
-                <button id="save">Save Changes</button>
+                <button id="save" onClick={handleSave}>Save Changes</button>
             </div> 
         </div>
     );
