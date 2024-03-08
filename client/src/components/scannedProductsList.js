@@ -14,13 +14,12 @@ const ScannedProducts = ({ products }) => {
           for (let i = 0; i < 5 && i < products.length; i++) {
             items.push(
               <li className="product-list-item" key={i}>
-                <p>{products[i].product_name}</p>
                 <img
                   src={products[i].image_front_url}
                   alt={products[i].product_name}
                   style={{ width: "30px" }}
                 />
-
+                <p>{products[i].product_name}</p>
                 <button className="btn-details">Details</button>
               </li>
             );
