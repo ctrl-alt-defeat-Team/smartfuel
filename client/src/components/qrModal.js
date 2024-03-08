@@ -47,7 +47,7 @@ function QRModal({ showModal, closeModal, name }) {
       </Modal.Header>
       <Modal.Body>
         <p className="textQr">{result ? result : "Scanning..."}</p>
-        <div className="container">
+        <div className="container" id="qrcam">
           {result == null && name == null && (
             <Scanner onDetected={onDetected} />
           )}
@@ -55,8 +55,8 @@ function QRModal({ showModal, closeModal, name }) {
           {products != null && <ScannedProductsList products={products} />}
         </div>
       </Modal.Body>
-      <Modal.Footer className="modal-close-btn">
-        <Button variant="secondary" onClick={closeModal}>
+      <Modal.Footer>
+        <Button variant="secondary" onClick={closeModal} id="close-qr">
           Close
         </Button>
       </Modal.Footer>
