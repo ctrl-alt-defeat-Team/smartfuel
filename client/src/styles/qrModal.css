@@ -48,11 +48,6 @@
   background-color: #e0e0e0;
 }
 
-#interactive > video {
-  width: 100%;
-  height: 100%;
-}
-
 #close-qr {
   position: relative;
   background-color: red;
