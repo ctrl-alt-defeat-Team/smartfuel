@@ -19,8 +19,7 @@
     background-color: red;
     padding: 10px 15px 10px 15px;
     border: none;
-    border-top-right-radius: 10px;
-    border-bottom-left-radius: 10px;
+    border-radius: 5px;
     cursor: pointer;
 }
 
