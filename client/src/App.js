@@ -17,20 +17,20 @@ function App() {
   const handleLogin = () => {
     setshowLogin(true);
     setShowProfile(false);
-    setShowCart(false); 
+    setShowCart(false);
   };
 
   const handleProfileClick = () => {
     setShowProfile(true);
     setShowCart(false);
     setshowLogin(false);
-  }
+  };
 
   const handleCartClick = () => {
     setShowCart(true);
     setShowProfile(false);
-    setshowLogin(false); 
-  }
+    setshowLogin(false);
+  };
 
   useEffect(() => {
     const verify = async () => {
@@ -39,28 +39,35 @@ function App() {
         const isValid = await isValidToken(token);
         if (isValid) {
           setLoggedIn(true);
-        }
-        else {
+        } else {
           setLoggedIn(false);
         }
       } catch (error) {
         console.error("Not logged in", error);
       }
     };
-  
+
     verify();
   }, []);
 
-
   return (
     <div className="screen-body">
-      <Navbar onLogin={handleLogin} loggedIn={loggedIn} showLogin={showLogin} onProfileClick={handleProfileClick} showProfile={showProfile} onCartClick={handleCartClick} showCart={showCart} />
+      <Navbar
+        onLogin={handleLogin}
+        loggedIn={loggedIn}
+        showLogin={showLogin}
+        onProfileClick={handleProfileClick}
+        showProfile={showProfile}
+        onCartClick={handleCartClick}
+        showCart={showCart}
+      />
       <div className="main-container">
-        {(showLogin) && <AuthContainer loggedIn={loggedIn} />}
-        {(showProfile) && <Profile /> }
-        {(showCart) && <Cart setShowCart={setShowCart}/>}
-        {(showCart == false && showLogin == false && showProfile == false) 
-        && <Landing />} 
+        {showLogin && <AuthContainer loggedIn={loggedIn} />}
+        {showProfile && <Profile />}
+        {showCart && <Cart setShowCart={setShowCart} />}
+        {showCart === false && showLogin === false && showProfile === false && (
+          <Landing />
+        )}
       </div>
     </div>
   );
