@@ -5,13 +5,12 @@
   top: 50%;
   transform: translate(-50%, -50%);
   width: fit-content;
-  height: fit-content;
+  height: 70vh;
   /* Set width to 80% of the screen */
   background-color: white;
   border: 1px solid #ccc;
-  border-radius: 8px;
+  border-radius: 5px;
   padding: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .close:hover,
@@ -47,7 +46,7 @@
   color: white;
 }
 
-.product-list-item>img {
+.product-list-item > img {
   margin-left: 2%;
   margin-right: 2%;
 }

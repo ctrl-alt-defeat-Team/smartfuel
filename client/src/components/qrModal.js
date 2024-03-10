@@ -8,10 +8,17 @@ import "../styles/qrModal.css";
 import ScannedProduct from "./scannedProduct";
 import ScannedProductsList from "./scannedProductsList";
 import searchProduct from "../functions/searchProduct";
+import ProductDetails from "./productDetails";
+
 function QRModal({ showModal, closeModal, name }) {
   const [result, setResult] = useState(null);
   const [product, setProduct] = useState(null);
   const [products, setProducts] = useState(null);
+  const [selectedProduct, setSelectedProduct] = useState(null);
+
+  const handleDetailsClick = (index) => {
+    setSelectedProduct(products[index]);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -52,7 +59,18 @@ function QRModal({ showModal, closeModal, name }) {
             <Scanner onDetected={onDetected} />
           )}
           {product != null && <ScannedProduct product={product} />}
-          {products != null && <ScannedProductsList products={products} />}
+          {products != null && (
+            <ScannedProductsList
+              products={products}
+              onDetailsClick={handleDetailsClick}
+            />
+          )}
+          {selectedProduct != null && (
+            <ProductDetails
+              product={selectedProduct}
+              setSelectedProduct={setSelectedProduct}
+            />
+          )}
         </div>
       </Modal.Body>
       <Modal.Footer className="modal-close-btn">
