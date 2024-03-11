@@ -27,6 +27,7 @@ function Profile({ user } ) {
         const token = localStorage.getItem("token");
         const isCompleted = true;
         try{
+            console.log(vegan);
         const response = await fetch("/api/updateUser", {
             method: "POST",
             headers: {
@@ -52,7 +53,7 @@ function Profile({ user } ) {
           setName(user.name || "");
           setEmail(user.email || "");
          // setPhoneNumber(user.phoneNumber || "");
-          setVegan(user.vegan || "");
+          setVegan(user.vegan || false);
           setSelectedAllergens(user.intolerance || []);
         }
       }, [user]);
@@ -230,7 +231,7 @@ function Profile({ user } ) {
               id="no"
               name="vegan"
               value="no"
-              checked={vegan == false}
+              checked={vegan != true}
               onChange={() => setVegan(false)}
             />
             <label htmlFor="no">No</label>

@@ -16,7 +16,7 @@ router.post('/', verifyToken, upload.none() ,async(req, res) => {
       user.name = req.body.name || user.name;
       //user.family = req.body.family || user.family;
       user.intolerance = req.body.selectedAllergens ;
-      if(req.vegan == 'true'){
+      if(req.body.vegan == true){
          user.vegan = true;
       }
       else user.vegan = false;
