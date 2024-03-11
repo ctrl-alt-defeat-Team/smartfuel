@@ -20,6 +20,10 @@ function QRModal({ showModal, closeModal, name }) {
     setSelectedProduct(products[index]);
   };
 
+  const handleDetailsClick2 = () => {
+    setSelectedProduct(product);
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       if (name !== null && product == null && products == null) {
@@ -58,7 +62,12 @@ function QRModal({ showModal, closeModal, name }) {
           {result == null && name == null && (
             <Scanner onDetected={onDetected} />
           )}
-          {product != null && <ScannedProduct product={product} />}
+          {product != null && (
+            <ScannedProduct
+              product={product}
+              onDetailsClick={handleDetailsClick2}
+            />
+          )}
           {products != null && (
             <ScannedProductsList
               products={products}
