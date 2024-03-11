@@ -70,6 +70,15 @@ function ProductDetails({ product, setSelectedProduct }) {
           </div>
         </div>
       </div>
+      <div className="ingredients">
+        <h3>Ingredients</h3>
+
+        <p>{product.ingredients_text || "Ingredients are not known"}</p>
+      </div>
+      <div className="allergens">
+        <h3>Allergens</h3>
+        <p>{product.allergens || "No alergens"}</p>
+      </div>
     </div>
   );
 }
