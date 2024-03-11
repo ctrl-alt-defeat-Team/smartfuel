@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { QrCodeScan } from "react-bootstrap-icons";
 import "../styles/landing.css";
 import QRModal from "./qrModal";
+import "../styles/Mobile.css";
 
 function Landing() {
   const [showModal, setShowModal] = useState(false);

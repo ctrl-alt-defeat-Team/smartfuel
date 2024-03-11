@@ -1,0 +1,23 @@
+@media (max-width: 420px) {
+    .landing-container>h1 {
+        margin-bottom: 10%;
+    }
+
+    .form-cont {
+        margin-bottom: 30%;
+        height: 7.5%;
+    }
+
+    .scan-form {
+        width: 15%;
+    }
+
+    .search-form>.search-btn {
+        width: 25%;
+    }
+
+    .search-btn>.box>svg {
+        height: 28px;
+        width: 28px;
+    }
+}
