@@ -13,6 +13,7 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
   const [showCart, setShowCart] = useState(false);
+  const [user, setUser] = useState({});
 
   const handleLogin = () => {
     setshowLogin(true);
@@ -42,12 +43,35 @@ function App() {
         } else {
           setLoggedIn(false);
         }
+
       } catch (error) {
+        setLoggedIn(false);
         console.error("Not logged in", error);
       }
     };
 
+    const getUser = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const response = await fetch("/api/getUser",{
+          method: "GET",
+          headers: {
+          'Authorization': `Bearer ${token}`
+          },
+        });
+        const User = await response.json();
+        setUser(User);  
+        if(User.isCompleted != true){
+          setShowProfile(true);
+        }
+      } catch (error) {
+        console.error("Error getting user", error);
+      }
+      
+    }
+
     verify();
+    getUser();
   }, []);
 
   return (
@@ -63,7 +87,7 @@ function App() {
       />
       <div className="main-container">
         {showLogin && <AuthContainer loggedIn={loggedIn} />}
-        {showProfile && <Profile />}
+        {showProfile && <Profile user = {user} />}
         {showCart && <Cart setShowCart={setShowCart} />}
         {showCart === false && showLogin === false && showProfile === false && (
           <Landing />
