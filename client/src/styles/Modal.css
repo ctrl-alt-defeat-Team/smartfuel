@@ -8,7 +8,6 @@
   height: 70vh;
   /* Set width to 80% of the screen */
   background-color: white;
-  border: 1px solid #ccc;
   border-radius: 5px;
   padding: 20px;
 }
@@ -49,4 +48,5 @@
 .product-list-item > img {
   margin-left: 2%;
   margin-right: 2%;
+  height: 60px;
 }
