@@ -33,9 +33,6 @@ function App() {
     setshowLogin(false);
   };
 
-
-
-
   useEffect(() => {
     const verify = async () => {
       try {
@@ -48,24 +45,28 @@ function App() {
         }
 
       } catch (error) {
+        setLoggedIn(false);
         console.error("Not logged in", error);
       }
     };
 
     const getUser = async () => {
-      console.log('get user');
+      try {
         const token = localStorage.getItem("token");
         const response = await fetch("/api/getUser",{
           method: "GET",
           headers: {
           'Authorization': `Bearer ${token}`
           },
-      });
-      const User = await response.json();
-      console.log("User");
-      console.log(User);
-      console.log("User");
-      setUser(User);  
+        });
+        const User = await response.json();
+        setUser(User);  
+        if(User.isCompleted != true){
+          setShowProfile(true);
+        }
+      } catch (error) {
+        console.error("Error getting user", error);
+      }
       
     }
 

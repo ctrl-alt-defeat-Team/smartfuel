@@ -8,17 +8,22 @@ var upload = multer();
 
 router.post('/', verifyToken, upload.none() ,async(req, res) => {
    try{
-    console.log('update user');
-    console.log(req.body);
-    const user = await getUser(req,res);
-    console.log(user);    
-    //user.username = req.body.username || user.username;
- //   user.family = req.body.family || user.family;
-    console.log(req.body);
-    user.intolerance = req.body.selectedAllergens ;
-    user.vegan = req.body.vegan;
-    const updatedUser = await user.save();
-    console.log('User updated:', updatedUser);
+      console.log('update user');
+      const user = await getUser(req,res);
+      console.log(user);    
+      user.username = req.body.username || user.username;
+      user.email = req.body.email || user.email;
+      user.name = req.body.name || user.name;
+      //user.family = req.body.family || user.family;
+      user.intolerance = req.body.selectedAllergens ;
+      if(req.vegan == 'true'){
+         user.vegan = true;
+      }
+      else user.vegan = false;
+      user.isCompleted = req.body.isCompleted;
+      const updatedUser = await user.save();
+      console.log('User updated:', updatedUser);
+      res.json("ok");
 
    }catch(error){
     console.log('Error:', error);

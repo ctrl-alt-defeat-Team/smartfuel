@@ -4,12 +4,15 @@ var verifyToken = require('./verifyToken');
 var getUser = require('../functions/getUser');
 
 router.get('/', async (req, res) => {
-    console.log('get user');
-    const user = await getUser(req,res);
-    console.log("user");
-    user.password = undefined;
-    console.log(user);
-    res.json(user);
+    try{
+        const user = await getUser(req,res);
+        user.password = undefined;
+        res.json(user);
+    }
+    catch(error){
+        console.log('Error:', error);
+        res.status(500).send('Error getting user');
+    }
 });
 
 module.exports = router;

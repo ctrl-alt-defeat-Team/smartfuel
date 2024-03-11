@@ -1,35 +1,61 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "../styles/profile.css";
 
 function Profile({ user } ) {
     const [username, setUsername] = useState("");
-    const [fullName, setFullName] = useState("");
+    const [name, setName] = useState("");
     const [email, setEmail] = useState("");
-    const [phoneNumber, setPhoneNumber] = useState("");
+   // const [phoneNumber, setPhoneNumber] = useState("");
     const [vegan, setVegan] = useState("");
-    const [selectedImage, setSelectedImage] = useState(null);
-       
+    const [selectedAllergens, setSelectedAllergens] = useState([]);
+    const handleAllergenChange = (e) => {
+        const allergen = e.target.value;
+        const isChecked = e.target.checked;
+        if (isChecked) {
+            setSelectedAllergens((prevAllergens) => [...prevAllergens, allergen]);
+        } else {
+            setSelectedAllergens((prevAllergens) =>
+            prevAllergens.filter((a) => a !== allergen)
+          );
+        }
+      };
+
     const handleSave = async (e) => {
         e.preventDefault();
-        const allergenCheckboxes = document.querySelectorAll('input[name="drone"]:checked');
-        const selectedAllergens = Array.from(allergenCheckboxes).map((checkbox) => checkbox.value); 
+        console.log("Save changes");
         const token = localStorage.getItem("token");
-        
+        const isCompleted = true;
+        try{
         const response = await fetch("/api/updateUser", {
             method: "POST",
             headers: {
-              "Content-Type": "application/json",
-              'Authorization': `Bearer ${token}`
+                "Content-Type": "application/json",
+                'Authorization': `Bearer ${token}`
             },
-            body: JSON.stringify({username, fullName, email, phoneNumber, vegan, selectedAllergens}),
+            body: JSON.stringify({username, name, email, vegan, selectedAllergens, isCompleted}),
         });
-          console.log(response);
+        if(username != user.username){
+            localStorage.setItem("token", "");
+        }
+    } catch (error) {
+        console.error("Error updating user", error);
+    }
+        window.location.reload();
     }
 
-    const handleImageChange = (e) => {
-        setSelectedImage(e.target.files[0]);
-      };
+
+      useEffect(() => {
+        console.log(user);
+        if (user) {
+          setUsername(user.username || "");
+          setName(user.name || "");
+          setEmail(user.email || "");
+         // setPhoneNumber(user.phoneNumber || "");
+          setVegan(user.vegan || "");
+          setSelectedAllergens(user.intolerance || []);
+        }
+      }, [user]);
 
     return (
         <div className="page">
@@ -52,7 +78,7 @@ function Profile({ user } ) {
                                 Full Name
                             </div>
                             <div className="inp">
-                                <input type="text" value={fullName} onChange={(e) => setFullName(e.target.value)} />
+                                <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
                             </div>
                         </label>
                         <label className="name">
@@ -63,6 +89,7 @@ function Profile({ user } ) {
                                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
                             </div>
                         </label>
+                    {/*
                         <label className="name">
                             <div className="labname">
                                 Phone Number:
@@ -71,7 +98,7 @@ function Profile({ user } ) {
                                 <input className="inp_prf" type="tel" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} />
                             </div>
                         </label>
-                       
+                    */}
                     </form>
                 </div>
                 <div className="form-group">
@@ -79,61 +106,105 @@ function Profile({ user } ) {
                     <legend>Select allergens:</legend>
 
                     <div>
-                        <input type="checkbox" id="gluten" name="drone" value="gluten"  />
+                        <input type="checkbox" 
+                        id="gluten" 
+                        name="drone" 
+                        value="gluten" 
+                        checked = {selectedAllergens.includes("gluten")}
+                        onChange={handleAllergenChange}
+                        />
                         <label for="gluten">Gluten</label>
                     </div>
 
                     <div>
-                        <input type="checkbox" id="milk" name="drone" value="milk" />
+                        <input type="checkbox" id="milk" name="drone" value="milk"
+                        checked = {selectedAllergens.includes("milk")}
+                        onChange={handleAllergenChange} />
                         <label for="milk">Milk</label>
                     </div>
 
                     <div>
-                        <input type="checkbox" id="eggs" name="drone" value="eggs" />
+                        <input type="checkbox" id="eggs" name="drone" value="eggs"
+                         checked = {selectedAllergens.includes("eggs")}
+                         onChange={handleAllergenChange}
+                          />
                         <label for="eggs">Eggs</label>
                     </div>
                     <div>
-                        <input type="checkbox" id="nuts" name="drone" value="nuts" />
+                        <input type="checkbox" id="nuts" name="drone" value="nuts" 
+                         checked = {selectedAllergens.includes("nuts")}
+                         onChange={handleAllergenChange}
+                         />
                         <label for="nuts">Nuts</label>
                     </div>
                     <div>
-                        <input type="checkbox" id="peanuts" name="drone" value="peanuts" />
+                        <input type="checkbox" id="peanuts" name="drone" value="peanuts"
+                         checked = {selectedAllergens.includes("peanuts")}
+                         onChange={handleAllergenChange}
+                        />
                         <label for="peanuts">Peanuts</label>
                     </div>
                     <div>
-                        <input type="checkbox" id="sesame" name="drone" value="sesame" />
+                        <input type="checkbox" id="sesame" name="drone" value="sesame"
+                         checked = {selectedAllergens.includes("sesame")}
+                         onChange={handleAllergenChange}
+                        />
                         <label for="sesame">Sesame seads</label>
                     </div>
                     <div>
-                        <input type="checkbox" id="soybeans" name="drone" value="soybeans" />
+                        <input type="checkbox" id="soybeans" name="drone" value="soybeans"
+                         checked = {selectedAllergens.includes("soybeans")}
+                         onChange={handleAllergenChange}
+                        />
                         <label for="soybeans">Soybeans</label>
                     </div>
                     <div>
-                        <input type="checkbox" id="celery" name="drone" value="celery" />
+                        <input type="checkbox" id="celery" name="drone" value="celery"
+                         checked = {selectedAllergens.includes("celery")}
+                         onChange={handleAllergenChange} 
+                        />
                         <label for="celery">Celery</label>
                     </div>
                     <div>
-                        <input type="checkbox" id="mustard" name="drone" value="mustard" />
+                        <input type="checkbox" id="mustard" name="drone" value="mustard"
+                         checked = {selectedAllergens.includes("mustard")}
+                         onChange={handleAllergenChange}
+                        />
                         <label for="mustard">Mustard</label>
                     </div>
                     <div>
-                        <input type="checkbox" id="lupin" name="drone" value="lupin" />
+                        <input type="checkbox" id="lupin" name="drone" value="lupin" 
+                         checked = {selectedAllergens.includes("lupin")}
+                         onChange={handleAllergenChange}
+                        />
                         <label for="lupin">Lupin</label>
                     </div>
                     <div>
-                        <input type="checkbox" id="molluscs" name="drone" value="molluscs" />
+                        <input type="checkbox" id="molluscs" name="drone" value="molluscs" 
+                         checked = {selectedAllergens.includes("molluscs")}
+                         onChange={handleAllergenChange}
+                        />
                         <label for="molluscs">Molluscs</label>
                     </div>
                     <div>
-                        <input type="checkbox" id="fish" name="drone" value="fish" />
+                        <input type="checkbox" id="fish" name="drone" value="fish" 
+                            checked = {selectedAllergens.includes("fish")}
+                            onChange={handleAllergenChange}
+                        />
                         <label for="fish">Fish</label>
                     </div>
                     <div>
-                        <input type="checkbox" id="crustaceans" name="drone" value="crustaceans" />
+                        <input type="checkbox" id="crustaceans" name="drone" value="crustaceans" 
+                            checked = {selectedAllergens.includes("crustaceans")}
+                            onChange={handleAllergenChange}
+                        />
                         <label for="crustaceans">Crustaceans</label>
                     </div>
                     <div>
-                        <input type="checkbox" id="sulphur" name="drone" value="sulphur" />
+                        <input type="checkbox" id="sulphur" name="drone" value="sulphur" 
+                            checked = {selectedAllergens.includes("sulphur")}
+                            onChange={handleAllergenChange}
+                        />
                         <label for="sulphur">Sulphur dioxide and sulphites</label>
                     </div>
                     </fieldset>
@@ -148,7 +219,7 @@ function Profile({ user } ) {
               id="yes"
               name="vegan"
               value="yes"
-              checked={vegan === true}
+              checked={vegan == true}
               onChange={() => setVegan(true)}
             />
             <label htmlFor="yes">Yes</label>
@@ -159,7 +230,7 @@ function Profile({ user } ) {
               id="no"
               name="vegan"
               value="no"
-              checked={vegan === false}
+              checked={vegan == false}
               onChange={() => setVegan(false)}
             />
             <label htmlFor="no">No</label>
