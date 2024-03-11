@@ -1,33 +1,71 @@
 .textQr {
-    text-align: center;
-    font-weight: bold;
+  text-align: center;
 }
-
 
 #qrcam {
-    margin-top: 5%;
-    margin-bottom: 5%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  height: 40vh;
 }
 
-#interactive>video {
-    width: 100%;
-    height: 100%;
+.product-list {
+  padding: 0;
+}
+
+.product-list-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  width: 100%;
+  height: 10%;
+  background-color: white;
+  margin: 0;
+  padding: 10px 0;
+}
+.product-list-item p {
+  margin: 0 2%;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.product-list-item button {
+  margin-left: auto;
+  margin-right: 2%;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  width: 10%;
+}
+
+.product-list-item:hover {
+  background-color: #e0e0e0;
 }
 
 #close-qr {
-    position: relative;
-    background-color: red;
-    padding: 10px 15px 10px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+  position: relative;
+  background-color: red;
+  padding: 10px 15px 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
-.modal-footer {
-    width: 15%;
-    display: flex;
-    justify-content: center;
-    margin: auto;
-    margin-top: 10%;
+.scanned-product {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 40vh;
+}
 
+.scanned-product > img {
+  width: auto;
+  height: 90%;
 }
