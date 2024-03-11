@@ -7,6 +7,9 @@ function ProductDetails({ product, setSelectedProduct }) {
     setSelectedProduct(null);
   };
 
+  const allergens = product.allergens_tags.map((tag) => tag.split(":")[1]);
+  const allergen = allergens.join(", ");
+
   return (
     <div className="product-details-container">
       <div className="btn-back">
@@ -77,7 +80,8 @@ function ProductDetails({ product, setSelectedProduct }) {
       </div>
       <div className="allergens">
         <h3>Allergens</h3>
-        <p>{product.allergens || "No alergens"}</p>
+
+        <p>{allergen || "No allergens"}</p>
       </div>
     </div>
   );

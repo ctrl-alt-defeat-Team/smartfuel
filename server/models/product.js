@@ -18,6 +18,7 @@ const productSchema = new mongoose.Schema({
   },
   nutriscore_grade: String,
   user_likes: Number,
+  allergens: [String],
 });
 
 module.exports = mongoose.model("Product", productSchema);
