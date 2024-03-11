@@ -2,27 +2,35 @@ import React from "react";
 import { useState } from "react";
 import "../styles/profile.css";
 
-function Profile() {
-    const [name, setName] = useState("");
+function Profile({ user } ) {
+    const [username, setUsername] = useState("");
     const [fullName, setFullName] = useState("");
     const [email, setEmail] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
-    const [vegan, setVegan] = useState("false");
-    
+    const [vegan, setVegan] = useState("");
+    const [selectedImage, setSelectedImage] = useState(null);
+       
     const handleSave = async (e) => {
         e.preventDefault();
         const allergenCheckboxes = document.querySelectorAll('input[name="drone"]:checked');
         const selectedAllergens = Array.from(allergenCheckboxes).map((checkbox) => checkbox.value); 
-
+        const token = localStorage.getItem("token");
+        
         const response = await fetch("/api/updateUser", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
+              'Authorization': `Bearer ${token}`
             },
-            body: JSON.stringify({name, fullName, email, phoneNumber, selectedAllergens, vegan}),
-          });
+            body: JSON.stringify({username, fullName, email, phoneNumber, vegan, selectedAllergens}),
+        });
           console.log(response);
     }
+
+    const handleImageChange = (e) => {
+        setSelectedImage(e.target.files[0]);
+      };
+
     return (
         <div className="page">
             <div id="title">
@@ -33,10 +41,10 @@ function Profile() {
                     <form>
                         <label className="name">
                             <div className="labname">
-                                Name
+                                Username
                             </div>
                             <div className="inp">
-                                <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
+                                <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
                             </div>
                         </label>
                         <label className="name">
@@ -63,6 +71,7 @@ function Profile() {
                                 <input className="inp_prf" type="tel" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} />
                             </div>
                         </label>
+                       
                     </form>
                 </div>
                 <div className="form-group">
@@ -70,7 +79,7 @@ function Profile() {
                     <legend>Select allergens:</legend>
 
                     <div>
-                        <input type="checkbox" id="gluten" name="drone" value="gluten" checked />
+                        <input type="checkbox" id="gluten" name="drone" value="gluten"  />
                         <label for="gluten">Gluten</label>
                     </div>
 
@@ -139,7 +148,7 @@ function Profile() {
               id="yes"
               name="vegan"
               value="yes"
-              checked={vegan === "yes"}
+              checked={vegan === true}
               onChange={() => setVegan(true)}
             />
             <label htmlFor="yes">Yes</label>
@@ -150,7 +159,7 @@ function Profile() {
               id="no"
               name="vegan"
               value="no"
-              checked={vegan === "no"}
+              checked={vegan === false}
               onChange={() => setVegan(false)}
             />
             <label htmlFor="no">No</label>

@@ -13,6 +13,7 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
   const [showCart, setShowCart] = useState(false);
+  const [user, setUser] = useState({});
 
   const handleLogin = () => {
     setshowLogin(true);
@@ -32,6 +33,9 @@ function App() {
     setshowLogin(false);
   };
 
+
+
+
   useEffect(() => {
     const verify = async () => {
       try {
@@ -42,12 +46,31 @@ function App() {
         } else {
           setLoggedIn(false);
         }
+
       } catch (error) {
         console.error("Not logged in", error);
       }
     };
 
+    const getUser = async () => {
+      console.log('get user');
+        const token = localStorage.getItem("token");
+        const response = await fetch("/api/getUser",{
+          method: "GET",
+          headers: {
+          'Authorization': `Bearer ${token}`
+          },
+      });
+      const User = await response.json();
+      console.log("User");
+      console.log(User);
+      console.log("User");
+      setUser(User);  
+      
+    }
+
     verify();
+    getUser();
   }, []);
 
   return (
@@ -63,7 +86,7 @@ function App() {
       />
       <div className="main-container">
         {showLogin && <AuthContainer loggedIn={loggedIn} />}
-        {showProfile && <Profile />}
+        {showProfile && <Profile user = {user} />}
         {showCart && <Cart setShowCart={setShowCart} />}
         {showCart === false && showLogin === false && showProfile === false && (
           <Landing />

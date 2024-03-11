@@ -3,11 +3,12 @@ const passportLocalMongoose = require('passport-local-mongoose');
 
 const userSchema = new mongoose.Schema({
   username: String,
+  name: String,
   password: String,
-  profilePicURL: String,
   family: Number,
   intolerance:[],
   shoppingHistory: [],
+  vegan: Boolean,
 });
 
 userSchema.plugin(passportLocalMongoose, { usernameField: 'username' });

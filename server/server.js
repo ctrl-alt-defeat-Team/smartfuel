@@ -8,6 +8,7 @@ var loginRoutes = require("./routes/login");
 var searchProductRoutes = require("./routes/searchProduct");
 var verifyTokenRoutes = require("./routes/verifyToken");
 var updateUserRoutes = require("./routes/updateUser");
+var getUserRoutes = require("./routes/getUser");
 app.use(express.json());
 
 app.get("/api", (req, res) => {
@@ -36,3 +37,4 @@ app.use("/login", loginRoutes);
 app.use("/api/search", searchProductRoutes);
 app.use("/api/tokenVerify", verifyTokenRoutes);
 app.use("/api/updateUser", updateUserRoutes);
+app.use("/api/getUser", getUserRoutes);
