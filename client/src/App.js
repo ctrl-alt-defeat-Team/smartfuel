@@ -21,6 +21,11 @@ function App() {
     setShowCart(false);
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    window.location.reload();
+  };
+
   const handleProfileClick = () => {
     setShowProfile(true);
     setShowCart(false);
@@ -78,6 +83,7 @@ function App() {
     <div className="screen-body">
       <Navbar
         onLogin={handleLogin}
+        onLogout={handleLogout}
         loggedIn={loggedIn}
         showLogin={showLogin}
         onProfileClick={handleProfileClick}
