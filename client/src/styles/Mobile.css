@@ -21,6 +21,10 @@
         width: 28px;
     }
 
+    .search-bar {
+        display: none;
+    }
+
     /* cart */
 
     .main-container>div {
