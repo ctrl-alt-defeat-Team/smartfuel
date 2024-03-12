@@ -2,7 +2,7 @@
     "rewrites": [
       {
         "source": "/:path*",
-        "destination": "https://your-backend-url.vercel.app/:path*"
+        "destination": "https://smartfuel-api.vercel.app/:path*"
       }
     ]
   }
