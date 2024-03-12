@@ -78,7 +78,7 @@
     }
 
     .product-info>h3 {
-        font-size: 1.75rem;
+        font-size: 1.5rem;
     }
 
     .product-info>.rating-details>p {
@@ -88,6 +88,7 @@
 
     .product-info>.rating-details>p>.star {
         width: 16px;
+        height: 16px;
     }
 
     .rating-details>.btn-details {

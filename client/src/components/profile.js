@@ -213,7 +213,7 @@ function Profile({ user } ) {
             </div>
             <div className="veg">
         <fieldset id="vegan">
-          <legend>Are you vegan?</legend>
+          <div className="areuvegan"><p>Are you vegan?</p></div>
           <div>
             <input
               type="radio"
