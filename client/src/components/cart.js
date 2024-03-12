@@ -28,6 +28,12 @@ function Cart({setShowCart}) {
             image: "https://via.placeholder.com/150",
             rating: 5,
         },
+        {
+            id: 4,
+            name: "Product 4",
+            image: "https://via.placeholder.com/150",
+            rating: 2,
+        }
     ]);
 
     const handleDelete = (productId) => {
