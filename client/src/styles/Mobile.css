@@ -98,4 +98,57 @@
     .rating-details>.btn-details {
         font-size: 1.2rem;
     }
+
+    /*profile*/
+
+    .page>.contact {
+        position: relative;
+        grid-template-columns: 1fr;
+        grid-template-rows: 50vh;
+        height: fit-content;
+        background-color: #f5f5f5;
+    }
+
+    .page>.veg {
+        top: 0%;
+    }
+
+    .page>.savebtn {
+        top: 0%;
+    }
+
+    #vegan>div {
+        display: inline-flex;
+    }
+
+    .page>.savebtn>#save {
+        width: auto;
+    }
+
+    #allergens>.alergen {
+        font-weight: bold;
+        font-size: xx-large;
+        margin-left: 25%;
+    }
+
+    .form-group>#allergens>div {
+        margin-left: 25%;
+        display: inline-flex;
+    }
+
+    #allergens {
+        width: 70%;
+        margin-left: 7%;
+    }
+
+    #allergens>div>input {
+        width: 20px;
+        height: 20px;
+    }
+
+    .umplutura {
+        height: 10%;
+        width: 100%;
+        background-color: #f5f5f5;
+    }
 }
