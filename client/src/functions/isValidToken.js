@@ -1,6 +1,6 @@
 const verifyToken = async (token) => {
     try {
-        const response = await fetch(`/api/tokenVerify/`,{
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/tokenVerify/`,{
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`

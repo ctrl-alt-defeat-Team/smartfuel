@@ -8,6 +8,7 @@ import Cart from "./components/cart";
 
 import isValidToken from "./functions/isValidToken";
 
+
 function App() {
   const [showLogin, setshowLogin] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
@@ -19,6 +20,11 @@ function App() {
     setshowLogin(true);
     setShowProfile(false);
     setShowCart(false);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    window.location.reload();
   };
 
   const handleProfileClick = () => {
@@ -36,6 +42,7 @@ function App() {
   useEffect(() => {
     const verify = async () => {
       try {
+        console.log(process.env.REACT_APP_API_URL);
         const token = localStorage.getItem("token");
         const isValid = await isValidToken(token);
         if (isValid) {
@@ -53,7 +60,7 @@ function App() {
     const getUser = async () => {
       try {
         const token = localStorage.getItem("token");
-        const response = await fetch("/api/getUser",{
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/getUser`,{
           method: "GET",
           headers: {
           'Authorization': `Bearer ${token}`
@@ -78,6 +85,7 @@ function App() {
     <div className="screen-body">
       <Navbar
         onLogin={handleLogin}
+        onLogout={handleLogout}
         loggedIn={loggedIn}
         showLogin={showLogin}
         onProfileClick={handleProfileClick}

@@ -4,6 +4,7 @@ import { BoxArrowInRight } from "react-bootstrap-icons";
 
 function Navbar({
   onLogin,
+  onLogout,
   loggedIn,
   showLogin,
   onProfileClick,
@@ -79,6 +80,14 @@ function Navbar({
               <button className="nav-btn" onClick={onLogin}>
                 <div className="box">
                   Login
+                  <BoxArrowInRight id="arrow" size={15} />
+                </div>
+              </button>
+            )}
+            {loggedIn  && (
+              <button className="nav-btn" onClick={onLogout}>
+                <div className="box">
+                  Logout
                   <BoxArrowInRight id="arrow" size={15} />
                 </div>
               </button>
