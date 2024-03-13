@@ -215,3 +215,8 @@ h1 {
 #vegan label {
     font-size: 1.25rem;
 }
+
+.areuvegan>p {
+    font-size: xx-large;
+    font-weight: bolder;
+}

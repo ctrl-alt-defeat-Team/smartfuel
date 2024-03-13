@@ -2,6 +2,7 @@
     import "../styles/CartPage.css";
     import CartProduct from "./cartProduct"; // Import CartProduct component
     import Button from "react-bootstrap/Button";
+    import "../styles/Mobile.css";
 
     function Cart({setShowCart}) {
         const closeButtonClick = () => {

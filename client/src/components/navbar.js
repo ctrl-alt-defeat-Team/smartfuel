@@ -18,17 +18,17 @@ function Navbar({
     setShowDropdown(!showDropdown);
   };
 
-  useEffect(() => {
-    const handleWindowResize = () => {
-      window.location.reload();
-    };
+  // useEffect(() => {
+  //   const handleWindowResize = () => {
+  //     window.location.reload();
+  //   };
 
-    window.addEventListener("resize", handleWindowResize);
+  //   window.addEventListener("resize", handleWindowResize);
 
-    return () => {
-      window.removeEventListener("resize", handleWindowResize);
-    };
-  }, []);
+  //   return () => {
+  //     window.removeEventListener("resize", handleWindowResize);
+  //   };
+  // }, []);
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
