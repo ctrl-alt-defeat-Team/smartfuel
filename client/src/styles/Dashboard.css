@@ -1,0 +1,44 @@
+.main-dashboard {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  width: 100%;
+}
+
+.sidebar {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+  height: 100%;
+  background-color: #e2e2e2;
+  border-right: 1px solid #416d19;
+  border-top: 1px solid #416d19;
+}
+
+.main-dash-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  height: 100%;
+  background-color: #f2f2f2;
+  border-top: 1px solid #416d19;
+}
+
+.btn-dash {
+  background-color: #9bcf53;
+  color: white;
+  padding: 14px 20px;
+  border: none;
+  font-size: 1.2rem;
+}
+
+.btn-dash:hover {
+  background-color: #416d19;
+  color: white;
+  padding: 14px 20px;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
