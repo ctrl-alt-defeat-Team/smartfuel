@@ -11,7 +11,7 @@ function Register() {
     e.preventDefault();
     if (password === confirmPassword) {
       try {
-        const response = await fetch("/register", {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/register`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
