@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import "../styles/profile.css";
+import "../styles/Mobile.css";
 
 function Profile({ user } ) {
     const [username, setUsername] = useState("");
@@ -104,7 +105,7 @@ function Profile({ user } ) {
                 </div>
                 <div className="form-group">
                     <fieldset id="allergens" >
-                    <legend>Select allergens:</legend>
+                    <div className="alergen">Select allergens:</div>
 
                     <div>
                         <input type="checkbox" 
@@ -213,7 +214,7 @@ function Profile({ user } ) {
             </div>
             <div className="veg">
         <fieldset id="vegan">
-          <legend>Are you vegan?</legend>
+          <div className="areuvegan"><p>Are you vegan?</p></div>
           <div>
             <input
               type="radio"
@@ -240,7 +241,8 @@ function Profile({ user } ) {
       </div>    
             <div className="savebtn">
                 <button id="save" onClick={handleSave}>Save Changes</button>
-            </div> 
+            </div>
+            <div className="umplutura"><p></p></div> 
         </div>
     );
 }

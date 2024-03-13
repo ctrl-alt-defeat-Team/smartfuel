@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import "../styles/CartPage.css";
 import CartProduct from "./cartProduct"; // Import CartProduct component
 import Button from "react-bootstrap/Button";
+import "../styles/Mobile.css";
 
 function Cart({setShowCart}) {
     const closeButtonClick = () => {
@@ -27,6 +28,12 @@ function Cart({setShowCart}) {
             image: "https://via.placeholder.com/150",
             rating: 5,
         },
+        {
+            id: 4,
+            name: "Product 4",
+            image: "https://via.placeholder.com/150",
+            rating: 2,
+        }
     ]);
 
     const handleDelete = (productId) => {
