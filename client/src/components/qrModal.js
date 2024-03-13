@@ -24,6 +24,16 @@ function QRModal({ showModal, closeModal, name }) {
     setSelectedProduct(product);
   };
 
+  const handleAddToCart = (index) => {
+    const existingCart = localStorage.getItem("cart");
+    if (existingCart !== null) {
+      const data = JSON.parse(existingCart);
+      localStorage.setItem("cart", JSON.stringify([...data, products[index]._id]));
+    } else {
+      localStorage.setItem("cart", JSON.stringify([products[index]._id]));
+    }
+  };
+  
   useEffect(() => {
     const fetchData = async () => {
       if (name !== null && product == null && products == null) {
@@ -66,18 +76,21 @@ function QRModal({ showModal, closeModal, name }) {
             <ScannedProduct
               product={product}
               onDetailsClick={handleDetailsClick2}
+              handleAddToCart={handleAddToCart}
             />
           )}
           {products != null && (
             <ScannedProductsList
               products={products}
               onDetailsClick={handleDetailsClick}
+              handleAddToCart={handleAddToCart}
             />
           )}
           {selectedProduct != null && (
             <ProductDetails
               product={selectedProduct}
               setSelectedProduct={setSelectedProduct}
+              handleAddToCart={handleAddToCart}
             />
           )}
         </div>

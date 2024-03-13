@@ -1,7 +1,7 @@
 import React from "react";
 import "../styles/qrModal.css";
 
-const ScannedProducts = ({ products, onDetailsClick }) => {
+const ScannedProducts = ({ products, onDetailsClick, handleAddToCart }) => {
   // Slice the array to only show the first 5 products
 
   return (
@@ -21,6 +21,12 @@ const ScannedProducts = ({ products, onDetailsClick }) => {
               onClick={() => onDetailsClick(index)}
             >
               Details
+            </button>
+            <button
+              className="btn-details"
+              onClick={() => handleAddToCart(index)}
+            >
+              Add to cart
             </button>
           </li>
         ))}
