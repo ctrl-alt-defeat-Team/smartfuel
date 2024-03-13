@@ -7,7 +7,7 @@ function DashForm() {
       <h3>Product submission form</h3>
       <form className="form-dash">
         <div className="form-group-large">
-          <div className="form-group fg1">
+          <div className="form-group-d fg1">
             <input
               type="text"
               id="prod-name"
@@ -37,7 +37,7 @@ function DashForm() {
               placeholder="Image URL"
             />
           </div>
-          <div className="form-group">
+          <div className="form-group-d">
             <input
               type="text"
               id="prod-energy"
@@ -67,7 +67,7 @@ function DashForm() {
               placeholder="Sugars (g)"
             />
           </div>
-          <div className="form-group">
+          <div className="form-group-d">
             <input
               type="text"
               id="prod-fiber"

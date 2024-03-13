@@ -4,7 +4,7 @@ import "../styles/Dashboard.css";
 import { useState } from "react";
 
 function DashSubmissions() {
-  const [cartItems, setCartItems] = useState([
+  const [submitedItems, setSubmitedItems] = useState([
     {
       id: 1,
       name: "Product 1",
@@ -38,12 +38,12 @@ function DashSubmissions() {
   ]);
 
   const handleDelete = (productId) => {
-    setCartItems(cartItems.filter((item) => item.id !== productId));
+    setSubmitedItems(submitedItems.filter((item) => item.id !== productId));
   };
   return (
     <div className="dash-submissions">
       <div className="dash-cartitem">
-        {cartItems.map((item) => (
+        {submitedItems.map((item) => (
           <div key={item.id} className="grid-item-dash">
             <CartProduct prodObj={item} onDelete={handleDelete} />
           </div>
@@ -53,7 +53,7 @@ function DashSubmissions() {
         <button
           className="btn-submit"
           id="clear-all"
-          onClick={() => setCartItems([])}
+          onClick={() => setSubmitedItems([])}
         >
           Clear all
         </button>

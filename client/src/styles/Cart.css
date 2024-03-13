@@ -59,7 +59,8 @@
   border: none;
   color: white;
   cursor: pointer;
-  border-bottom-left-radius: 5px;
+  border-bottom-left-radius: 3px;
+  border-top-right-radius: 3px;
 }
 
 .btn-remove:hover {

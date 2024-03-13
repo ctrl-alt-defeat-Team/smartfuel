@@ -99,7 +99,7 @@ function App() {
         {showProfile && <Profile user={user} />}
         {showCart && <Cart setShowCart={setShowCart} />}
         {showCart === false && showLogin === false && showProfile === false && (
-          <Dashboard />
+          <Landing />
         )}
       </div>
     </div>
