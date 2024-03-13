@@ -8,16 +8,23 @@ import Cart from "./components/cart";
 
 import isValidToken from "./functions/isValidToken";
 
+
 function App() {
   const [showLogin, setshowLogin] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
   const [showCart, setShowCart] = useState(false);
+  const [user, setUser] = useState({});
 
   const handleLogin = () => {
     setshowLogin(true);
     setShowProfile(false);
     setShowCart(false);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    window.location.reload();
   };
 
   const handleProfileClick = () => {
@@ -35,6 +42,7 @@ function App() {
   useEffect(() => {
     const verify = async () => {
       try {
+        console.log(process.env.REACT_APP_API_URL);
         const token = localStorage.getItem("token");
         const isValid = await isValidToken(token);
         if (isValid) {
@@ -42,18 +50,42 @@ function App() {
         } else {
           setLoggedIn(false);
         }
+
       } catch (error) {
+        setLoggedIn(false);
         console.error("Not logged in", error);
       }
     };
 
+    const getUser = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/getUser`,{
+          method: "GET",
+          headers: {
+          'Authorization': `Bearer ${token}`
+          },
+        });
+        const User = await response.json();
+        setUser(User);  
+        if(User.isCompleted != true){
+          setShowProfile(true);
+        }
+      } catch (error) {
+        console.error("Error getting user", error);
+      }
+      
+    }
+
     verify();
+    getUser();
   }, []);
 
   return (
     <div className="screen-body">
       <Navbar
         onLogin={handleLogin}
+        onLogout={handleLogout}
         loggedIn={loggedIn}
         showLogin={showLogin}
         onProfileClick={handleProfileClick}
@@ -63,7 +95,7 @@ function App() {
       />
       <div className="main-container">
         {showLogin && <AuthContainer loggedIn={loggedIn} />}
-        {showProfile && <Profile />}
+        {showProfile && <Profile user = {user} />}
         {showCart && <Cart setShowCart={setShowCart} />}
         {showCart === false && showLogin === false && showProfile === false && (
           <Landing />

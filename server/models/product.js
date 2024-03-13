@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 
 const productSchema = new mongoose.Schema({
-  name: String,
+  product_name: String,
   barcode: String,
-  brand: String,
-  image: String,
+  brands: String,
+  image_front_small_url: String,
   categories_tags: [String],
   ingredients: [String],
   nutriments: {
@@ -18,6 +18,7 @@ const productSchema = new mongoose.Schema({
   },
   nutriscore_grade: String,
   user_likes: Number,
+  allergens: [String],
 });
 
 module.exports = mongoose.model("Product", productSchema);
