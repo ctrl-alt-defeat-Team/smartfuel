@@ -28,7 +28,7 @@ function Profile({ user } ) {
         const isCompleted = true;
         try{
             console.log(vegan);
-        const response = await fetch("/api/updateUser", {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/updateUser`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
