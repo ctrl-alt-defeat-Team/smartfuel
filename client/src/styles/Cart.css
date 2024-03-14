@@ -16,7 +16,7 @@
 .cart-product img {
   position: relative;
   width: 100%;
-  height: 60%;
+  height: 30vh;
   object-fit: scale-down;
 }
 
