@@ -24,13 +24,15 @@ function QRModal({ showModal, closeModal, name }) {
     setSelectedProduct(product);
   };
 
-  const handleAddToCart = (index) => {
+  const handleAddToCart = (index,quantity) => {
     const existingCart = localStorage.getItem("cart");
-    if (existingCart !== null) {
-      const data = JSON.parse(existingCart);
-      localStorage.setItem("cart", JSON.stringify([...data, products[index]._id]));
+    console.log("existingCart:", existingCart);
+    if (existingCart !== null && existingCart !== undefined && existingCart !== "") {
+      let data = JSON.parse(existingCart);
+
+      localStorage.setItem("cart", JSON.stringify([...data, products[index]._id+quantity]));
     } else {
-      localStorage.setItem("cart", JSON.stringify([products[index]._id]));
+      localStorage.setItem("cart", JSON.stringify([products[index]._id+quantity]));
     }
   };
   

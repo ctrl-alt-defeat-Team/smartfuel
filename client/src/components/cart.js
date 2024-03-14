@@ -38,7 +38,15 @@
             }
           }, []);
         const handleDelete = (productId) => {
-            setCartItems(cartItems.filter(item => item.id !== productId));
+            const cartData = localStorage.getItem('cart');
+            if (cartData) {
+              setCartItems(JSON.parse(cartData));
+            }
+            console.log("Deleting product with id:", productId);
+            const updatedCartItems = cartItems.filter(item => item.slice(0,-1) !== productId);
+            setCartItems(updatedCartItems);
+            console.log("updatedCartItems:", updatedCartItems);
+            localStorage.setItem('cart', JSON.stringify(updatedCartItems));        
         };
 
         return (
@@ -62,8 +70,8 @@
                     </div>
                     <div className="cartitem">
                         {cartItems.map(item => (
-                            <div key={item.id} className="grid-item">
-                                <CartProduct prodObj={item} onDelete={handleDelete}  />
+                            <div key={item} className="grid-item">
+                                <CartProduct prodObj={null} onDelete={handleDelete}  idProduct={item.slice(0, -1)} quantity={item.slice(-1)} />
                             </div>
                         ))}
                     </div>

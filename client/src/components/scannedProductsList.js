@@ -1,8 +1,13 @@
-import React from "react";
+import React,{useState, useEffect} from "react";
 import "../styles/qrModal.css";
 
 const ScannedProducts = ({ products, onDetailsClick, handleAddToCart }) => {
-  // Slice the array to only show the first 5 products
+  const [quantity, setQuantity] = useState(1);
+
+
+  const handleChange = (event) => {
+    setQuantity(parseInt(event.target.value));
+  };
 
   return (
     <div>
@@ -22,9 +27,18 @@ const ScannedProducts = ({ products, onDetailsClick, handleAddToCart }) => {
             >
               Details
             </button>
+
+            <select value={quantity} onChange={handleChange}>
+              {[...Array(9).keys()].map((num) => (
+                <option key={num + 1} value={num + 1}>
+                  {num + 1}
+                </option>
+              ))}
+            </select>
+
             <button
               className="btn-details"
-              onClick={() => handleAddToCart(index)}
+              onClick={() => handleAddToCart(index, quantity)}
             >
               Add to cart
             </button>
