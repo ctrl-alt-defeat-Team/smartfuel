@@ -24,6 +24,18 @@ function QRModal({ showModal, closeModal, name }) {
     setSelectedProduct(product);
   };
 
+  const handleAddToCart = (index,quantity) => {
+    const existingCart = localStorage.getItem("cart");
+    console.log("existingCart:", existingCart);
+    if (existingCart !== null && existingCart !== undefined && existingCart !== "") {
+      let data = JSON.parse(existingCart);
+
+      localStorage.setItem("cart", JSON.stringify([...data, products[index]._id+quantity]));
+    } else {
+      localStorage.setItem("cart", JSON.stringify([products[index]._id+quantity]));
+    }
+  };
+  
   useEffect(() => {
     const fetchData = async () => {
       if (name !== null && product == null && products == null) {
@@ -66,18 +78,21 @@ function QRModal({ showModal, closeModal, name }) {
             <ScannedProduct
               product={product}
               onDetailsClick={handleDetailsClick2}
+              handleAddToCart={handleAddToCart}
             />
           )}
           {products != null && (
             <ScannedProductsList
               products={products}
               onDetailsClick={handleDetailsClick}
+              handleAddToCart={handleAddToCart}
             />
           )}
           {selectedProduct != null && (
             <ProductDetails
               product={selectedProduct}
               setSelectedProduct={setSelectedProduct}
+              handleAddToCart={handleAddToCart}
             />
           )}
         </div>
