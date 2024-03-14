@@ -140,10 +140,6 @@
     width: 20%;
   }
 
-  span {
-    display: none;
-  }
-
   .lupa {
     padding: 0;
   }
@@ -180,9 +176,5 @@
   .search-btn {
     font-size: 0.8rem;
     padding: 0 2%;
-  }
-
-  span {
-    display: none;
   }
 }
