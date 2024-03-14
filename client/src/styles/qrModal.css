@@ -24,10 +24,12 @@
   margin: 0;
   padding: 10px 0;
 }
+
 .product-list-item p {
   margin: 0 2%;
   font-size: 1.2rem;
   font-weight: 600;
+  width: 40%;
 }
 
 .product-list-item button {
@@ -42,6 +44,7 @@
   font-weight: 600;
   cursor: pointer;
   width: 10%;
+
 }
 
 .product-list-item:hover {
@@ -65,7 +68,19 @@
   height: 40vh;
 }
 
-.scanned-product > img {
+.scanned-product>img {
   width: auto;
   height: 90%;
+}
+
+.product-list .btn-cart {
+  margin-left: 2%;
+  width: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-cart>svg {
+  padding: 0;
 }
