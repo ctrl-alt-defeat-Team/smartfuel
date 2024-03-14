@@ -15,11 +15,14 @@ function App() {
   const [showProfile, setShowProfile] = useState(false);
   const [showCart, setShowCart] = useState(false);
   const [user, setUser] = useState({});
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [showDashboard, setShowDashboard] = useState(false);
 
   const handleLogin = () => {
     setshowLogin(true);
     setShowProfile(false);
     setShowCart(false);
+    setShowDashboard(false);
   };
 
   const handleLogout = () => {
@@ -31,12 +34,18 @@ function App() {
     setShowProfile(true);
     setShowCart(false);
     setshowLogin(false);
+    setShowDashboard(false);
   };
 
   const handleCartClick = () => {
     setShowCart(true);
     setShowProfile(false);
     setshowLogin(false);
+    setShowDashboard(false);
+  };
+
+  const handleDashboardClick = () => {
+    setShowDashboard(true);
   };
 
   useEffect(() => {
@@ -70,7 +79,9 @@ function App() {
         );
         const User = await response.json();
         setUser(User);
-        if (User.isCompleted != true) {
+        setIsAdmin(User.admin);
+        console.log(User.admin);
+        if (User.isCompleted !== true) {
           setShowProfile(true);
         }
       } catch (error) {
@@ -93,14 +104,18 @@ function App() {
         showProfile={showProfile}
         onCartClick={handleCartClick}
         showCart={showCart}
+        isAdmin={isAdmin}
+        onDashboardClick={handleDashboardClick}
       />
       <div className="main-container">
         {showLogin && <AuthContainer loggedIn={loggedIn} />}
         {showProfile && <Profile user={user} />}
         {showCart && <Cart setShowCart={setShowCart} />}
-        {showCart === false && showLogin === false && showProfile === false && (
-          <Landing />
-        )}
+        {showDashboard && <Dashboard />}
+        {showCart === false &&
+          showLogin === false &&
+          showProfile === false &&
+          showDashboard === false && <Landing />}
       </div>
     </div>
   );

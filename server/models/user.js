@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const passportLocalMongoose = require('passport-local-mongoose');
+const mongoose = require("mongoose");
+const passportLocalMongoose = require("passport-local-mongoose");
 
 const userSchema = new mongoose.Schema({
   username: String,
@@ -7,12 +7,16 @@ const userSchema = new mongoose.Schema({
   email: String,
   password: String,
   family: Number,
-  intolerance:[],
+  intolerance: [],
   shoppingHistory: [],
   vegan: Boolean,
   isCompleted: Boolean,
+  admin: {
+    type: Boolean,
+    default: false,
+  },
 });
 
-userSchema.plugin(passportLocalMongoose, { usernameField: 'username' });
+userSchema.plugin(passportLocalMongoose, { usernameField: "username" });
 
-module.exports = mongoose.model('User', userSchema);
+module.exports = mongoose.model("User", userSchema);

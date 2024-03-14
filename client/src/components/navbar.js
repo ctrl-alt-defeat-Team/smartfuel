@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from "react";
 import "../styles/Navbar.css";
-import { BoxArrowInRight } from "react-bootstrap-icons";
+import {
+  BoxArrowInRight,
+  Dash,
+  DatabaseFillDash,
+  DatabaseFillLock,
+} from "react-bootstrap-icons";
+import Dashboard from "./dashboard";
 
 function Navbar({
   onLogin,
@@ -11,6 +17,8 @@ function Navbar({
   showProfile,
   onCartClick,
   showCart,
+  isAdmin,
+  onDashboardClick,
 }) {
   const [showDropdown, setShowDropdown] = useState(false);
 
@@ -84,7 +92,7 @@ function Navbar({
                 </div>
               </button>
             )}
-            {loggedIn  && (
+            {loggedIn && (
               <button className="nav-btn" onClick={onLogout}>
                 <div className="box">
                   Logout
@@ -92,8 +100,14 @@ function Navbar({
                 </div>
               </button>
             )}
+            {isAdmin && (
+              <button className="nav-btn" onClick={onDashboardClick}>
+                Dashboard <DatabaseFillLock size={15} />
+              </button>
+            )}
           </>
         )}
+
         {showDropdown && (
           <div className="dropdown">
             {!showCart && (
