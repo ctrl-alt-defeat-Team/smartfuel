@@ -2,10 +2,10 @@
   min-width: 60%;
   position: absolute;
   left: 50%;
-  top: 50%;
+  top: 55%;
   transform: translate(-50%, -50%);
   width: fit-content;
-  height: 70vh;
+  height: fit-content;
   /* Set width to 80% of the screen */
   background-color: white;
   border-radius: 5px;
@@ -45,7 +45,7 @@
   color: white;
 }
 
-.product-list-item > img {
+.product-list-item>img {
   margin-left: 2%;
   margin-right: 2%;
   height: 60px;
