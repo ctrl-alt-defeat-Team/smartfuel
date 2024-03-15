@@ -7,7 +7,7 @@ function DashForm() {
     product_name: "",
     barcode: "",
     brands: "",
-    image_front_small_url: "",
+    image_front_url: "",
     nutriments: {
       energy: "",
       fat: "",
