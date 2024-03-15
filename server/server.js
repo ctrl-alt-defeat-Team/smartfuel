@@ -13,6 +13,7 @@ var searchProductRoutes = require("./routes/searchProduct");
 var verifyTokenRoutes = require("./routes/verifyToken");
 var updateUserRoutes = require("./routes/updateUser");
 var getUserRoutes = require("./routes/getUser");
+var saveCartRoutes = require("./routes/saveCart");
 app.use(express.json());
 
 app.get("/api", (req, res) => {
@@ -42,3 +43,4 @@ app.use("/api/search", searchProductRoutes);
 app.use("/api/tokenVerify", verifyTokenRoutes);
 app.use("/api/updateUser", updateUserRoutes);
 app.use("/api/getUser", getUserRoutes);
+app.use("/api/saveCart", saveCartRoutes);

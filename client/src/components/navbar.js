@@ -55,7 +55,7 @@ function Navbar({
                 </div>
               </button>
             )}
-            {!showProfile && (
+            {!showProfile && loggedIn && (
               <button className="nav-btn nolog" onClick={onProfileClick}>
                 <div className="box">
                   Profile
