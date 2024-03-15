@@ -212,13 +212,14 @@
         left: 50%;
         top: 50.5%;
         transform: translate(-50%, -50%);
-        background-color: white;
+        background-color: #e2e2e2;
         border-radius: 0;
         height: 100%;
     }
 
     .product-details-container>div>button {
-        border-radius: 0;
+        border-radius: 5px;
+        width: 30%;
     }
 
     .flex-details {
@@ -229,5 +230,14 @@
 
     .flex-details>.product-details {
         width: 100%;
+    }
+
+    .product-details-container>.btn-back {
+        justify-content: center;
+    }
+
+    .umplutura1 {
+        background-color: #e2e2e2;
+        height: 20px;
     }
 }

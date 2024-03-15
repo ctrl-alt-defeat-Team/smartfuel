@@ -13,9 +13,6 @@ function ProductDetails({ product, setSelectedProduct }) {
 
   return (
     <div className="product-details-container">
-      <div className="btn-back">
-        <button onClick={handleClosePD}>Back</button>
-      </div>
       <div className="flex-details">
         <div className="left-col">
           <h2>{product.product_name}</h2>
@@ -84,6 +81,10 @@ function ProductDetails({ product, setSelectedProduct }) {
 
         <p>{allergen || "No allergens"}</p>
       </div>
+      <div className="btn-back">
+        <button onClick={handleClosePD}>Back</button>
+      </div>
+      <div className="umplutura1"><p></p></div>
     </div>
   );
 }
