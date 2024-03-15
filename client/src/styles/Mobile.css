@@ -1,4 +1,8 @@
 @media (max-width: 420px) {
+    .main-container {
+        height: 83.5vh;
+    }
+
     .landing-container>h1 {
         margin-bottom: 10%;
     }
@@ -150,5 +154,25 @@
         height: 10%;
         width: 100%;
         background-color: #f5f5f5;
+    }
+
+    /*search-products*/
+
+    .modal {
+        min-width: 80%;
+        position: absolute;
+        left: 50%;
+        top: 55%;
+        transform: translate(-50%, -50%);
+        width: fit-content;
+        height: fit-content;
+        background-color: white;
+        border-radius: 5px;
+        padding: 20px;
+    }
+
+    .modal-close-btn>button {
+        font-size: larger;
+        width: 50%;
     }
 }
