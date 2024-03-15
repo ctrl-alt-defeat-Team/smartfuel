@@ -1,6 +1,7 @@
 import React from "react";
 import "../styles/productDetails.css";
 import { HandThumbsUpFill } from "react-bootstrap-icons";
+import "../styles/Mobile.css";
 
 function ProductDetails({ product, setSelectedProduct }) {
   const handleClosePD = () => {

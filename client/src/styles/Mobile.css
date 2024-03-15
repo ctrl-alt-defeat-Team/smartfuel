@@ -204,4 +204,30 @@
     .product-list-item>button>svg {
         display: block;
     }
+
+    /*product details*/
+
+    .container>.product-details-container {
+        width: 100%;
+        left: 50%;
+        top: 50.5%;
+        transform: translate(-50%, -50%);
+        background-color: white;
+        border-radius: 0;
+        height: 100%;
+    }
+
+    .product-details-container>div>button {
+        border-radius: 0;
+    }
+
+    .flex-details {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .flex-details>.product-details {
+        width: 100%;
+    }
 }
