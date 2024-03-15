@@ -4,7 +4,7 @@ const productSchema = new mongoose.Schema({
   product_name: String,
   barcode: String,
   brands: String,
-  image_front_small_url: String,
+  image_front_url: String,
   categories_tags: [String],
   ingredients: [String],
   nutriments: {
@@ -19,6 +19,7 @@ const productSchema = new mongoose.Schema({
   nutriscore_grade: String,
   user_likes: Number,
   allergens: [String],
+  custom: Boolean,
 });
 
 module.exports = mongoose.model("Product", productSchema);

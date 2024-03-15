@@ -5,9 +5,9 @@ import Navbar from "./components/navbar";
 import Landing from "./components/landing";
 import Profile from "./components/profile";
 import Cart from "./components/cart";
+import Dashboard from "./components/dashboard";
 
 import isValidToken from "./functions/isValidToken";
-
 
 function App() {
   const [showLogin, setshowLogin] = useState(false);
@@ -15,11 +15,14 @@ function App() {
   const [showProfile, setShowProfile] = useState(false);
   const [showCart, setShowCart] = useState(false);
   const [user, setUser] = useState({});
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [showDashboard, setShowDashboard] = useState(false);
 
   const handleLogin = () => {
     setshowLogin(true);
     setShowProfile(false);
     setShowCart(false);
+    setShowDashboard(false);
   };
 
   const handleLogout = () => {
@@ -31,12 +34,18 @@ function App() {
     setShowProfile(true);
     setShowCart(false);
     setshowLogin(false);
+    setShowDashboard(false);
   };
 
   const handleCartClick = () => {
     setShowCart(true);
     setShowProfile(false);
     setshowLogin(false);
+    setShowDashboard(false);
+  };
+
+  const handleDashboardClick = () => {
+    setShowDashboard(true);
   };
 
   useEffect(() => {
@@ -50,7 +59,6 @@ function App() {
         } else {
           setLoggedIn(false);
         }
-
       } catch (error) {
         setLoggedIn(false);
         console.error("Not logged in", error);
@@ -60,22 +68,26 @@ function App() {
     const getUser = async () => {
       try {
         const token = localStorage.getItem("token");
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/getUser`,{
-          method: "GET",
-          headers: {
-          'Authorization': `Bearer ${token}`
-          },
-        });
+        const response = await fetch(
+          `${process.env.REACT_APP_API_URL}/api/getUser`,
+          {
+            method: "GET",
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
         const User = await response.json();
-        setUser(User);  
-        if(User.isCompleted != true){
+        setUser(User);
+        setIsAdmin(User.admin);
+        console.log(User.admin);
+        if (User.isCompleted !== true) {
           setShowProfile(true);
         }
       } catch (error) {
         console.error("Error getting user", error);
       }
-      
-    }
+    };
 
     verify();
     getUser();
@@ -92,14 +104,18 @@ function App() {
         showProfile={showProfile}
         onCartClick={handleCartClick}
         showCart={showCart}
+        isAdmin={isAdmin}
+        onDashboardClick={handleDashboardClick}
       />
       <div className="main-container">
         {showLogin && <AuthContainer loggedIn={loggedIn} />}
-        {showProfile && <Profile user = {user} />}
+        {showProfile && <Profile user={user} />}
         {showCart && <Cart setShowCart={setShowCart} />}
-        {showCart === false && showLogin === false && showProfile === false && (
-          <Landing />
-        )}
+        {showDashboard && <Dashboard />}
+        {showCart === false &&
+          showLogin === false &&
+          showProfile === false &&
+          showDashboard === false && <Landing />}
       </div>
     </div>
   );
