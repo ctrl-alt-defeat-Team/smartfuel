@@ -100,7 +100,7 @@ function Navbar({
                 </div>
               </button>
             )}
-            {isAdmin && (
+            {isAdmin  && loggedIn && (
               <button className="nav-btn" onClick={onDashboardClick}>
                 Dashboard <DatabaseFillLock size={15} />
               </button>
