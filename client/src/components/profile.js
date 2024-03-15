@@ -10,6 +10,11 @@ function Profile({ user } ) {
    // const [phoneNumber, setPhoneNumber] = useState("");
     const [vegan, setVegan] = useState("");
     const [selectedAllergens, setSelectedAllergens] = useState([]);
+
+    const showHistory = () => {
+        console.log("Show history");
+    };
+
     const handleAllergenChange = (e) => {
         const allergen = e.target.value;
         const isChecked = e.target.checked;
@@ -63,6 +68,9 @@ function Profile({ user } ) {
         <div className="page">
             <div id="title">
                 <h1>Your Profile</h1>
+                <button className="nav-btn nolog" onClick={showHistory}>
+                    View Shopping History
+                </button>
             </div>
             <div className="contact">
                 <div className="form-group">
