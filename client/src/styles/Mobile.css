@@ -159,20 +159,49 @@
     /*search-products*/
 
     .modal {
-        min-width: 80%;
-        position: absolute;
+        min-width: 95.4%;
+        min-height: 80vh;
+        /* position: absolute; */
         left: 50%;
-        top: 55%;
+        top: 58%;
         transform: translate(-50%, -50%);
         width: fit-content;
         height: fit-content;
         background-color: white;
         border-radius: 5px;
         padding: 20px;
+        border-radius: 0;
     }
 
     .modal-close-btn>button {
         font-size: larger;
         width: 50%;
+    }
+
+    #scanned-prods {
+        font-size: 2rem;
+        text-align: center;
+    }
+
+    .textQr {
+        font-size: 1.25rem;
+    }
+
+    .product-list-item {
+        width: 95%;
+    }
+
+    .product-list-item>button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .product-list-item>button>span {
+        display: none;
+    }
+
+    .product-list-item>button>svg {
+        display: block;
     }
 }

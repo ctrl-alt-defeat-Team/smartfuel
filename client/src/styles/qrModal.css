@@ -47,6 +47,10 @@
 
 }
 
+.bi-three-dots-vertical {
+  display: none;
+}
+
 .product-list-item:hover {
   background-color: #e0e0e0;
 }
