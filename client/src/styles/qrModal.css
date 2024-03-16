@@ -69,7 +69,11 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 40vh;
+}
+
+.scanned-product>.scanned-btn {
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .scanned-product>img {

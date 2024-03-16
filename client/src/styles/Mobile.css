@@ -211,6 +211,19 @@
         display: block;
     }
 
+    .scanned-product>.scanned-btn {
+        height: 4vh;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-content: space-between;
+    }
+
+    .scanned-btn>.btn-details {
+        width: 46%;
+        height: 100%;
+        margin: 0;
+    }
+
     /*product details*/
 
     .container>.product-details-container {
@@ -226,6 +239,7 @@
     .product-details-container>div>button {
         border-radius: 5px;
         width: 30%;
+        height: 100%;
     }
 
     .flex-details {
