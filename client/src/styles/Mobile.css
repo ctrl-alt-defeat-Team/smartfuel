@@ -1,4 +1,8 @@
 @media (max-width: 420px) {
+    .main-container {
+        height: 83.5vh;
+    }
+
     .landing-container>h1 {
         margin-bottom: 10%;
     }
@@ -51,6 +55,8 @@
     .cartpage>.cartitem {
         display: grid;
         grid-template-columns: 1fr;
+        position: relative;
+        top: 10%;
     }
 
     .cartitem>.grid-item>.cart-product {
@@ -64,6 +70,10 @@
     #cart-title>h2>.basket {
         height: 50px;
         width: 50px;
+    }
+
+    #cart-title>.title-btns {
+        width: 100%;
     }
 
     /*cart-item*/
@@ -150,5 +160,104 @@
         height: 10%;
         width: 100%;
         background-color: #f5f5f5;
+    }
+
+    /*search-products*/
+
+    .modal {
+        min-width: 95.4%;
+        min-height: 80vh;
+        /* position: absolute; */
+        left: 50%;
+        top: 58%;
+        transform: translate(-50%, -50%);
+        width: fit-content;
+        height: fit-content;
+        background-color: white;
+        border-radius: 5px;
+        padding: 20px;
+        border-radius: 0;
+    }
+
+    .modal-close-btn>button {
+        font-size: larger;
+        width: 50%;
+    }
+
+    #scanned-prods {
+        font-size: 2rem;
+        text-align: center;
+    }
+
+    .textQr {
+        font-size: 1.25rem;
+    }
+
+    .product-list-item {
+        width: 95%;
+    }
+
+    .product-list-item>button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .product-list-item>button>span {
+        display: none;
+    }
+
+    .product-list-item>button>svg {
+        display: block;
+    }
+
+    .scanned-product>.scanned-btn {
+        height: 4vh;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-content: space-between;
+    }
+
+    .scanned-btn>.btn-details {
+        width: 46%;
+        height: 100%;
+        margin: 0;
+    }
+
+    /*product details*/
+
+    .container>.product-details-container {
+        width: 100%;
+        left: 50%;
+        top: 50.5%;
+        transform: translate(-50%, -50%);
+        background-color: #e2e2e2;
+        border-radius: 0;
+        height: 100%;
+    }
+
+    .product-details-container>div>button {
+        border-radius: 5px;
+        width: 30%;
+        height: 100%;
+    }
+
+    .flex-details {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .flex-details>.product-details {
+        width: 100%;
+    }
+
+    .product-details-container>.btn-back {
+        justify-content: center;
+    }
+
+    .umplutura1 {
+        background-color: #e2e2e2;
+        height: 20px;
     }
 }

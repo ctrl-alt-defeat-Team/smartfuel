@@ -17,7 +17,7 @@
   position: relative;
   height: 100%;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   background-color: #e2e2e2;
@@ -28,12 +28,14 @@
   background-color: red;
   padding: 10px 15px 10px 15px;
   border: none;
-  border-top-right-radius: 5px;
+  border-radius: 5px;
   cursor: pointer;
   transition: 0.3s;
   color: white;
-  font-size: large;
+  font-size: larger;
   font-weight: bold;
+  width: 15%;
+  height: 55%;
 }
 
 .flex-details {
@@ -50,6 +52,7 @@
 .flex-details h2 {
   font-size: 2rem;
   margin-bottom: 0;
+  text-align: center;
 }
 
 .flex-details .left-col {
