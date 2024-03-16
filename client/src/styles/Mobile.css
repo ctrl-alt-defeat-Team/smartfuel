@@ -55,6 +55,8 @@
     .cartpage>.cartitem {
         display: grid;
         grid-template-columns: 1fr;
+        position: relative;
+        top: 10%;
     }
 
     .cartitem>.grid-item>.cart-product {
@@ -68,6 +70,10 @@
     #cart-title>h2>.basket {
         height: 50px;
         width: 50px;
+    }
+
+    #cart-title>.title-btns {
+        width: 100%;
     }
 
     /*cart-item*/
