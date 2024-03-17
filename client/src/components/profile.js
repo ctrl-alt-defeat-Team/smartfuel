@@ -341,7 +341,7 @@ function Profile({ user }) {
       <div className="veg">
         <div className="product-details">
           <table>
-            <tr>
+            <tr id="table-header">
               <td>Required Calories </td>
               <td>Required Proteins </td>
               <td>Required Fats </td>

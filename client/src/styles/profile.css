@@ -221,3 +221,14 @@ h1 {
 .veg .product-details table {
   margin-top: 10vh;
 }
+
+#table-header {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: black;
+  background-color: #cfcfcf;
+}
+
+.veg .product-details table p {
+  font-size: 1.2rem;
+}
