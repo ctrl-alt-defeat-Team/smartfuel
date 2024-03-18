@@ -1,7 +1,7 @@
 const necessaryCalories = (weight, height, man) => {
-  if (man === 1) {
+  if (man === true) {
     return ((66.47 + 13.75 * weight + 5.003 * height) * 1.375).toFixed(0);
-  } else if (man === 0) {
+  } else if (man === false) {
     return ((655.1 + 9.563 * weight + 1.85 * height) * 1.375).toFixed(0);
   }
 };
