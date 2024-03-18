@@ -114,9 +114,41 @@
     .page>.contact {
         position: relative;
         grid-template-columns: 1fr;
-        grid-template-rows: 50vh;
+        /* grid-template-rows: 50vh; */
         height: fit-content;
         background-color: #f5f5f5;
+    }
+
+    .product-details>.grid-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        width: 80%;
+        /* gap: 20px; */
+    }
+
+    .grid-container>.prim {
+        border-bottom-left-radius: 0px;
+    }
+
+    .doi {
+        border-top-right-radius: 5px;
+    }
+
+    .trei {
+        border-bottom-left-radius: 5px;
+    }
+
+    .grid-container>.ultim {
+        border-top-right-radius: 0px;
+    }
+
+    .header {
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    .page>.product-details {
+        width: 100%;
     }
 
     .page>.veg {
