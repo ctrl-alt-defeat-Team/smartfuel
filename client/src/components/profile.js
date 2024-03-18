@@ -4,24 +4,29 @@ import "../styles/profile.css";
 import "../styles/Mobile.css";
 import necessaryNutrition from "../functions/calcOptimalNutrtion";
 
-function Profile({ user }) {
-  const [username, setUsername] = useState("");
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  // const [phoneNumber, setPhoneNumber] = useState("");
-  const [vegan, setVegan] = useState("");
-  const [selectedAllergens, setSelectedAllergens] = useState([]);
-  const handleAllergenChange = (e) => {
-    const allergen = e.target.value;
-    const isChecked = e.target.checked;
-    if (isChecked) {
-      setSelectedAllergens((prevAllergens) => [...prevAllergens, allergen]);
-    } else {
-      setSelectedAllergens((prevAllergens) =>
-        prevAllergens.filter((a) => a !== allergen)
-      );
-    }
-  };
+function Profile({ user } ) {
+    const [username, setUsername] = useState("");
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+   // const [phoneNumber, setPhoneNumber] = useState("");
+    const [vegan, setVegan] = useState("");
+    const [selectedAllergens, setSelectedAllergens] = useState([]);
+
+    const showHistory = () => {
+        console.log("Show history");
+    };
+
+    const handleAllergenChange = (e) => {
+        const allergen = e.target.value;
+        const isChecked = e.target.checked;
+        if (isChecked) {
+            setSelectedAllergens((prevAllergens) => [...prevAllergens, allergen]);
+        } else {
+            setSelectedAllergens((prevAllergens) =>
+            prevAllergens.filter((a) => a !== allergen)
+          );
+        }
+      };
 
   const handleSave = async (e) => {
     e.preventDefault();
@@ -69,45 +74,55 @@ function Profile({ user }) {
     }
   }, [user]);
 
-  return (
-    <div className="page">
-      <div id="title">
-        <h1>Your Profile</h1>
-      </div>
-      <div className="contact">
-        <div className="form-group">
-          <form>
-            <label className="name">
-              <div className="labname">Username</div>
-              <div className="inp">
-                <input
-                  type="text"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                />
-              </div>
-            </label>
-            <label className="name">
-              <div className="labname">Full Name</div>
-              <div className="inp">
-                <input
-                  type="text"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                />
-              </div>
-            </label>
-            <label className="name">
-              <div className="labname">Email Address:</div>
-              <div className="inp">
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-              </div>
-            </label>
-            {/*
+
+      useEffect(() => {
+        console.log(user);
+        if (user) {
+          setUsername(user.username || "");
+          setName(user.name || "");
+          setEmail(user.email || "");
+         // setPhoneNumber(user.phoneNumber || "");
+          setVegan(user.vegan || false);
+          setSelectedAllergens(user.intolerance || []);
+        }
+      }, [user]);
+
+    return (
+        <div className="page">
+            <div id="title">
+                <h1>Your Profile</h1>
+                <button className="nav-btn nolog" onClick={showHistory}>
+                    View Shopping History
+                </button>
+            </div>
+            <div className="contact">
+                <div className="form-group">
+                    <form>
+                        <label className="name">
+                            <div className="labname">
+                                Username
+                            </div>
+                            <div className="inp">
+                                <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+                            </div>
+                        </label>
+                        <label className="name">
+                            <div className="labname">
+                                Full Name
+                            </div>
+                            <div className="inp">
+                                <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
+                            </div>
+                        </label>
+                        <label className="name">
+                            <div className="labname">
+                                Email Address:
+                            </div>
+                            <div className="inp">
+                               <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                            </div>
+                        </label>
+                    {/*
                         <label className="name">
                             <div className="labname">
                                 Phone Number:
