@@ -2,44 +2,41 @@ import React from "react";
 import CartProduct from "./cartProduct";
 import "../styles/Dashboard.css";
 import { useState } from "react";
+import { useEffect } from "react";
 
 function DashSubmissions() {
-  const [submitedItems, setSubmitedItems] = useState([
-    {
-      id: 1,
-      name: "Product 1",
-      image: "https://via.placeholder.com/150",
-      rating: 4,
-    },
-    {
-      id: 2,
-      name: "Product 2",
-      image: "https://via.placeholder.com/150",
-      rating: 3,
-    },
-    {
-      id: 3,
-      name: "Product 3",
-      image: "https://via.placeholder.com/150",
-      rating: 5,
-    },
-    {
-      id: 4,
-      name: "Product 4",
-      image: "https://via.placeholder.com/150",
-      rating: 5,
-    },
-    {
-      id: 5,
-      name: "Product 5",
-      image: "https://via.placeholder.com/150",
-      rating: 5,
-    },
-  ]);
+  const [submitedItems, setSubmitedItems] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          `${process.env.REACT_APP_API_URL}/api/addProduct/existing`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              "x-auth-token": localStorage.getItem("token"),
+            },
+          }
+        );
+        if (!response.ok) {
+          throw new Error("Failed to fetch data");
+        }
+        const data = await response.json();
+        setSubmitedItems(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const handleDelete = (productId) => {
     setSubmitedItems(submitedItems.filter((item) => item.id !== productId));
   };
+
   return (
     <div className="dash-submissions">
       <div className="dash-cartitem">
