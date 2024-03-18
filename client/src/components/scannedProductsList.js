@@ -1,5 +1,6 @@
 import React,{useState, useEffect} from "react";
 import "../styles/qrModal.css";
+import "../styles/Mobile.css";
 
 const ScannedProducts = ({ products, onDetailsClick, handleAddToCart }) => {
   const [quantity, setQuantity] = useState(1);
@@ -11,7 +12,7 @@ const ScannedProducts = ({ products, onDetailsClick, handleAddToCart }) => {
 
   return (
     <div>
-      <h2>Scanned Products</h2>
+      <h2 id="scanned-prods">Scanned Products</h2>
       <ul className="product-list">
         {products.slice(0, 5).map((product, index) => (
           <li className="product-list-item" key={index}>
@@ -26,7 +27,10 @@ const ScannedProducts = ({ products, onDetailsClick, handleAddToCart }) => {
               className="btn-details"
               onClick={() => onDetailsClick(index)}
             >
-              Details
+              <span>Details</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
+                <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0"/>
+              </svg>
             </button>
 
             <select value={quantity} onChange={handleChange}>

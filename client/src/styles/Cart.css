@@ -25,6 +25,10 @@
   align-items: center;
 }
 
+.product-info>h3 {
+  height: 80px;
+}
+
 .rating-details {
   display: inline-flex;
   flex-direction: row;
