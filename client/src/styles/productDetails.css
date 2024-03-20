@@ -23,7 +23,7 @@
   background-color: #e2e2e2;
 }
 
-.btn-back button {
+.product-details-container > .btn-back > button {
   position: relative;
   background-color: red;
   padding: 10px 15px 10px 15px;
@@ -35,7 +35,7 @@
   font-size: larger;
   font-weight: bold;
   width: 15%;
-  height: 80%;
+  height: 100%;
 }
 
 .flex-details {
@@ -66,6 +66,9 @@
 
 .product-details {
   width: 50%;
+  display: block;
+  justify-content: center;
+  align-items: center;
 }
 
 .product-details table {
