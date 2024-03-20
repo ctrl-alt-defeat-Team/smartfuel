@@ -18,17 +18,6 @@ const CartHistory = ({
   return (
     (!showCartFromHistory && (
       <div className="history-container">
-        <div className="history-buttons">
-          <div>
-            <button
-              className="btn-back-profile"
-              onClick={() => setShowHistory(false)}
-            >
-              {" "}
-              Back{" "}
-            </button>
-          </div>
-        </div>
         <div className="cart-history">
           <h2>Cart History</h2>
           {cartHistory.map((cart, index) => (
@@ -47,6 +36,13 @@ const CartHistory = ({
               </button>
             </div>
           ))}
+          <button
+            className="btn-back-profile"
+            onClick={() => setShowHistory(false)}
+          >
+            {" "}
+            Back{" "}
+          </button>
         </div>
         <br />
       </div>

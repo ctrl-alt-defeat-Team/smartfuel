@@ -8,20 +8,11 @@
   height: 100%;
 }
 
-.history-buttons {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  width: 10%;
-  height: 100%;
-  background-color: #e2e2e2;
-}
-
 .cart-history {
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 90%;
+  width: 100%;
   height: 100%;
   background-color: #f2f2f2;
 }
@@ -40,6 +31,7 @@
   margin: 5px 5%;
   border: 1px solid #a7a7a7;
   border-radius: 3px;
+  overflow-y: auto;
 }
 
 .date {
@@ -71,15 +63,19 @@
 }
 
 .btn-back-profile {
+  position: relative;
+  left: 45%;
   height: 5vh;
-  width: 100%;
+  width: 10%;
   border: none;
   color: white;
-  background-color: #a7a7a7;
+  background-color: #9bcf53;
+  margin-top: 2%;
+  border-radius: 3px;
 }
 
 .btn-back-profile:hover {
-  background-color: #2d2d2d;
+  background-color: #416d19;
   color: white;
   cursor: pointer;
   transition: 0.1s;
