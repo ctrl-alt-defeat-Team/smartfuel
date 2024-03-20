@@ -47,4 +47,22 @@ router.post("/reject", verifyToken, async (req, res) => {
   }
 });
 
+router.post("/rejectall", verifyToken, async (req, res) => {
+  try {
+    const user = await getUser(req);
+    if (user.admin !== true) {
+      return res.status(403).json({ error: "Forbidden" });
+    }
+    const product = await Product.deleteMany({ approved: false || null });
+    if (product === null) {
+      return res.status(404).json({ error: "Product not found" });
+    } else {
+      res.json({ message: "All products rejected successfully" });
+    }
+  } catch (error) {
+    console.error("Error:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
 module.exports = router;

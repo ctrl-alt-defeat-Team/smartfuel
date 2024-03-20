@@ -72,6 +72,29 @@ function DashSubmissions() {
     }
   };
 
+  const handleRejectAll = async () => {
+    const token = localStorage.getItem("token");
+    try {
+      const response = await fetch(
+        `${process.env.REACT_APP_API_URL}/api/approveProduct/rejectall`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      if (!response.ok) {
+        throw new Error("Failed to fetch data");
+      }
+      const data = response.json();
+      console.log("Fetched barcode", data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -99,13 +122,6 @@ function DashSubmissions() {
     fetchData();
   }, []);
 
-  const handleDelete = (productId) => {
-    setSubmitedItems(submitedItems.filter((item) => item.id !== productId));
-    if (selectedProduct && selectedProduct.id === productId) {
-      setSelectedProduct(null);
-    }
-  };
-
   return (
     <div className="dash-submissions">
       <div className="dash-cartitem">
@@ -113,7 +129,6 @@ function DashSubmissions() {
           <div key={item.id} className="grid-item-dash">
             <CartProduct
               product={item}
-              onDelete={handleDelete}
               onDetailsClick={() => handleDetailsClick(index)}
               onAccept={handleAccept}
               onReject={handleReject}
@@ -135,9 +150,10 @@ function DashSubmissions() {
           onClick={() => {
             setSubmitedItems([]);
             setSelectedProduct(null);
+            handleRejectAll();
           }}
         >
-          Clear all
+          Reject all
         </button>
       </div>
     </div>

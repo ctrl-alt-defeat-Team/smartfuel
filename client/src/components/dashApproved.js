@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import ProductDetails from "./productDetails";
 
-function DashApproved() {
+function DashApproved({ showApproved }) {
   const [approvedItems, setApprovedItems] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState(null);
 
@@ -72,13 +72,6 @@ function DashApproved() {
     fetchData();
   }, []);
 
-  const handleDelete = (productId) => {
-    setApprovedItems(approvedItems.filter((item) => item.id !== productId));
-    if (selectedProduct && selectedProduct.id === productId) {
-      setSelectedProduct(null);
-    }
-  };
-
   return (
     <div className="dash-submissions">
       <div className="dash-cartitem">
@@ -86,8 +79,8 @@ function DashApproved() {
           <div key={item.id} className="grid-item-dash">
             <CartProduct
               product={item}
-              onDelete={handleDelete}
               onDetailsClick={() => handleDetailsClick(index)}
+              showApproved={showApproved}
               onReject={handleReject}
               isAdmin={true}
             />
@@ -99,18 +92,6 @@ function DashApproved() {
             setSelectedProduct={setSelectedProduct}
           />
         )}
-      </div>
-      <div>
-        <button
-          className="btn-submit"
-          id="clear-all"
-          onClick={() => {
-            setApprovedItems([]);
-            setSelectedProduct(null);
-          }}
-        >
-          Clear all
-        </button>
       </div>
     </div>
   );

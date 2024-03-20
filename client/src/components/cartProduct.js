@@ -12,6 +12,7 @@ const CartProduct = ({
   isAdmin,
   onAccept,
   onReject,
+  showApproved,
 }) => {
   const [loading, setLoading] = useState(true);
   const [loadedProduct, setLoadedProduct] = useState(null);
@@ -70,19 +71,21 @@ const CartProduct = ({
   return (
     <div className="cart-product">
       <div className="btn-remove-div">
-        {isAdmin && (
-          <div>
-            <button className="accept-btn" onClick={() => onAccept(product)}>
-              Accept
-            </button>
-            <button className="reject-btn" onClick={() => onReject(product)}>
-              Reject
-            </button>
-          </div>
+        {isAdmin && !showApproved && (
+          <button className="accept-btn" onClick={() => onAccept(product)}>
+            Accept
+          </button>
         )}
-        <button className="btn-remove" onClick={handleDelete}>
-          <Trash />
-        </button>
+        {isAdmin && (
+          <button className="reject-btn" onClick={() => onReject(product)}>
+            Reject
+          </button>
+        )}
+        {!isAdmin && (
+          <button className="btn-remove" onClick={handleDelete}>
+            <Trash />
+          </button>
+        )}
       </div>
       <img src={currentProduct.image_front_url} alt="product" />
       <div className="product-info">
