@@ -5,9 +5,10 @@ var Like = require('../models/likes');
 var getUser = require('../functions/getUser');
 
 router.post('/', verifyToken, async (req, res) => {
+    console.log("barcode",req.body.barcode)
+
     try {
-        const user = await getUser(req);
-        console.log(req.body.barcode)
+        const user = await getUser(req);        
         const like = await Like.findOne({ barcode: req.body.barcode });
         console.log('like:', like);
         if(like == null){
