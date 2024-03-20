@@ -81,11 +81,11 @@ function App() {
           }
         );
         const User = await response.json();
-        setUser(User);
-        setIsAdmin(User.admin);
-        console.log(User.admin);
-        if (User.isCompleted !== true) {
-          setShowProfile(true);
+          setUser(User);
+          setIsAdmin(User.admin);
+          console.log(User.admin);
+          if (User.isCompleted !== true) {
+            setShowProfile(true);
         }
       } catch (error) {
         console.error("Error getting user", error);
@@ -93,8 +93,13 @@ function App() {
     };
 
     verify();
-    if(loggedIn)
-      getUser();
+    getUser();
+    if(loggedIn === false) {
+      setShowProfile(false);
+      setShowCart(false);
+      setshowLogin(false);
+      setShowDashboard(false);
+    }
   }, []);
 
   return (
