@@ -177,6 +177,11 @@ h1 {
   margin-left: 16%;
 }
 
+#allergens>.alergen {
+  font-weight: bold;
+  font-size: xx-large;
+}
+
 .veg {
   /* position: relative; */
   top: 20vh;
