@@ -1,0 +1,86 @@
+.history-container {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #e2e2e2;
+  width: 100%;
+  height: 100%;
+}
+
+.history-buttons {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 10%;
+  height: 100%;
+  background-color: #e2e2e2;
+}
+
+.cart-history {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  height: 100%;
+  background-color: #f2f2f2;
+}
+
+.cart-element:hover {
+  background-color: #e2e2e2;
+}
+
+.cart-element {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+  height: 100px;
+  margin: 5px 5%;
+  border: 1px solid #a7a7a7;
+  border-radius: 3px;
+}
+
+.date {
+  margin: 0 5%;
+}
+
+.show-cart-btn {
+  position: relative;
+  padding: 0.7% 0;
+  background-color: #9bcf53;
+  width: 10%;
+  text-align: center;
+  margin-left: auto;
+  border: none;
+  color: white;
+  border-radius: 3px;
+  margin-right: 2%;
+}
+
+.show-cart-btn:hover {
+  background-color: #416d19;
+  color: white;
+  cursor: pointer;
+  transition: 0.1s;
+}
+
+.cart-history h2 {
+  text-align: center;
+}
+
+.btn-back-profile {
+  height: 5vh;
+  width: 100%;
+  border: none;
+  color: white;
+  background-color: #a7a7a7;
+}
+
+.btn-back-profile:hover {
+  background-color: #2d2d2d;
+  color: white;
+  cursor: pointer;
+  transition: 0.1s;
+}
