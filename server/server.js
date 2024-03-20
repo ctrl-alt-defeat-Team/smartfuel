@@ -17,6 +17,8 @@ var saveCartRoutes = require("./routes/saveCart");
 var addProductRoutes = require("./routes/addProduct");
 var getCartHistoryRoutes = require("./routes/getCartHistory");
 var approveProductRoutes = require("./routes/approveProduct");
+var likeProductRoutes = require("./routes/likeProduct");
+var getLikesRoutes = require("./routes/getLikes");
 
 app.use(express.json());
 
@@ -49,3 +51,5 @@ app.use("/api/saveCart", saveCartRoutes);
 app.use("/api/addProduct", addProductRoutes);
 app.use("/api/getCartHistory",getCartHistoryRoutes);
 app.use("/api/approveProduct", approveProductRoutes);
+app.use("/api/likeProduct", likeProductRoutes);
+app.use("/api/getLikes", getLikesRoutes);
