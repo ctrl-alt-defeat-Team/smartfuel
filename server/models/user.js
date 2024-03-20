@@ -15,6 +15,9 @@ const userSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  weight: Number,
+  height: Number,
+  male: Boolean,
 });
 
 userSchema.plugin(passportLocalMongoose, { usernameField: "username" });

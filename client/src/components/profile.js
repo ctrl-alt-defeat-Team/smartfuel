@@ -4,29 +4,27 @@ import "../styles/profile.css";
 import "../styles/Mobile.css";
 import necessaryNutrition from "../functions/calcOptimalNutrtion";
 
-function Profile({ user } ) {
-    const [username, setUsername] = useState("");
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-   // const [phoneNumber, setPhoneNumber] = useState("");
-    const [vegan, setVegan] = useState("");
-    const [selectedAllergens, setSelectedAllergens] = useState([]);
-
-    const showHistory = () => {
-        console.log("Show history");
-    };
-
-    const handleAllergenChange = (e) => {
-        const allergen = e.target.value;
-        const isChecked = e.target.checked;
-        if (isChecked) {
-            setSelectedAllergens((prevAllergens) => [...prevAllergens, allergen]);
-        } else {
-            setSelectedAllergens((prevAllergens) =>
-            prevAllergens.filter((a) => a !== allergen)
-          );
-        }
-      };
+function Profile({ user }) {
+  const [username, setUsername] = useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [weight, setWeight] = useState("");
+  const [height, setHeight] = useState("");
+  const [male, setMale] = useState("");
+  // const [phoneNumber, setPhoneNumber] = useState("");
+  const [vegan, setVegan] = useState("");
+  const [selectedAllergens, setSelectedAllergens] = useState([]);
+  const handleAllergenChange = (e) => {
+    const allergen = e.target.value;
+    const isChecked = e.target.checked;
+    if (isChecked) {
+      setSelectedAllergens((prevAllergens) => [...prevAllergens, allergen]);
+    } else {
+      setSelectedAllergens((prevAllergens) =>
+        prevAllergens.filter((a) => a !== allergen)
+      );
+    }
+  };
 
   const handleSave = async (e) => {
     e.preventDefault();
@@ -50,6 +48,9 @@ function Profile({ user } ) {
             vegan,
             selectedAllergens,
             isCompleted,
+            weight,
+            height,
+            male,
           }),
         }
       );
@@ -69,60 +70,73 @@ function Profile({ user } ) {
       setName(user.name || "");
       setEmail(user.email || "");
       // setPhoneNumber(user.phoneNumber || "");
+      setWeight(user.weight || 0);
+      setHeight(user.height || 0);
+      setMale(user.male || "");
       setVegan(user.vegan || false);
       setSelectedAllergens(user.intolerance || []);
     }
   }, [user]);
 
-
-      useEffect(() => {
-        console.log(user);
-        if (user) {
-          setUsername(user.username || "");
-          setName(user.name || "");
-          setEmail(user.email || "");
-         // setPhoneNumber(user.phoneNumber || "");
-          setVegan(user.vegan || false);
-          setSelectedAllergens(user.intolerance || []);
-        }
-      }, [user]);
-
-    return (
-        <div className="page">
-            <div id="title">
-                <h1>Your Profile</h1>
-                <button className="nav-btn nolog" onClick={showHistory}>
-                    View Shopping History
-                </button>
-            </div>
-            <div className="contact">
-                <div className="form-group">
-                    <form>
-                        <label className="name">
-                            <div className="labname">
-                                Username
-                            </div>
-                            <div className="inp">
-                                <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
-                            </div>
-                        </label>
-                        <label className="name">
-                            <div className="labname">
-                                Full Name
-                            </div>
-                            <div className="inp">
-                                <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
-                            </div>
-                        </label>
-                        <label className="name">
-                            <div className="labname">
-                                Email Address:
-                            </div>
-                            <div className="inp">
-                               <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-                            </div>
-                        </label>
-                    {/*
+  return (
+    <div className="page">
+      <div id="title">
+        <h1>Your Profile</h1>
+      </div>
+      <div className="contact">
+        <div className="form-group">
+          <form>
+            <label className="name">
+              <div className="labname">Username</div>
+              <div className="inp">
+                <input
+                  type="text"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                />
+              </div>
+            </label>
+            <label className="name">
+              <div className="labname">Full Name</div>
+              <div className="inp">
+                <input
+                  type="text"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                />
+              </div>
+            </label>
+            <label className="name">
+              <div className="labname">Email Address:</div>
+              <div className="inp">
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </div>
+            </label>
+            <label className="name">
+              <div className="labname">Weight (kg):</div>
+              <div className="inp">
+                <input
+                  type="number"
+                  value={weight}
+                  onChange={(e) => setWeight(e.target.value)}
+                />
+              </div>
+            </label>
+            <label className="name">
+              <div className="labname">Height (cm):</div>
+              <div className="inp">
+                <input
+                  type="number"
+                  value={height}
+                  onChange={(e) => setHeight(e.target.value)}
+                />
+              </div>
+            </label>
+            {/*
                         <label className="name">
                             <div className="labname">
                                 Phone Number:
@@ -294,13 +308,40 @@ function Profile({ user } ) {
               />
               <label for="sulphur">Sulphur dioxide and sulphites</label>
             </div>
+            <br />
+            <br />
+            <div className="gender-label">
+              <p>Select Gender:</p>
+            </div>
+            <div>
+              <input
+                type="radio"
+                id="male"
+                name="gender"
+                value="true"
+                checked={male == true}
+                onChange={() => setMale(true)}
+              />
+              <label htmlFor="male">Male</label>
+            </div>
+            <div>
+              <input
+                type="radio"
+                id="female"
+                name="gender"
+                value="false"
+                checked={male == false}
+                onChange={() => setMale(false)}
+              />
+              <label htmlFor="female">Female</label>
+            </div>
           </fieldset>
         </div>
       </div>
       <div className="veg">
         <div className="product-details">
           <table>
-            <tr>
+            <tr id="table-header">
               <td>Required Calories </td>
               <td>Required Proteins </td>
               <td>Required Fats </td>
@@ -309,22 +350,42 @@ function Profile({ user } ) {
             <tr>
               <td>
                 <div className="calories">
-                  <p>{necessaryNutrition(58, 174, 1).calories}</p>
+                  <p>
+                    {
+                      necessaryNutrition(user.weight, user.height, user.male)
+                        .calories
+                    }
+                  </p>
                 </div>
               </td>
               <td>
                 <div className="proteins">
-                  <p>{necessaryNutrition(58, 174, 1).proteins}</p>
+                  <p>
+                    {
+                      necessaryNutrition(user.weight, user.height, user.male)
+                        .proteins
+                    }
+                  </p>
                 </div>
               </td>
               <td>
                 <div className="fats">
-                  <p>{necessaryNutrition(58, 174, 1).fats}</p>
+                  <p>
+                    {
+                      necessaryNutrition(user.weight, user.height, user.male)
+                        .fats
+                    }
+                  </p>
                 </div>
               </td>
               <td>
                 <div className="carbs">
-                  <p>{necessaryNutrition(58, 174, 1).carbs}</p>
+                  <p>
+                    {
+                      necessaryNutrition(user.weight, user.height, user.male)
+                        .carbs
+                    }
+                  </p>
                 </div>
               </td>
             </tr>

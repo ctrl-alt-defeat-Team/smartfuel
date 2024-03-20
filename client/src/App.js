@@ -46,6 +46,9 @@ function App() {
 
   const handleDashboardClick = () => {
     setShowDashboard(true);
+    setShowCart(false);
+    setShowProfile(false);
+    setshowLogin(false);
   };
 
   useEffect(() => {
