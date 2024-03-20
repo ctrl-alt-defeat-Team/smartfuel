@@ -1,0 +1,17 @@
+.nutriments-cart {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  font-size: 1.2rem;
+}
+
+.nutriments-left {
+  padding: 2%;
+  margin: 0 5%;
+}
+
+.colored-span {
+  color: #ff8c00;
+}

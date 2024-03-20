@@ -119,7 +119,9 @@ function App() {
       <div className="main-container">
         {showLogin && <AuthContainer loggedIn={loggedIn} />}
         {showProfile && <Profile user={user} />}
-        {showCart && <Cart setShowCart={setShowCart} isAdmin={showDashboard} />}
+        {showCart && (
+          <Cart setShowCart={setShowCart} isAdmin={showDashboard} user={user} />
+        )}
         {showDashboard && <Dashboard isAdmin={isAdmin} />}
         {showCart === false &&
           showLogin === false &&

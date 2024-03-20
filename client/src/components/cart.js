@@ -3,35 +3,16 @@ import "../styles/CartPage.css";
 import CartProduct from "./cartProduct"; // Import CartProduct component
 import Button from "react-bootstrap/Button";
 import "../styles/Mobile.css";
+import CartDetails from "./cartDetails";
 
-function Cart({ setShowCart, cart , isAdmin}) {
+function Cart({ setShowCart, cart, isAdmin, user }) {
   const closeButtonClick = () => {
     setShowCart(false);
   };
-  /*
-        const [cartItems, setCartItems] = useState([
-            {
-                id: 1,
-                name: "Product 1",
-                image: "https://via.placeholder.com/150",
-                rating: 4,
-            },
-            {
-                id: 2,
-                name: "Product 2",
-                image: "https://via.placeholder.com/150",
-                rating: 3,
-            },
-            {
-                id: 3,
-                name: "Product 3",
-                image: "https://via.placeholder.com/150",
-                rating: 5,
-            },
-        ]);
-    */
+
   const [cartItems, setCartItems] = useState([]);
-  
+  const [showCartDetails, setShowCartDetails] = useState(false);
+
   const resetCart = () => {
     localStorage.removeItem("cart");
     window.location.reload();
@@ -41,6 +22,7 @@ function Cart({ setShowCart, cart , isAdmin}) {
     const cartData = localStorage.getItem("cart");
     if (cartData) {
       setCartItems(JSON.parse(cartData));
+      setShowCartDetails(true);
     }
     console.log("cartItems:", cartItems);
   };
@@ -60,7 +42,7 @@ function Cart({ setShowCart, cart , isAdmin}) {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ cartItems,date: new Date() }),
+        body: JSON.stringify({ cartItems, date: new Date() }),
       }
     );
     console.log(response);
@@ -68,17 +50,18 @@ function Cart({ setShowCart, cart , isAdmin}) {
   };
 
   useEffect(() => {
-    if(cart!=null){
-      const barcodes = cart.products.map(product => product.barcode + product.quantity);
+    if (cart != null) {
+      const barcodes = cart.products.map(
+        (product) => product.barcode + product.quantity
+      );
       console.log("cart:", barcodes);
       setCartItems(barcodes);
+    } else {
+      const cartData = localStorage.getItem("cart");
+      if (cartData) {
+        setCartItems(JSON.parse(cartData));
+      }
     }
-    else {
-    const cartData = localStorage.getItem("cart");
-    if (cartData) {
-      setCartItems(JSON.parse(cartData));
-    }
-  }
   }, []);
   const handleDelete = (productId) => {
     const cartData = localStorage.getItem("cart");
@@ -95,7 +78,6 @@ function Cart({ setShowCart, cart , isAdmin}) {
   };
 
   return (
-    
     <div>
       <div className="cartpage">
         <div className="modal-title">
@@ -127,33 +109,40 @@ function Cart({ setShowCart, cart , isAdmin}) {
               </svg>
             </h2>
             <div className="title-btns">
-            {cart==null && <Button id="Reset" onClick={resetCart}>
-                Reset Cart
-              </Button>
-            }
-              {cart==null &&<Button id="Fisish" onClick={finishShopping}>
-                Finish Shopping
-              </Button>}
+              {cart == null && (
+                <Button id="Reset" onClick={resetCart}>
+                  Reset Cart
+                </Button>
+              )}
+              {cart == null && (
+                <Button id="Fisish" onClick={finishShopping}>
+                  Finish Shopping
+                </Button>
+              )}
               <Button id="Cart-details" onClick={displayDetails}>
                 Cart Details
               </Button>
             </div>
           </div>
         </div>
-        <div className="cartitem">
-          {cartItems.map((item) => (
-            <div key={item} className="grid-item">
-              <CartProduct
-                prodObj={null}
-                onDelete={handleDelete}
-                idProduct={item.slice(0, -1)}
-                quantity={item.slice(-1)}
-                isAdmin={isAdmin}
-                showDelete={cart==null}
-              />
-            </div>
-          ))}
-        </div>
+        {(showCartDetails && (
+          <CartDetails cartItems={cartItems} user={user} />
+        )) || (
+          <div className="cartitem">
+            {cartItems.map((item) => (
+              <div key={item} className="grid-item">
+                <CartProduct
+                  prodObj={null}
+                  onDelete={handleDelete}
+                  idProduct={item.slice(0, -1)}
+                  quantity={item.slice(-1)}
+                  isAdmin={isAdmin}
+                  showDelete={cart == null}
+                />
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
