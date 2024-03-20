@@ -42,6 +42,7 @@ function Dashboard() {
         </button>
         <a
           className="btn-dash"
+          target="__blank"
           href="https://cloud.mongodb.com/v2/65d47affd1add44364b66247#/metrics/replicaSet/65d47bdf9478d412a7e4e4bd/explorer/test/users/find"
         >
           Database
