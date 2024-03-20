@@ -30,7 +30,7 @@ const ScannedProducts = ({
   };
 
   return (
-    <div>
+    <div className="lista-prod">
       <h2 id="scanned-prods">Scanned Products</h2>
       <ul className="product-list">
         {products.slice(0, 5).map((product, index) => (
