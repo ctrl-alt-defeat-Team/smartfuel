@@ -14,12 +14,13 @@
 
 .contact {
   width: 100vw;
-  height: 65vh;
+  /* height: 65vh; */
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 80vh;
   grid-auto-flow: row;
   gap: 30px;
+  margin-bottom: 5%;
 }
 
 .contact-mes {
@@ -119,7 +120,7 @@ h1 {
 .savebtn {
   width: 100%;
   height: 10vh;
-  position: relative;
+  /* position: relative; */
   top: 15vh;
   display: flex;
   align-items: center;
@@ -177,7 +178,7 @@ h1 {
 }
 
 .veg {
-  position: relative;
+  /* position: relative; */
   top: 20vh;
   background-color: #f5f5f5;
   width: 100%;
@@ -213,7 +214,7 @@ h1 {
   font-size: 1.25rem;
 }
 
-.areuvegan > p {
+.areuvegan>p {
   font-size: xx-large;
   font-weight: bolder;
 }
@@ -231,4 +232,44 @@ h1 {
 
 .veg .product-details table p {
   font-size: 1.2rem;
+}
+
+.grid-container {
+  display: grid;
+  width: 50vw;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(1, auto);
+  /* border: 1px solid #000000; */
+  /* border-radius: 5px; */
+  /* gap: 20px; */
+}
+
+.grid-container>.grid-item {
+  border: 1px solid #000000;
+  /* width: 100%; */
+  padding: 10px;
+  padding-left: 0;
+  padding-right: 0;
+  background-color: #d0cece;
+  margin: 0;
+}
+
+.header {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.gender-label {
+  font-weight: bold;
+  font-size: xx-large;
+}
+
+.prim {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.ultim {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
 }

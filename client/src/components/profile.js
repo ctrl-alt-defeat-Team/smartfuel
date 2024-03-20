@@ -373,60 +373,56 @@ function Profile({ user }) {
           </fieldset>
         </div>
       </div>
-      <div className="veg">
         <div className="product-details">
-          <table>
-            <tr id="table-header">
-              <td>Required Calories </td>
-              <td>Required Proteins </td>
-              <td>Required Fats </td>
-              <td>Required Carbs</td>
-            </tr>
-            <tr>
-              <td>
-                <div className="calories">
-                  <p>
-                    {
-                      necessaryNutrition(user.weight, user.height, user.male)
-                        .calories
-                    }
-                  </p>
-                </div>
-              </td>
-              <td>
-                <div className="proteins">
-                  <p>
-                    {
-                      necessaryNutrition(user.weight, user.height, user.male)
-                        .proteins
-                    }
-                  </p>
-                </div>
-              </td>
-              <td>
-                <div className="fats">
-                  <p>
-                    {
-                      necessaryNutrition(user.weight, user.height, user.male)
-                        .fats
-                    }
-                  </p>
-                </div>
-              </td>
-              <td>
-                <div className="carbs">
-                  <p>
-                    {
-                      necessaryNutrition(user.weight, user.height, user.male)
-                        .carbs
-                    }
-                  </p>
-                </div>
-              </td>
-            </tr>
-          </table>
+        <div class="grid-container">
+          <div class="grid-item prim">
+            <p class="header">Required Calories</p>
+            <div className="calories">
+              <p>
+                {
+                necessaryNutrition(user.weight, user.height, user.male)
+                .calories
+                }
+              </p>
+            </div>
+          </div>
+          <div class="grid-item doi">
+            <p class="header">Required Proteins</p>
+            <div className="proteins">
+              <p>
+                {
+                necessaryNutrition(user.weight, user.height, user.male)
+                .proteins
+                }
+              </p>
+            </div>
+          </div>
+          <div class="grid-item trei">
+            <p class="header">Required Fats</p>
+            <div className="fats">
+              <p>
+                {
+                necessaryNutrition(user.weight, user.height, user.male)
+                .fats
+                }
+              </p>
+            </div>
+          </div>
+          <div class="grid-item ultim">
+            <p class="header">Required Carbs</p>
+            <div className="carbs">
+              <p>
+                {
+                necessaryNutrition(user.weight, user.height, user.male)
+                .carbs
+                }
+              </p>
+            </div>
+          </div>
         </div>
-        <fieldset id="vegan">
+        </div>
+      <div className="veg">     
+      <fieldset id="vegan">
           <div className="areuvegan">
             <p>Are you vegan?</p>
           </div>
