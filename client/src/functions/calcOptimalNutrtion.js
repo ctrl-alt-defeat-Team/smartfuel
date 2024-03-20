@@ -18,13 +18,18 @@ const necessaryCarbs = (necessaryCalories) => {
   return (necessaryCalories / 8).toFixed(0);
 };
 
+const necessaryFiber = (weight) => {
+  return (weight / 10).toFixed(0);
+};
+
 const necessaryNutrition = (weight, height, man) => {
   const calories = necessaryCalories(weight, height, man);
   const proteins = necessaryProteins(weight);
   const fats = necessaryFats(weight);
   const carbs = necessaryCarbs(calories);
+  const fiber = necessaryFiber(weight);
 
-  return { calories, proteins, fats, carbs };
+  return { calories, proteins, fats, carbs, fiber };
 };
 
 export default necessaryNutrition;
