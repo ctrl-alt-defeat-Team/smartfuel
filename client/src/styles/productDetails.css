@@ -11,6 +11,7 @@
   height: 80vh;
   background-color: #e2e2e2;
   border-radius: 5px;
+  z-index: 2;
 }
 
 .btn-back {
@@ -124,4 +125,14 @@
   width: 100%;
   text-align: center;
   background-color: #e2e2e2;
+}
+
+.details-product-cart {
+  position: absolute;
+  width: 73vw;
+  height: 80vh;
+  z-index: 3;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }

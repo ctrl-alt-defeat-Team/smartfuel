@@ -14,6 +14,7 @@ const CartProduct = ({
   onReject,
   showApproved,
   showDelete,
+  onDetailsClick,
 }) => {
   const [loading, setLoading] = useState(true);
   const [loadedProduct, setLoadedProduct] = useState(null);
@@ -22,6 +23,10 @@ const CartProduct = ({
   const [noOfLikes, setNoOfLikes] = useState(0);
   const [likeHandle, setLikeHandle] = useState(false);
   const currentProduct = loadedProduct || product;
+
+  const handleDetailsClick = () => {
+    onDetailsClick(); // Call the function provided by the parent component
+  };
 
   const handleLike = async () => {
     const token = localStorage.getItem("token");
@@ -149,7 +154,9 @@ const CartProduct = ({
             ))}
           </select>
 
-          <button className="btn-details">Details</button>
+          <button className="btn-details" onClick={onDetailsClick}>
+            Details
+          </button>
         </div>
       </div>
     </div>

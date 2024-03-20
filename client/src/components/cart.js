@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "../styles/CartPage.css";
-import CartProduct from "./cartProduct"; // Import CartProduct component
+import CartProduct from "./cartProduct";
 import Button from "react-bootstrap/Button";
 import "../styles/Mobile.css";
 import CartDetails from "./cartDetails";
+import ProductDetails from "./productDetails";
+import "../styles/productDetails.css";
 
 function Cart({ setShowCart, cart, isAdmin, user }) {
   const closeButtonClick = () => {
@@ -12,10 +14,27 @@ function Cart({ setShowCart, cart, isAdmin, user }) {
 
   const [cartItems, setCartItems] = useState([]);
   const [showCartDetails, setShowCartDetails] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null);
 
   const resetCart = () => {
     localStorage.removeItem("cart");
     window.location.reload();
+  };
+
+  const displayProductDetails = async (barcode) => {
+    try {
+      const response = await fetch(
+        `${process.env.REACT_APP_API_URL}/api/search/barcode/${barcode}`
+      );
+      if (response.ok) {
+        const product = await response.json();
+        setSelectedProduct(product);
+      } else {
+        console.error("Failed to fetch product details");
+      }
+    } catch (error) {
+      console.error("Error fetching product details:", error);
+    }
   };
 
   const displayDetails = () => {
@@ -125,19 +144,30 @@ function Cart({ setShowCart, cart, isAdmin, user }) {
             </div>
           </div>
         </div>
-        {(showCartDetails && (
+        {selectedProduct && (
+          <div className="details-product-cart">
+            <ProductDetails
+              product={selectedProduct}
+              setSelectedProduct={setSelectedProduct}
+              fromCart={true}
+            />
+          </div>
+        )}
+        {!selectedProduct && showCartDetails ? (
           <CartDetails cartItems={cartItems} user={user} />
-        )) || (
+        ) : (
           <div className="cartitem">
             {cartItems.map((item) => (
               <div key={item} className="grid-item">
                 <CartProduct
-                  prodObj={null}
-                  onDelete={handleDelete}
                   idProduct={item.slice(0, -1)}
                   quantity={item.slice(-1)}
                   isAdmin={isAdmin}
                   showDelete={cart == null}
+                  onDetailsClick={() =>
+                    displayProductDetails(item.slice(0, -1))
+                  }
+                  onDelete={handleDelete}
                 />
               </div>
             ))}
