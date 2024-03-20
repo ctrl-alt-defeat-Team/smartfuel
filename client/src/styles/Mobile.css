@@ -202,13 +202,13 @@
 
     body>.modal {
         min-width: 100.1%;
-        min-height: 83.5vh;
+        height: 83.6vh;
         position: absolute;
         left: 50%;
         top: 58.3%;
         transform: translate(-50%, -50%);
         width: fit-content;
-        height: fit-content;
+        /* height: fit-content; */
         background-color: white;
         border-radius: 5px;
         padding: 0;
@@ -271,7 +271,7 @@
     .container>.product-details-container {
         width: 100%;
         left: 50%;
-        top: 50.5%;
+        /* top: 50.5%; */
         transform: translate(-50%, -50%);
         background-color: #e2e2e2;
         border-radius: 0;
@@ -296,6 +296,10 @@
 
     .product-details-container>.btn-back {
         justify-content: center;
+    }
+
+    .product-details-container>.btn-back>button {
+        width: 20%;
     }
 
     .umplutura1 {

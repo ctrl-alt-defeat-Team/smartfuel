@@ -107,13 +107,14 @@ nav {
   }
 
   .nav-links {
-    position: relative;
+    position: fixed;
+    left: 50%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     height: fit-content;
-    top: 14vh;
+    top: 7vh;
   }
 
   .dropdown {
