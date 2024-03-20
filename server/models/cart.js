@@ -6,7 +6,8 @@ const cartSchema = {
             barcode: String,
             quantity: Number
         }
-    ]
+    ],
+    date: Date
 };
 
 module.exports = mongoose.model('Cart', cartSchema);
