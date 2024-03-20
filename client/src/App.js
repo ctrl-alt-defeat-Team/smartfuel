@@ -94,7 +94,7 @@ function App() {
 
     verify();
     getUser();
-    if(loggedIn === false) {
+    if (loggedIn === false) {
       setShowProfile(false);
       setShowCart(false);
       setshowLogin(false);
@@ -120,7 +120,7 @@ function App() {
         {showLogin && <AuthContainer loggedIn={loggedIn} />}
         {showProfile && <Profile user={user} />}
         {showCart && <Cart setShowCart={setShowCart} isAdmin={showDashboard} />}
-        {showDashboard && <Dashboard />}
+        {showDashboard && <Dashboard isAdmin={isAdmin} />}
         {showCart === false &&
           showLogin === false &&
           showProfile === false &&
