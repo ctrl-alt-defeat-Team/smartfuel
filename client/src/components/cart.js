@@ -120,7 +120,7 @@ function Cart({ setShowCart, cart, isAdmin, user }) {
                 </Button>
               )}
               <Button id="Cart-details" onClick={displayDetails}>
-                Cart Details
+                Cart Nutriments
               </Button>
             </div>
           </div>

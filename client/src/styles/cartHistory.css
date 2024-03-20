@@ -16,6 +16,12 @@
   height: 100%;
   background-color: #f2f2f2;
 }
+.cart-history-container {
+  height: 70vh;
+  /* display: flex; */
+  /* flex-direction: column; */
+  overflow-y: auto;
+}
 
 .cart-element:hover {
   background-color: #e2e2e2;
@@ -31,7 +37,6 @@
   margin: 5px 5%;
   border: 1px solid #a7a7a7;
   border-radius: 3px;
-  overflow-y: auto;
 }
 
 .date {
