@@ -43,7 +43,7 @@ function DashSubmissions() {
       <div className="dash-cartitem">
         {submitedItems.map((item) => (
           <div key={item.id} className="grid-item-dash">
-            <CartProduct prodObj={item} onDelete={handleDelete} />
+            <CartProduct product={item} onDelete={handleDelete} />
           </div>
         ))}
       </div>
