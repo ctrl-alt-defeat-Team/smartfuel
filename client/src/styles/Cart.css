@@ -79,3 +79,21 @@
   color: #9bcf53;
   margin: 0;
 }
+
+.accept-btn {
+  background-color: #60c700;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 3px;
+  padding: 1%;
+}
+
+.reject-btn {
+  background-color: #e60000;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 3px;
+  padding: 1%;
+}
