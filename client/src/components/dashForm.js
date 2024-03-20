@@ -94,8 +94,8 @@ function DashForm() {
             />
             <input
               type="text"
-              name="image_front_small_url"
-              value={formData.image_front_small_url}
+              name="image_front_url"
+              value={formData.image_front_url}
               onChange={handleInputChange}
               required
               placeholder="Image URL"

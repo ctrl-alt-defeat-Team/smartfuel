@@ -9,7 +9,7 @@ const productSchema = Joi.object({
   product_name: Joi.string().required(),
   barcode: Joi.string().required(),
   brands: Joi.string().required(),
-  image_front_small_url: Joi.string().required(),
+  image_front_url: Joi.string().required(),
   nutriments: Joi.object({
     energy: Joi.number().required(),
     fat: Joi.number().required(),
@@ -25,6 +25,8 @@ const productSchema = Joi.object({
 router.post("/", verifyToken, async (req, res) => {
   console.log(req.body);
   try {
+    console.log(req.body);
+    console.log("----------");
     const { error, value } = productSchema.validate(req.body);
     if (error) {
       return res.status(400).json({ error: error.details[0].message });
