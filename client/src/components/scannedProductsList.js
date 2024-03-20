@@ -2,10 +2,16 @@ import React,{useState, useEffect} from "react";
 import "../styles/qrModal.css";
 import "../styles/Mobile.css";
 
-const ScannedProducts = ({ products, onDetailsClick, handleAddToCart }) => {
+const ScannedProducts = ({ products, onDetailsClick, handleAddToCart , user}) => {
   const [quantity, setQuantity] = useState(1);
 
-
+  const userHas = (product) => {
+    const productAllergensLower = product.allergens_tags.map(allergen => allergen.toLowerCase().slice(3));
+    const userIntoleranceLower = user.intolerance.map(intolerance => intolerance.toLowerCase());
+    console.log("productAllergensLower:", productAllergensLower);
+    console.log("userIntoleranceLower:", userIntoleranceLower);
+    return productAllergensLower.some(allergen => userIntoleranceLower.includes(allergen));
+  }
   const handleChange = (event) => {
     setQuantity(parseInt(event.target.value));
   };
@@ -16,13 +22,15 @@ const ScannedProducts = ({ products, onDetailsClick, handleAddToCart }) => {
       <ul className="product-list">
         {products.slice(0, 5).map((product, index) => (
           <li className="product-list-item" key={index}>
+        
             <img
               src={product.image_front_url}
               alt={product.product_name}
               style={{ width: "30px" }}
             />
             <p>{product.product_name}</p>
-
+            {  userHas(product) && 
+            <p className="allergen-warning"> !!! </p>}
             <button
               className="btn-details"
               onClick={() => onDetailsClick(index)}

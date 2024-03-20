@@ -11,7 +11,7 @@ import searchProduct from "../functions/searchProduct";
 import ProductDetails from "./productDetails";
 import DashForm from "./dashForm";
 
-function QRModal({ showModal, closeModal, name }) {
+function QRModal({ showModal, closeModal, name, user }) {
   const [result, setResult] = useState(null);
   const [product, setProduct] = useState(null);
   const [products, setProducts] = useState(null);
@@ -106,6 +106,7 @@ function QRModal({ showModal, closeModal, name }) {
               products={products}
               onDetailsClick={handleDetailsClick}
               handleAddToCart={handleAddToCart}
+              user={user}
             />
           )}
           {selectedProduct != null && (

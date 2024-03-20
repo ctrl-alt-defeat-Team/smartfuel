@@ -4,7 +4,7 @@ import "../styles/landing.css";
 import QRModal from "./qrModal";
 import "../styles/Mobile.css";
 
-function Landing() {
+function Landing({user}) {
   const [showModal, setShowModal] = useState(false);
   const [name, setProductName] = useState(null);
 
@@ -28,12 +28,12 @@ function Landing() {
           <div className="box-qr">
             <button className="qr-btn" onClick={openModal}>
               <div className="box-qr">
-                <QrCodeScan className="qr" />
+                <QrCodeScan className="qr"  />
               </div>
             </button>
           </div>
         </form>
-        {(showModal == true) && <QRModal showModal={showModal} closeModal={closeModal} name={name}/>}
+        {(showModal == true) && <QRModal showModal={showModal} closeModal={closeModal} name={name} user={user}/>}
         <form className="search-form">
           <input 
           type="text" 
