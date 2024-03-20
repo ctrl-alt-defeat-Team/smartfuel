@@ -9,7 +9,8 @@ router.get('/', verifyToken, async (req, res) => {
         const user = await getUser(req);
         const cartHistory = await Cart.find({ _id: { $in: user.shoppingHistory } });
         console.log(cartHistory);
-        res.json(cartHistory);
+        const reversedCartHistory = cartHistory.reverse();
+        res.json(reversedCartHistory);
     } catch (error) {
         console.error('Error:', error);
         res.status(500).json({ error: 'Internal server error' });

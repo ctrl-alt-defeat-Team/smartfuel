@@ -138,9 +138,12 @@ function Cart({ setShowCart, cart, isAdmin, user }) {
                   Finish Shopping
                 </Button>
               )}
-              <Button id="Cart-details" onClick={displayDetails}>
+              {!showCartDetails && <Button id="Cart-details" onClick={displayDetails}>
                 Cart Nutriments
-              </Button>
+              </Button>}
+              {showCartDetails && <Button id="Cart-back" onClick={() => setShowCartDetails(false)}>
+                Back
+              </Button>}
             </div>
           </div>
         </div>

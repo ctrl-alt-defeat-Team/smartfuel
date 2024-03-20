@@ -126,7 +126,7 @@ function App() {
         {showCart === false &&
           showLogin === false &&
           showProfile === false &&
-          showDashboard === false && <Landing />}
+          showDashboard === false && <Landing  user = {user}/>}
       </div>
     </div>
   );
