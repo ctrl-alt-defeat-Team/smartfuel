@@ -40,7 +40,9 @@ router.get('/name/:name', async (req, res) => {
             v.push(product);
         });
         console.log("response2:", response2);
-        v.push(data.products);
+        data.products.map((product) => {
+            v.push(product);
+        });
         res.status(200).json(v);
     } catch (error) {
         console.error(error);
