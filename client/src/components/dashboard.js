@@ -5,7 +5,7 @@ import DashSubmissions from "./dashSubmissions";
 import DashApproved from "./dashApproved";
 import "../styles/Dashboard.css";
 
-function Dashboard() {
+function Dashboard({ isAdmin }) {
   const [showSubmissions, setShowSubmissions] = useState(true);
   const [showForm, setShowForm] = useState(false);
   const [showApproved, setShowApproved] = useState(false);
@@ -51,7 +51,12 @@ function Dashboard() {
       <div className="main-dash-content">
         <h1>Dashboard</h1>
         {showSubmissions && <DashSubmissions />}
-        {showForm && <DashForm onClickSubmissions={handleClickSubmissions} />}
+        {showForm && (
+          <DashForm
+            onClickSubmissions={handleClickSubmissions}
+            isAdmin={isAdmin}
+          />
+        )}
         {showApproved && <DashApproved showApproved={showApproved} />}
       </div>
     </div>
