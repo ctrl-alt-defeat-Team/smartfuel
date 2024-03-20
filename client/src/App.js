@@ -90,7 +90,8 @@ function App() {
     };
 
     verify();
-    getUser();
+    if(loggedIn)
+      getUser();
   }, []);
 
   return (
