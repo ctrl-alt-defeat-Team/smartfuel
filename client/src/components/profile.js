@@ -373,7 +373,7 @@ function Profile({ user }) {
           </fieldset>
         </div>
       </div>
-        <div className="product-details">
+        <div className="product-details profile-table">
         <div class="grid-container">
           <div class="grid-item prim">
             <p class="header">Required Calories</p>
