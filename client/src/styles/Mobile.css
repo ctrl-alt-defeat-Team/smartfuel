@@ -1,4 +1,4 @@
-@media (max-width: 420px) {
+@media (max-width: 500px) {
     .main-container {
         height: 83.5vh;
     }
@@ -312,7 +312,7 @@
     }
 
     .dropdown-btn {
-        background: #1d1f24;
+        background: #416d19;
         font-size: 18px;
         width: 80%;
         border: none;
@@ -351,8 +351,16 @@
         transform: rotate(180deg);
     }
 
+    .nav-btn {
+        background-color: #416d19;
+    }
+
     .dropdown-content li {
-        background: #2f3238;
+        margin-top: 2%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #416d19;
         border-radius: 0.5em;
         position: relative;
         left: 100%;
