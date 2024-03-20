@@ -4,7 +4,15 @@ import "../styles/Cart.css";
 import { HeartFill, Trash } from "react-bootstrap-icons";
 import SearchProduct from "../functions/searchProduct";
 
-const CartProduct = ({ product, onDelete, idProduct, quantity }) => {
+const CartProduct = ({
+  product,
+  onDelete,
+  idProduct,
+  quantity,
+  isAdmin,
+  onAccept,
+  onReject,
+}) => {
   const [loading, setLoading] = useState(true);
   const [loadedProduct, setLoadedProduct] = useState(null);
   const [selectedQuantity, setSelectedQuantity] = useState(quantity);
@@ -62,6 +70,16 @@ const CartProduct = ({ product, onDelete, idProduct, quantity }) => {
   return (
     <div className="cart-product">
       <div className="btn-remove-div">
+        {isAdmin && (
+          <div>
+            <button className="accept-btn" onClick={() => onAccept(product)}>
+              Accept
+            </button>
+            <button className="reject-btn" onClick={() => onReject(product)}>
+              Reject
+            </button>
+          </div>
+        )}
         <button className="btn-remove" onClick={handleDelete}>
           <Trash />
         </button>

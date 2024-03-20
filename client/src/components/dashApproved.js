@@ -5,43 +5,16 @@ import { useState } from "react";
 import { useEffect } from "react";
 import ProductDetails from "./productDetails";
 
-function DashSubmissions() {
-  const [submitedItems, setSubmitedItems] = useState([]);
+function DashApproved() {
+  const [approvedItems, setApprovedItems] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState(null);
 
   const handleDetailsClick = (index) => {
-    setSelectedProduct(submitedItems[index]);
+    setSelectedProduct(approvedItems[index]);
   };
 
   const handleCloseProductDetails = () => {
     setSelectedProduct(null);
-  };
-
-  const handleAccept = async (product) => {
-    const token = localStorage.getItem("token");
-    try {
-      const response = await fetch(
-        `${process.env.REACT_APP_API_URL}/api/approveProduct/accept`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({ barcode: product.barcode }),
-        }
-      );
-      if (!response.ok) {
-        throw new Error("Failed to fetch data");
-      }
-      const data = response.json();
-      setSubmitedItems(
-        submitedItems.filter((item) => item.barcode !== product.barcode)
-      );
-      console.log("Fetched barcode", data);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
   };
 
   const handleReject = async (product) => {
@@ -63,8 +36,8 @@ function DashSubmissions() {
         throw new Error("Failed to fetch data");
       }
       const data = response.json();
-      setSubmitedItems(
-        submitedItems.filter((item) => item.barcode !== product.barcode)
+      setApprovedItems(
+        approvedItems.filter((item) => item.barcode !== product.barcode)
       );
       console.log("Fetched barcode", data);
     } catch (error) {
@@ -76,7 +49,7 @@ function DashSubmissions() {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `${process.env.REACT_APP_API_URL}/api/addProduct/existing`,
+          `${process.env.REACT_APP_API_URL}/api/addProduct/existing/getapproved`,
           {
             method: "GET",
             headers: {
@@ -90,7 +63,7 @@ function DashSubmissions() {
         }
         const data = await response.json();
         console.log("Fetched data", data);
-        setSubmitedItems(data);
+        setApprovedItems(data);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -100,7 +73,7 @@ function DashSubmissions() {
   }, []);
 
   const handleDelete = (productId) => {
-    setSubmitedItems(submitedItems.filter((item) => item.id !== productId));
+    setApprovedItems(approvedItems.filter((item) => item.id !== productId));
     if (selectedProduct && selectedProduct.id === productId) {
       setSelectedProduct(null);
     }
@@ -109,13 +82,12 @@ function DashSubmissions() {
   return (
     <div className="dash-submissions">
       <div className="dash-cartitem">
-        {submitedItems.map((item, index) => (
+        {approvedItems.map((item, index) => (
           <div key={item.id} className="grid-item-dash">
             <CartProduct
               product={item}
               onDelete={handleDelete}
               onDetailsClick={() => handleDetailsClick(index)}
-              onAccept={handleAccept}
               onReject={handleReject}
               isAdmin={true}
             />
@@ -133,7 +105,7 @@ function DashSubmissions() {
           className="btn-submit"
           id="clear-all"
           onClick={() => {
-            setSubmitedItems([]);
+            setApprovedItems([]);
             setSelectedProduct(null);
           }}
         >
@@ -144,4 +116,4 @@ function DashSubmissions() {
   );
 }
 
-export default DashSubmissions;
+export default DashApproved;
