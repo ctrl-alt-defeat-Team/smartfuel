@@ -9,12 +9,14 @@ import ScannedProduct from "./scannedProduct";
 import ScannedProductsList from "./scannedProductsList";
 import searchProduct from "../functions/searchProduct";
 import ProductDetails from "./productDetails";
+import DashForm from "./dashForm";
 
 function QRModal({ showModal, closeModal, name }) {
   const [result, setResult] = useState(null);
   const [product, setProduct] = useState(null);
   const [products, setProducts] = useState(null);
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const [showForm, setShowForm] = useState(false);
 
   const handleDetailsClick = (index) => {
     setSelectedProduct(products[index]);
@@ -24,18 +26,32 @@ function QRModal({ showModal, closeModal, name }) {
     setSelectedProduct(product);
   };
 
-  const handleAddToCart = (index,quantity) => {
+  const openForm = () => {
+    setShowForm(true);
+  };
+
+  const handleAddToCart = (index, quantity) => {
     const existingCart = localStorage.getItem("cart");
     console.log("existingCart:", existingCart);
-    if (existingCart !== null && existingCart !== undefined && existingCart !== "") {
+    if (
+      existingCart !== null &&
+      existingCart !== undefined &&
+      existingCart !== ""
+    ) {
       let data = JSON.parse(existingCart);
 
-      localStorage.setItem("cart", JSON.stringify([...data, products[index]._id+quantity]));
+      localStorage.setItem(
+        "cart",
+        JSON.stringify([...data, products[index]._id + quantity])
+      );
     } else {
-      localStorage.setItem("cart", JSON.stringify([products[index]._id+quantity]));
+      localStorage.setItem(
+        "cart",
+        JSON.stringify([products[index]._id + quantity])
+      );
     }
   };
-  
+
   useEffect(() => {
     const fetchData = async () => {
       if (name !== null && product == null && products == null) {
@@ -81,7 +97,7 @@ function QRModal({ showModal, closeModal, name }) {
               handleAddToCart={handleAddToCart}
             />
           )}
-          {products != null && (
+          {products != null && !showForm && (
             <ScannedProductsList
               products={products}
               onDetailsClick={handleDetailsClick}
@@ -95,11 +111,15 @@ function QRModal({ showModal, closeModal, name }) {
               handleAddToCart={handleAddToCart}
             />
           )}
+          {showForm && <DashForm closeModal={closeModal} />}
         </div>
       </Modal.Body>
       <Modal.Footer className="modal-close-btn">
         <Button variant="secondary" onClick={closeModal}>
           Close
+        </Button>
+        <Button variant="warning" onClick={openForm}>
+          Add new product
         </Button>
       </Modal.Footer>
     </Modal>
