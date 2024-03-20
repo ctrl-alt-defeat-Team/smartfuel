@@ -174,6 +174,21 @@ function Navbar({
                       </div>
                     </button>
                   )}
+                  {loggedIn && (
+                    <button className="nav-btn" onClick={onLogout}>
+                      <div className="box">
+                        Logout
+                        <BoxArrowInRight id="arrow" size={15} />
+                      </div>
+                    </button>
+                  )}
+                </li>
+                <li>
+                  {isAdmin  && loggedIn && (
+                    <button className="nav-btn" onClick={onDashboardClick}>
+                      Dashboard <DatabaseFillLock size={15} />
+                    </button>
+                  )}
                 </li>
               </ul>
             </div>

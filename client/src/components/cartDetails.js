@@ -1,124 +1,117 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import SearchProduct from "../functions/searchProduct";
 import calcCartNutrition from "../functions/calcCartNutrition";
 import necessaryNutrition from "../functions/calcOptimalNutrtion";
 import "../styles/cartDetails.css";
 
-var totalNutrition = {
-  energy: 0,
-  fat: 0,
-  carbohydrates: 0,
-  sugars: 0,
-  fiber: 0,
-  proteins: 0,
-};
-
 function CartDetails({ cartItems, requiredNutrition, user }) {
   const [cartNutrition, setCartNutrition] = useState([]);
   const [cartQuantity, setCartQuantity] = useState([]);
+  const [cartAllergens, setCartAllergens] = useState([]);
+  const [totalNutrition, setTotalNutrition] = useState({
+    energy: 0,
+    fat: 0,
+    carbohydrates: 0,
+    sugars: 0,
+    fiber: 0,
+    proteins: 0,
+  });
 
   const necessaryNutriments = necessaryNutrition(
     user.weight,
     user.height,
     user.male
   );
-  console.log("necessaryNutriments:", necessaryNutriments);
 
   useEffect(() => {
-    //  console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-    let v = [];
-    let quantity = [];
-    const fetchData = async (item) => {
-      try {
-        const productData = await SearchProduct("barcode", item);
-        //   console.log("Product Dataaa", productData);
-        v.push(productData);
-        quantity.push(item.slice(-1));
-      } catch (error) {
-        console.error("Error in fetchData:", error);
-      }
+    const fetchData = async () => {
+      const v = [];
+      const quantity = [];
+      const allergens = [];
+
+      await Promise.all(
+        cartItems.map(async (item) => {
+          try {
+            const productData = await SearchProduct(
+              "barcode",
+              item.slice(0, -1)
+            );
+            v.push(productData);
+            quantity.push(parseInt(item.slice(-1)));
+            allergens.push(productData.allergens_from_ingredients);
+          } catch (error) {
+            console.error("Error in fetchData:", error);
+          }
+        })
+      );
+
+      setCartNutrition(v);
+      setCartQuantity(quantity);
+      setCartAllergens(allergens);
     };
-    cartItems.map((item) => {
-      fetchData(item.slice(0, -1));
-    });
-    setCartNutrition(v);
-    setCartQuantity(quantity);
+
+    fetchData();
   }, [cartItems]);
 
   useEffect(() => {
-    cartNutrition.map((item, index) => {
-      console.log("item:", item);
-      if (parseInt(item.nutriments.energy) !== NaN) {
-        totalNutrition.energy +=
-          parseInt(item.nutriments.energy) * cartQuantity[index];
-      } else {
-        totalNutrition.energy +=
-          parseFloat(item.nutriments.energy) * cartQuantity[index];
+    const newTotalNutrition = cartNutrition.reduce(
+      (acc, item, index) => {
+        return {
+          energy: +(
+            acc.energy +
+            item.nutriments.energy * cartQuantity[index]
+          ).toFixed(2),
+          fat: +(acc.fat + item.nutriments.fat * cartQuantity[index]).toFixed(
+            2
+          ),
+          carbohydrates: +(
+            acc.carbohydrates +
+            item.nutriments.carbohydrates * cartQuantity[index]
+          ).toFixed(2),
+          sugars: +(
+            acc.sugars +
+            item.nutriments.sugars * cartQuantity[index]
+          ).toFixed(2),
+          fiber: +(
+            acc.fiber +
+            item.nutriments.fiber * cartQuantity[index]
+          ).toFixed(2),
+          proteins: +(
+            acc.proteins +
+            item.nutriments.proteins * cartQuantity[index]
+          ).toFixed(2),
+        };
+      },
+      {
+        energy: 0,
+        fat: 0,
+        carbohydrates: 0,
+        sugars: 0,
+        fiber: 0,
+        proteins: 0,
       }
-      if (parseInt(item.nutriments.fat) !== NaN) {
-        totalNutrition.fat +=
-          parseInt(item.nutriments.fat) * cartQuantity[index];
-      } else {
-        totalNutrition.fat +=
-          parseFloat(item.nutriments.fat) * cartQuantity[index];
-      }
-      if (parseInt(item.nutriments.carbohydrates) !== NaN) {
-        totalNutrition.carbohydrates +=
-          parseInt(item.nutriments.carbohydrates) * cartQuantity[index];
-      } else {
-        totalNutrition.carbohydrates +=
-          parseFloat(item.nutriments.carbohydrates) * cartQuantity[index];
-      }
-      if (parseInt(item.nutriments.sugars) !== NaN) {
-        totalNutrition.sugars +=
-          parseInt(item.nutriments.sugars) * cartQuantity[index];
-      } else {
-        totalNutrition.sugars +=
-          parseFloat(item.nutriments.sugars) * cartQuantity[index];
-      }
-      if (parseInt(item.nutriments.fiber) !== NaN) {
-        totalNutrition.fiber +=
-          parseInt(item.nutriments.fiber) * cartQuantity[index];
-      } else {
-        totalNutrition.fiber +=
-          parseFloat(item.nutriments.fiber) * cartQuantity[index];
-      }
-      if (parseInt(item.nutriments.proteins) !== NaN) {
-        totalNutrition.proteins +=
-          parseInt(item.nutriments.proteins) * cartQuantity[index];
-      } else {
-        totalNutrition.proteins +=
-          parseFloat(item.nutriments.proteins) * cartQuantity[index];
-      }
-    });
-    console.log("totalNutrition:", totalNutrition);
-  }, [cartNutrition]);
+    );
 
-  console.log("cartNutrition:", totalNutrition);
+    setTotalNutrition(newTotalNutrition);
+  }, [cartNutrition, cartQuantity]);
+
+  console.log("totalNutrition:", totalNutrition);
+
   return (
     <>
-      <h2>Cart Details</h2>
+      <h2>Cart Nutriments</h2>
       <div className="nutriments-cart">
         <div className="nutriments-left">
           <h4>Total energy:</h4>
           <p>
-            {totalNutrition.energy} kJ /{" "}
-            <span className="colored-span">
-              {" "}
-              {necessaryNutriments.calories}{" "}
-            </span>{" "}
+            {totalNutrition.energy} kj /{" "}
+            <span className="colored-span">{necessaryNutriments.calories}</span>{" "}
             kj
           </p>
           <h4>Total fat:</h4>
           <p>
             {totalNutrition.fat} g /{" "}
             <span className="colored-span">{necessaryNutriments.fats}</span> g
-          </p>
-          <h4>Total carbohydrates:</h4>
-          <p>
-            {totalNutrition.carbohydrates} g /{" "}
-            <span className="colored-span"> {necessaryNutriments.carbs}</span> g
           </p>
         </div>
         <div className="nutriments-left">
@@ -127,15 +120,28 @@ function CartDetails({ cartItems, requiredNutrition, user }) {
           <h4>Total fiber:</h4>
           <p>
             {totalNutrition.fiber} g /{" "}
-            <span className="colored-span"> {necessaryNutriments.fats}</span> g
+            <span className="colored-span">{necessaryNutriments.fats}</span> g
           </p>
+        </div>
+        <div className="nutriments-left">
           <h4>Total proteins:</h4>
           <p>
             {totalNutrition.proteins} g /{" "}
-            <span className="colored-span"> {necessaryNutriments.fats}</span> g
+            <span className="colored-span">{necessaryNutriments.fats}</span> g
+          </p>
+          <h4>Total carbohydrates:</h4>
+          <p>
+            {totalNutrition.carbohydrates} g /{" "}
+            <span className="colored-span">{necessaryNutriments.carbs}</span> g
           </p>
         </div>
       </div>
+      {/* <div className="allergens-cart">
+        <h2>Allergens</h2>
+        {cartAllergens.map((item, index) => (
+          <p key={index}>{item}</p>
+        ))}
+      </div> */}
     </>
   );
 }

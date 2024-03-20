@@ -5,11 +5,14 @@
   justify-content: center;
   width: 100%;
   font-size: 1.2rem;
+  overflow-y: auto;
 }
 
 .nutriments-left {
+
   padding: 2%;
   margin: 0 5%;
+
 }
 
 .colored-span {

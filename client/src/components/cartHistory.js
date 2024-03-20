@@ -20,29 +20,33 @@ const CartHistory = ({
       <div className="history-container">
         <div className="cart-history">
           <h2>Cart History</h2>
-          {cartHistory.map((cart, index) => (
-            <div key={index} className="cart-element">
-              <div className="date">{cart.date}</div>
-              <div className="product-count">
-                {cart.products.length} products
+          <div className="cart-history-container">
+            {cartHistory.map((cart, index) => (
+              <div key={index} className="cart-element">
+                <div className="date">{cart.date}</div>
+                <div className="product-count">
+                  {cart.products.length} products
+                </div>
+                <button
+                  className="show-cart-btn"
+                  onClick={() => {
+                    handleSelectedCart(index);
+                  }}
+                >
+                  Show Cart
+                </button>
               </div>
-              <button
-                className="show-cart-btn"
-                onClick={() => {
-                  handleSelectedCart(index);
-                }}
-              >
-                Show Cart
-              </button>
-            </div>
-          ))}
-          <button
-            className="btn-back-profile"
-            onClick={() => setShowHistory(false)}
-          >
-            {" "}
-            Back{" "}
-          </button>
+            ))}
+          </div>
+          <div>
+            <button
+              className="btn-back-profile"
+              onClick={() => setShowHistory(false)}
+            >
+              {" "}
+              Back{" "}
+            </button>
+          </div>
         </div>
         <br />
       </div>
