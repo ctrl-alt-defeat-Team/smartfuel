@@ -3,9 +3,19 @@ import CartProduct from "./cartProduct";
 import "../styles/Dashboard.css";
 import { useState } from "react";
 import { useEffect } from "react";
+import ProductDetails from "./productDetails";
 
 function DashSubmissions() {
   const [submitedItems, setSubmitedItems] = useState([]);
+  const [selectedProduct, setSelectedProduct] = useState(null);
+
+  const handleDetailsClick = (index) => {
+    setSelectedProduct(submitedItems[index]);
+  };
+
+  const handleCloseProductDetails = () => {
+    setSelectedProduct(null);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -36,22 +46,38 @@ function DashSubmissions() {
 
   const handleDelete = (productId) => {
     setSubmitedItems(submitedItems.filter((item) => item.id !== productId));
+    if (selectedProduct && selectedProduct.id === productId) {
+      setSelectedProduct(null);
+    }
   };
 
   return (
     <div className="dash-submissions">
       <div className="dash-cartitem">
-        {submitedItems.map((item) => (
+        {submitedItems.map((item, index) => (
           <div key={item.id} className="grid-item-dash">
-            <CartProduct product={item} onDelete={handleDelete} />
+            <CartProduct
+              product={item}
+              onDelete={handleDelete}
+              onDetailsClick={() => handleDetailsClick(index)}
+            />
           </div>
         ))}
+        {selectedProduct && (
+          <ProductDetails
+            product={selectedProduct}
+            setSelectedProduct={setSelectedProduct}
+          />
+        )}
       </div>
       <div>
         <button
           className="btn-submit"
           id="clear-all"
-          onClick={() => setSubmitedItems([])}
+          onClick={() => {
+            setSubmitedItems([]);
+            setSelectedProduct(null);
+          }}
         >
           Clear all
         </button>

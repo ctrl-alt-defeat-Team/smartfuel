@@ -1,9 +1,8 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 
 import "../styles/Cart.css";
-import { StarFill, Trash } from "react-bootstrap-icons";
-import SearchProduct from '../functions/searchProduct';
-
+import { HeartFill, Trash } from "react-bootstrap-icons";
+import SearchProduct from "../functions/searchProduct";
 
 const CartProduct = ({ product, onDelete, idProduct, quantity }) => {
   const [loading, setLoading] = useState(true);
@@ -13,7 +12,9 @@ const CartProduct = ({ product, onDelete, idProduct, quantity }) => {
     const newQuantity = parseInt(event.target.value);
     setSelectedQuantity(newQuantity);
     const existingCart = JSON.parse(localStorage.getItem("cart")) || [];
-    const productIndex = existingCart.findIndex((item) => item.startsWith(idProduct));
+    const productIndex = existingCart.findIndex((item) =>
+      item.startsWith(idProduct)
+    );
     if (productIndex !== -1) {
       const updatedProduct = `${idProduct}${newQuantity}`;
       existingCart[productIndex] = updatedProduct;
@@ -22,20 +23,20 @@ const CartProduct = ({ product, onDelete, idProduct, quantity }) => {
     }
   };
 
-    useEffect(() => {
-      console.log("idProduct:", idProduct);
-      console.log("product:", product);
-      if(idProduct !== null) {
-        console.log("idProduct changed:", idProduct);
+  useEffect(() => {
+    console.log("idProduct:", idProduct);
+    console.log("product:", product);
+    if (idProduct !== null) {
+      console.log("idProduct changed:", idProduct);
       const fetchData = async () => {
         try {
-          const productData = await SearchProduct('barcode', idProduct);
+          const productData = await SearchProduct("barcode", idProduct);
           console.log(productData);
-          console.log('productData:', productData);
+          console.log("productData:", productData);
           setLoadedProduct(productData);
           setLoading(false);
         } catch (error) {
-          console.error('Error in fetchData:', error);
+          console.error("Error in fetchData:", error);
         }
       };
       if (product === null || product === undefined) {
@@ -43,21 +44,20 @@ const CartProduct = ({ product, onDelete, idProduct, quantity }) => {
       } else {
         setLoading(false);
       }
-    }
-    else {
+    } else {
       setLoading(false);
     }
-  }, [idProduct,product]);
+  }, [idProduct, product]);
 
-    const handleDelete = () => {
-      onDelete(currentProduct._id); 
-    };
+  const handleDelete = () => {
+    onDelete(currentProduct._id);
+  };
 
-    const currentProduct = loadedProduct || product;
+  const currentProduct = loadedProduct || product;
 
-    if(currentProduct === null || currentProduct === undefined) {
-      return <div>Loading...</div>;
-    }
+  if (currentProduct === null || currentProduct === undefined) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="cart-product">
@@ -71,24 +71,25 @@ const CartProduct = ({ product, onDelete, idProduct, quantity }) => {
         <h3>{currentProduct.product_name}</h3>
         <div className="rating-details">
           <p>
-            {currentProduct.rating}{" "}
-            <span className="star">
-              <StarFill />
+            {currentProduct.user_likes}{" "}
+            <span className="user-likes">
+              <HeartFill color="red" />
             </span>
           </p>
 
           <select value={selectedQuantity} onChange={handleChangeQuantity}>
-              {[...Array(9).keys()].map((num) => (
-                <option key={num + 1} value={num + 1}>
-                  {num + 1}
-                </option>
-              ))}
-            </select>
+            {[...Array(9).keys()].map((num) => (
+              <option key={num + 1} value={num + 1}>
+                {num + 1}
+              </option>
+            ))}
+          </select>
 
           <button className="btn-details">Details</button>
         </div>
       </div>
-    </div>);
-    }
+    </div>
+  );
+};
 
 export default CartProduct;
