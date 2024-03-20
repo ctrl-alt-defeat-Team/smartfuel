@@ -9,12 +9,15 @@ function Landing() {
   const [name, setProductName] = useState(null);
 
   const openModal = (event) => {
-    event.preventDefault(); // Prevent default form submission
+    event.preventDefault(); 
     setShowModal(true);
 
   };
   const closeModal = () => {
+
     setShowModal(false);
+    setProductName("");
+    console.log(name);
   };
   return (
     <div className="landing-container">
@@ -35,6 +38,7 @@ function Landing() {
           <input 
           type="text" 
           placeholder="Enter product name"
+          value={name}
           onChange={(e) => setProductName(e.target.value)}
           />
           <button className="search-btn" onClick={openModal}>

@@ -25,20 +25,34 @@ function QRModal({ showModal, closeModal, name }) {
   };
 
   const handleAddToCart = (index,quantity) => {
-    const existingCart = localStorage.getItem("cart");
-    console.log("existingCart:", existingCart);
-    if (existingCart !== null && existingCart !== undefined && existingCart !== "") {
-      let data = JSON.parse(existingCart);
-
-      localStorage.setItem("cart", JSON.stringify([...data, products[index]._id+quantity]));
-    } else {
-      localStorage.setItem("cart", JSON.stringify([products[index]._id+quantity]));
+    if(index === -1){
+      const existingCart = localStorage.getItem("cart");
+      console.log("existingCart:", existingCart);
+      if (existingCart !== null && existingCart !== undefined && existingCart !== "") {
+        let data = JSON.parse(existingCart);
+  
+        localStorage.setItem("cart", JSON.stringify([...data, product._id+quantity]));
+      } else {
+        localStorage.setItem("cart", JSON.stringify([product._id+quantity]));
+      }
     }
+    else{
+      const existingCart = localStorage.getItem("cart");
+      console.log("existingCart:", existingCart);
+      if (existingCart !== null && existingCart !== undefined && existingCart !== "") {
+        let data = JSON.parse(existingCart);
+
+        localStorage.setItem("cart", JSON.stringify([...data, products[index]._id+quantity]));
+      } else {
+        localStorage.setItem("cart", JSON.stringify([products[index]._id+quantity]));
+      }
+    }
+    closeModal();
   };
   
   useEffect(() => {
     const fetchData = async () => {
-      if (name !== null && product == null && products == null) {
+      if (name !== null && product == null && products == null && name !="" ) {
         try {
           const productsData = await searchProduct("name", name);
           console.log(productsData);
@@ -71,7 +85,7 @@ function QRModal({ showModal, closeModal, name }) {
       <Modal.Body>
         <p className="textQr">{result ? result : "Scanning..."}</p>
         <div className="container">
-          {result == null && name == null && (
+          {result == null && (name == null || name =="")&& (
             <Scanner onDetected={onDetected} />
           )}
           {product != null && (
