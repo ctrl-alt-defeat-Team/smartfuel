@@ -4,7 +4,7 @@ import CartProduct from "./cartProduct"; // Import CartProduct component
 import Button from "react-bootstrap/Button";
 import "../styles/Mobile.css";
 
-function Cart({ setShowCart , cart}) {
+function Cart({ setShowCart, cart , isAdmin}) {
   const closeButtonClick = () => {
     setShowCart(false);
   };
@@ -148,6 +148,7 @@ function Cart({ setShowCart , cart}) {
                 onDelete={handleDelete}
                 idProduct={item.slice(0, -1)}
                 quantity={item.slice(-1)}
+                isAdmin={isAdmin}
               />
             </div>
           ))}

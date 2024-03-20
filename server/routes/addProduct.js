@@ -41,8 +41,17 @@ router.post("/", verifyToken, async (req, res) => {
 
 router.get("/existing", verifyToken, async (req, res) => {
   try {
-    const user = await getUser(req.userId);
-    const products = await Product.find();
+    const products = await Product.find({ approved: false || null });
+    res.json(products);
+  } catch (error) {
+    console.error("Error:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+router.get("/existing/getapproved", verifyToken, async (req, res) => {
+  try {
+    const products = await Product.find({ approved: true });
     res.json(products);
   } catch (error) {
     console.error("Error:", error);
