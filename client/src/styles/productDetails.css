@@ -8,7 +8,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   width: 111%;
-  height: 80vh;
+  height: 88.5vh;
   background-color: #e2e2e2;
   border-radius: 5px;
   z-index: 2;
@@ -24,7 +24,7 @@
   background-color: #e2e2e2;
 }
 
-.product-details-container > .btn-back > button {
+.product-details-container>.btn-back>button {
   position: relative;
   background-color: red;
   padding: 10px 15px 10px 15px;
@@ -127,7 +127,7 @@
   background-color: #e2e2e2;
 }
 
-.details-product-cart {
+.cartpage>.details-product-cart {
   position: absolute;
   width: 73vw;
   height: 80vh;

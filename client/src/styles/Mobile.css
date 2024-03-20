@@ -38,9 +38,18 @@
 
     .main-container>div>.cartpage {
         margin-top: 0;
-        height: 100%;
+        height: 83.5vh;
         width: 100%;
         border-radius: 0;
+        overflow: hidden;
+    }
+
+    .cartpage>.modal-title {
+        height: 10%;
+    }
+
+    .cartitem>.grid-item {
+        height: fit-content;
     }
 
     .modal-title>#close-div {
@@ -55,8 +64,9 @@
     .cartpage>.cartitem {
         display: grid;
         grid-template-columns: 1fr;
-        position: relative;
-        top: 10%;
+        position: absolute;
+        top: 30%;
+        height: 65%;
     }
 
     .cartitem>.grid-item>.cart-product {
@@ -64,7 +74,8 @@
     }
 
     #cart-title>h2 {
-        margin-bottom: 10%;
+        margin-bottom: 5%;
+        height: 70%;
     }
 
     #cart-title>h2>.basket {
@@ -74,6 +85,11 @@
 
     #cart-title>.title-btns {
         width: 100%;
+        height: 10%;
+    }
+
+    #cart-title {
+        height: 17vh;
     }
 
     /*cart-item*/
@@ -213,6 +229,9 @@
         border-radius: 5px;
         padding: 0;
         border-radius: 0;
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
     }
 
     .modal-content>.modal-close-btn>button {
@@ -227,6 +246,12 @@
 
     .textQr {
         font-size: 1.25rem;
+    }
+
+    .product-list {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     .product-list>.product-list-item {
@@ -386,5 +411,10 @@
         color: #fff;
         margin: 0.1em 0;
         text-decoration: none;
+    }
+
+    .nutriments-cart {
+        position: relative;
+        top: 10%;
     }
 }
