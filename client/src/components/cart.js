@@ -4,7 +4,7 @@ import CartProduct from "./cartProduct"; // Import CartProduct component
 import Button from "react-bootstrap/Button";
 import "../styles/Mobile.css";
 
-function Cart({ setShowCart }) {
+function Cart({ setShowCart , cart}) {
   const closeButtonClick = () => {
     setShowCart(false);
   };
@@ -31,7 +31,7 @@ function Cart({ setShowCart }) {
         ]);
     */
   const [cartItems, setCartItems] = useState([]);
-
+  
   const resetCart = () => {
     localStorage.removeItem("cart");
     window.location.reload();
@@ -60,7 +60,7 @@ function Cart({ setShowCart }) {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ cartItems }),
+        body: JSON.stringify({ cartItems,date: new Date() }),
       }
     );
     console.log(response);
@@ -68,10 +68,17 @@ function Cart({ setShowCart }) {
   };
 
   useEffect(() => {
+    if(cart!=null){
+      const barcodes = cart.products.map(product => product.barcode + product.quantity);
+      console.log("cart:", barcodes);
+      setCartItems(barcodes);
+    }
+    else {
     const cartData = localStorage.getItem("cart");
     if (cartData) {
       setCartItems(JSON.parse(cartData));
     }
+  }
   }, []);
   const handleDelete = (productId) => {
     const cartData = localStorage.getItem("cart");
@@ -88,6 +95,7 @@ function Cart({ setShowCart }) {
   };
 
   return (
+    
     <div>
       <div className="cartpage">
         <div className="modal-title">
@@ -119,12 +127,13 @@ function Cart({ setShowCart }) {
               </svg>
             </h2>
             <div className="title-btns">
-              <Button id="Reset" onClick={resetCart}>
+            {cart==null && <Button id="Reset" onClick={resetCart}>
                 Reset Cart
               </Button>
-              <Button id="Fisish" onClick={finishShopping}>
+            }
+              {cart==null &&<Button id="Fisish" onClick={finishShopping}>
                 Finish Shopping
-              </Button>
+              </Button>}
               <Button id="Cart-details" onClick={displayDetails}>
                 Cart Details
               </Button>

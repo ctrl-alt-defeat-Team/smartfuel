@@ -1,19 +1,28 @@
-import React from 'react';
+import React,{useState} from 'react';
+import Cart from './cart';
 
+const CartHistory = ({ cartHistory, setShowHistory, showCartFromHistory, setShowCartFromHistory, selectedCart, setSelectedCart }) => {
 
-const CartHistory = ({ cartHistory, setShowHistory }) => {
+const handleSelectedCart = (index) => {
+  setSelectedCart(cartHistory[index]);
+  setShowCartFromHistory(true);
+}
+
   return (
+    (!showCartFromHistory &&
     <div>
       <div> <button onClick={() => setShowHistory(false)}> goBack </button> </div>
       <div className="cart-history">
-    {cartHistory.map((cartHistory, index) => (
+    {cartHistory.map((cart, index) => (
           <div key={index} className="cart-element">
-            <div className="date">{cartHistory}</div>
-            <div className="product-count">{cartHistory} products</div>
+            <div className="date">{cart.date}</div>
+            <div className="product-count">{cart.products.length} products</div>
+            <button onClick={()=>{handleSelectedCart(index)}}> Show Cart </button>
           </div>
         ))}
       </div>
-    </div>
+      <br/>
+    </div>) || (showCartFromHistory &&  <Cart cart={selectedCart} setShowCart = {setShowCartFromHistory} />)
   );
 };
 

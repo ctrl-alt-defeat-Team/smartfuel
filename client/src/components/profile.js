@@ -17,6 +17,10 @@ function Profile({ user }) {
   const [selectedAllergens, setSelectedAllergens] = useState([]);
   const [showHistory, setShowHistory] = useState(false);
   const [cartHistory, setCartHistory] = useState([]);
+  const [showCartFromHistory, setShowCartFromHistory] = useState(false);
+  const [selectedCart, setSelectedCart] = useState({});//[
+  //const [cartHistoryID, setCartHistoryID] = useState([]);
+
   const handleShowHistory = () => {
     setShowHistory(true);
 };
@@ -70,6 +74,24 @@ function Profile({ user }) {
     window.location.reload();
   };
 
+  const fetchCartHistory = async (userID) => {
+    try {
+      const response = await fetch(
+        `${process.env.REACT_APP_API_URL}/api/getCartHistory/`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+          },
+        }
+      );
+      console.log(response);
+      const data = await response.json();
+      console.log(data);
+      setCartHistory(data);
+    } catch (error) {}
+  };
   useEffect(() => {
     console.log(user);
     if (user) {
@@ -83,7 +105,8 @@ function Profile({ user }) {
       setVegan(user.vegan || false);
       setSelectedAllergens(user.intolerance || []);
       console.log(user.shoppingHistory);
-      setCartHistory(user.shoppingHistory || []);
+//      setCartHistoryID(user.shoppingHistory || []);
+      fetchCartHistory();
     }
   }, [user]);
 
@@ -440,7 +463,7 @@ function Profile({ user }) {
         <p></p>
       </div>
     </div>) ||
-    (showHistory && CartHistory({ cartHistory, setShowHistory }))
+    (showHistory && CartHistory({ cartHistory, setShowHistory, showCartFromHistory,setShowCartFromHistory, selectedCart, setSelectedCart }))
   );
 }
 

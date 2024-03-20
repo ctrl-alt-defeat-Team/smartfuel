@@ -15,6 +15,7 @@ var updateUserRoutes = require("./routes/updateUser");
 var getUserRoutes = require("./routes/getUser");
 var saveCartRoutes = require("./routes/saveCart");
 var addProductRoutes = require("./routes/addProduct");
+var getCartHistoryRoutes = require("./routes/getCartHistory");
 app.use(express.json());
 
 app.get("/api", (req, res) => {
@@ -46,3 +47,4 @@ app.use("/api/updateUser", updateUserRoutes);
 app.use("/api/getUser", getUserRoutes);
 app.use("/api/saveCart", saveCartRoutes);
 app.use("/api/addProduct", addProductRoutes);
+app.use("/api/getCartHistory",getCartHistoryRoutes);
