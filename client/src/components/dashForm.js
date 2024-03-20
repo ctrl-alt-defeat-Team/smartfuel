@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../styles/Dashboard.css";
 
-function DashForm({ onClickSubmissions }) {
+function DashForm({ onClickSubmissions, isAdmin }) {
   // State variables to store form data
   const [formData, setFormData] = useState({
     product_name: "",
@@ -58,7 +58,13 @@ function DashForm({ onClickSubmissions }) {
         }
       );
       console.log(response);
-      onClickSubmissions();
+      if (isAdmin) {
+        onClickSubmissions();
+      }
+
+      if (!isAdmin) {
+        window.location.reload();
+      }
     } catch (error) {
       console.error("Error:", error);
     }
