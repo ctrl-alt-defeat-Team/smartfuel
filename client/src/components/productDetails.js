@@ -64,10 +64,6 @@ function ProductDetails({ product, setSelectedProduct }) {
             <p>
               Nutriscore: <span id="score">{product.nutriscore_grade}</span>{" "}
             </p>
-            <p>
-              <span>{product.user_likes}</span>
-              <HandThumbsUpFill className="like" />
-            </p>
           </div>
         </div>
       </div>
@@ -84,7 +80,9 @@ function ProductDetails({ product, setSelectedProduct }) {
       <div className="btn-back">
         <button onClick={handleClosePD}>Back</button>
       </div>
-      <div className="umplutura1"><p></p></div>
+      <div className="umplutura1">
+        <p></p>
+      </div>
     </div>
   );
 }

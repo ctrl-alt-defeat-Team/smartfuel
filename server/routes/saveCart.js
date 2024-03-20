@@ -20,10 +20,11 @@ router.post('/',verifyToken ,async (req, res) => {
         }
         console.log(cartItems);
          const newCart = new Cart({
-             products: cartItems
+             products: cartItems,
+             date: req.body.date,
          });
          await newCart.save();
-        user.shoppingHistory.push(newCart._id); // Assuming you store cart IDs in shoppingHistory
+        user.shoppingHistory.push(newCart._id); 
         await user.save();
         console.log(user);
         res.json({ message: 'Cart created and user updated successfully' });

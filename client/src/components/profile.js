@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import "../styles/profile.css";
 import "../styles/Mobile.css";
 import necessaryNutrition from "../functions/calcOptimalNutrtion";
+import CartHistory from "./cartHistory";
 
 function Profile({ user }) {
   const [username, setUsername] = useState("");
@@ -14,6 +15,16 @@ function Profile({ user }) {
   // const [phoneNumber, setPhoneNumber] = useState("");
   const [vegan, setVegan] = useState("");
   const [selectedAllergens, setSelectedAllergens] = useState([]);
+  const [showHistory, setShowHistory] = useState(false);
+  const [cartHistory, setCartHistory] = useState([]);
+  const [showCartFromHistory, setShowCartFromHistory] = useState(false);
+  const [selectedCart, setSelectedCart] = useState({});//[
+  //const [cartHistoryID, setCartHistoryID] = useState([]);
+
+  const handleShowHistory = () => {
+    setShowHistory(true);
+};
+
   const handleAllergenChange = (e) => {
     const allergen = e.target.value;
     const isChecked = e.target.checked;
@@ -63,6 +74,24 @@ function Profile({ user }) {
     window.location.reload();
   };
 
+  const fetchCartHistory = async (userID) => {
+    try {
+      const response = await fetch(
+        `${process.env.REACT_APP_API_URL}/api/getCartHistory/`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+          },
+        }
+      );
+      console.log(response);
+      const data = await response.json();
+      console.log(data);
+      setCartHistory(data);
+    } catch (error) {}
+  };
   useEffect(() => {
     console.log(user);
     if (user) {
@@ -75,14 +104,20 @@ function Profile({ user }) {
       setMale(user.male || "");
       setVegan(user.vegan || false);
       setSelectedAllergens(user.intolerance || []);
+      console.log(user.shoppingHistory);
+//      setCartHistoryID(user.shoppingHistory || []);
+      fetchCartHistory();
     }
   }, [user]);
 
-  return (
+  return ( (!showHistory &&
     <div className="page">
-      <div id="title">
-        <h1>Your Profile</h1>
-      </div>
+       <div id="title">
+                <h1>Your Profile</h1>
+                <button className="nav-btn nolog" onClick={handleShowHistory}>
+                    View Shopping History
+                </button>
+            </div>
       <div className="contact">
         <div className="form-group">
           <form>
@@ -427,7 +462,8 @@ function Profile({ user }) {
       <div className="umplutura">
         <p></p>
       </div>
-    </div>
+    </div>) ||
+    (showHistory && CartHistory({ cartHistory, setShowHistory, showCartFromHistory,setShowCartFromHistory, selectedCart, setSelectedCart }))
   );
 }
 

@@ -20,6 +20,7 @@ const productSchema = new mongoose.Schema({
   user_likes: Number,
   allergens: [String],
   custom: Boolean,
+  approved: Boolean,
 });
 
 module.exports = mongoose.model("Product", productSchema);

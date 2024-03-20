@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../styles/Dashboard.css";
 
-function DashForm() {
+function DashForm({ onClickSubmissions }) {
   // State variables to store form data
   const [formData, setFormData] = useState({
     product_name: "",
@@ -17,7 +17,7 @@ function DashForm() {
       proteins: "",
       salt: "",
     },
-    nutriscore_grade: ""
+    nutriscore_grade: "",
   });
 
   // Function to handle form input changes
@@ -25,17 +25,17 @@ function DashForm() {
     const { name, value } = e.target;
     if (name.includes("nutriments")) {
       const nutrimentsField = name.split(".")[1];
-      setFormData(prevState => ({
+      setFormData((prevState) => ({
         ...prevState,
         nutriments: {
           ...prevState.nutriments,
-          [nutrimentsField]: value
-        }
+          [nutrimentsField]: value,
+        },
       }));
     } else {
-      setFormData(prevState => ({
+      setFormData((prevState) => ({
         ...prevState,
-        [name]: value
+        [name]: value,
       }));
     }
   };
@@ -46,15 +46,19 @@ function DashForm() {
     console.log(formData);
     const token = localStorage.getItem("token");
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/addProduct`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${token}`,
-        },
-        body: JSON.stringify(formData),
-      });
+      const response = await fetch(
+        `${process.env.REACT_APP_API_URL}/api/addProduct`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(formData),
+        }
+      );
       console.log(response);
+      onClickSubmissions();
     } catch (error) {
       console.error("Error:", error);
     }
@@ -161,17 +165,16 @@ function DashForm() {
               required
               placeholder="Salt (g)"
             />
-          {/* Nutriscore grade */}
-          <input
-            type="text"
-            name="nutriscore_grade"
-            value={formData.nutriscore_grade}
-            onChange={handleInputChange}
-            required
-            placeholder="Nutriscore grade (a, b, c, d, e)"
-          />
-                    </div>
-
+            {/* Nutriscore grade */}
+            <input
+              type="text"
+              name="nutriscore_grade"
+              value={formData.nutriscore_grade}
+              onChange={handleInputChange}
+              required
+              placeholder="Nutriscore grade (a, b, c, d, e)"
+            />
+          </div>
         </div>
         {/* Submit button */}
         <div className="btn-dash-div">
