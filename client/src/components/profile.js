@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import "../styles/profile.css";
 import "../styles/Mobile.css";
 import necessaryNutrition from "../functions/calcOptimalNutrtion";
+import CartHistory from "./cartHistory";
 
 function Profile({ user }) {
   const [username, setUsername] = useState("");
@@ -14,6 +15,12 @@ function Profile({ user }) {
   // const [phoneNumber, setPhoneNumber] = useState("");
   const [vegan, setVegan] = useState("");
   const [selectedAllergens, setSelectedAllergens] = useState([]);
+  const [showHistory, setShowHistory] = useState(false);
+  const [cartHistory, setCartHistory] = useState([]);
+  const handleShowHistory = () => {
+    setShowHistory(true);
+};
+
   const handleAllergenChange = (e) => {
     const allergen = e.target.value;
     const isChecked = e.target.checked;
@@ -75,14 +82,19 @@ function Profile({ user }) {
       setMale(user.male || "");
       setVegan(user.vegan || false);
       setSelectedAllergens(user.intolerance || []);
+      console.log(user.shoppingHistory);
+      setCartHistory(user.shoppingHistory || []);
     }
   }, [user]);
 
-  return (
+  return ( (!showHistory &&
     <div className="page">
-      <div id="title">
-        <h1>Your Profile</h1>
-      </div>
+       <div id="title">
+                <h1>Your Profile</h1>
+                <button className="nav-btn nolog" onClick={handleShowHistory}>
+                    View Shopping History
+                </button>
+            </div>
       <div className="contact">
         <div className="form-group">
           <form>
@@ -427,7 +439,8 @@ function Profile({ user }) {
       <div className="umplutura">
         <p></p>
       </div>
-    </div>
+    </div>) ||
+    (showHistory && CartHistory({ cartHistory, setShowHistory }))
   );
 }
 
