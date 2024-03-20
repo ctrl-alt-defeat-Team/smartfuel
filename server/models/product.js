@@ -18,7 +18,7 @@ const productSchema = new mongoose.Schema({
   },
   nutriscore_grade: String,
   user_likes: Number,
-  allergens: [String],
+  allergens_tags : [String],
   custom: Boolean,
   approved: Boolean,
 });

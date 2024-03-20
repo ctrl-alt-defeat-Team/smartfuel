@@ -20,6 +20,7 @@ const productSchema = Joi.object({
     salt: Joi.number().required(),
   }).required(),
   nutriscore_grade: Joi.string().required(),
+  allergens_tags: Joi.array().items(Joi.string()),
 });
 
 router.post("/", verifyToken, async (req, res) => {
