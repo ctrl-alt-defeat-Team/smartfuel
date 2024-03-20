@@ -13,6 +13,7 @@ const CartProduct = ({
   onAccept,
   onReject,
   showApproved,
+  showDelete,
 }) => {
   const [loading, setLoading] = useState(true);
   const [loadedProduct, setLoadedProduct] = useState(null);
@@ -81,7 +82,7 @@ const CartProduct = ({
             Reject
           </button>
         )}
-        {!isAdmin && (
+        {(!isAdmin && showDelete) && (
           <button className="btn-remove" onClick={handleDelete}>
             <Trash />
           </button>

@@ -149,6 +149,7 @@ function Cart({ setShowCart, cart , isAdmin}) {
                 idProduct={item.slice(0, -1)}
                 quantity={item.slice(-1)}
                 isAdmin={isAdmin}
+                showDelete={cart==null}
               />
             </div>
           ))}
