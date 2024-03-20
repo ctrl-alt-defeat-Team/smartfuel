@@ -97,3 +97,9 @@
   border-radius: 3px;
   padding: 1%;
 }
+
+.rating-details > p > button {
+  border: none;
+  cursor: pointer;
+  background-color: white;
+}

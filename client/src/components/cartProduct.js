@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import "../styles/Cart.css";
-import { HeartFill,Heart, Trash } from "react-bootstrap-icons";
+import { HeartFill, Heart, Trash } from "react-bootstrap-icons";
 import SearchProduct from "../functions/searchProduct";
 
 const CartProduct = ({
@@ -14,6 +14,7 @@ const CartProduct = ({
   onReject,
   showApproved,
   showDelete,
+  onDetailsClick,
 }) => {
   const [loading, setLoading] = useState(true);
   const [loadedProduct, setLoadedProduct] = useState(null);
@@ -23,6 +24,9 @@ const CartProduct = ({
   const [likeHandle, setLikeHandle] = useState(false);
   const currentProduct = loadedProduct || product;
 
+  const handleDetailsClick = () => {
+    onDetailsClick(); // Call the function provided by the parent component
+  };
 
   const handleLike = async () => {
     const token = localStorage.getItem("token");
@@ -39,8 +43,7 @@ const CartProduct = ({
       }
     );
     setLikeHandle(!likeHandle);
-  }
-
+  };
 
   const handleChangeQuantity = (event) => {
     const newQuantity = parseInt(event.target.value);
@@ -77,13 +80,12 @@ const CartProduct = ({
                 Authorization: `Bearer ${token}`,
                 "Content-Type": "application/json",
               },
-              body: JSON.stringify({ barcode: idProduct}),
+              body: JSON.stringify({ barcode: idProduct }),
             }
           );
           const likes = await response.json();
           setIsLiked(likes.liked);
           setNoOfLikes(likes.likes);
-
         } catch (error) {
           console.error("Error in fetchData:", error);
         }
@@ -102,7 +104,6 @@ const CartProduct = ({
     onDelete(currentProduct._id);
   };
 
-
   if (currentProduct === null || currentProduct === undefined) {
     return <div>Loading...</div>;
   }
@@ -120,7 +121,7 @@ const CartProduct = ({
             Reject
           </button>
         )}
-        {(!isAdmin && showDelete) && (
+        {!isAdmin && showDelete && (
           <button className="btn-remove" onClick={handleDelete}>
             <Trash />
           </button>
@@ -131,17 +132,17 @@ const CartProduct = ({
         <h3>{currentProduct.product_name}</h3>
         <div className="rating-details">
           <p>
-           <button onClick = {handleLike}> 
-           {!isLiked &&  <span className="user-likes">
-              <Heart color="red" />
-              {noOfLikes}
-            </span>
-            }
-            {isLiked &&  <span className="user-likes">
-              <HeartFill color="red" />
-              {noOfLikes}
-              </span>
-            }
+            <button onClick={handleLike}>
+              {!isLiked && (
+                <span className="user-likes">
+                  <Heart color="red" /> {noOfLikes}
+                </span>
+              )}
+              {isLiked && (
+                <span className="user-likes">
+                  <HeartFill color="red" /> {noOfLikes}
+                </span>
+              )}
             </button>
           </p>
 
@@ -153,7 +154,9 @@ const CartProduct = ({
             ))}
           </select>
 
-          <button className="btn-details">Details</button>
+          <button className="btn-details" onClick={onDetailsClick}>
+            Details
+          </button>
         </div>
       </div>
     </div>

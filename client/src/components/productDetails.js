@@ -8,7 +8,9 @@ function ProductDetails({ product, setSelectedProduct }) {
     setSelectedProduct(null);
   };
 
-  const allergens = product.allergens_tags.map((tag) => tag.split(":")[1]);
+  const allergens = product.allergens_tags
+    ? product.allergens_tags.map((tag) => tag.split(":")[1])
+    : [];
   const allergen = allergens.join(", ");
 
   return (
