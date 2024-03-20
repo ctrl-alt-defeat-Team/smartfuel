@@ -8,7 +8,7 @@ router.get('/barcode/:productQR', async (req, res) => {
     //console.log(req.params.productQR);
     const productQR = req.params.productQR;
     try {
-        var response2 = await Product.findOne({barcode: productQR});
+        var response2 = await Product.findOne({barcode: productQR, approved: true});
         if(response2){
             var response3 = {};
             response3.product_name = response2.product_name;
@@ -38,7 +38,7 @@ router.get('/name/:name', async (req, res) => {
   
     const productName = req.params.name;
     try {
-        const response2 = await Product.find({product_name: productName});
+        const response2 = await Product.find({product_name: productName, approved: true});
         console.log(response2);
         const response = await fetch(`https://world.openfoodfacts.org/cgi/search.pl?search_terms=${productName}&search_simple=1&action=process&json=1`);
         //console.log(response);
